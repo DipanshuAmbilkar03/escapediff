@@ -1,0 +1,13 @@
+{
+  "name": "escapediff",
+  "version": "0.1.0",
+  "description": "Compare Go escape analysis and inlining between a base branch and your change: new heap escapes, functions no longer inlined, new parameter leaks and lost devirtualization.",
+  "author": {
+    "name": "Giulliano Macedo",
+    "url": "https://github.com/GillMacedo"
+  },
+  "homepage": "https://github.com/GillMacedo/escapediff",
+  "repository": "https://github.com/GillMacedo/escapediff",
+  "license": "MIT",
+  "keywords": ["go", "golang", "escape-analysis", "inlining", "heap-allocation", "performance", "code-review", "ci"]
+}

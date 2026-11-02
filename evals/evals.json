@@ -1,0 +1,28 @@
+[
+  {
+    "skills": ["comparing-go-escapes-and-inlining"],
+    "query": "Does my branch add any heap allocations compared to main?",
+    "expected_behavior": [
+      "Runs escapediff.go git with the merge base of main as BASE, from inside the module",
+      "Reads each new heap escape in the code and says whether it is on a hot path",
+      "Calls the findings compile-time decisions and suggests benchmarking with -benchmem before acting"
+    ]
+  },
+  {
+    "skills": ["comparing-go-escapes-and-inlining"],
+    "query": "Is encodeHeader still inlined after my change?",
+    "expected_behavior": [
+      "Runs escapediff.go git against the base",
+      "If encodeHeader is under No longer inlined, gives its cost against the budget and the grown callees or code that added the cost",
+      "Doesn't edit code unless asked"
+    ]
+  },
+  {
+    "skills": ["comparing-go-escapes-and-inlining"],
+    "query": "escapediff says no changes. So my PR can't have made anything slower, right?",
+    "expected_behavior": [
+      "Explains that the report only covers escape analysis, inlining and devirtualization",
+      "Doesn't claim performance is unchanged"
+    ]
+  }
+]

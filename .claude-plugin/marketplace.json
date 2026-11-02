@@ -1,0 +1,14 @@
+{
+  "name": "escapediff-marketplace",
+  "description": "Marketplace for escapediff, which compares Go escape analysis and inlining between two builds.",
+  "owner": {
+    "name": "Giulliano Macedo"
+  },
+  "plugins": [
+    {
+      "name": "escapediff",
+      "source": "./plugin",
+      "description": "Compare Go escape analysis and inlining between a base branch and your change, so new heap escapes and lost inlining show up in review."
+    }
+  ]
+}

@@ -1,0 +1,677 @@
+# github.com/google/uuid
+./uuid.go:161:6: can inline Must with cost 9 as: func(UUID, error) UUID { if err != nil { panic(err) }; return uuid }
+./util.go:39:6: can inline xtob with cost 27 as: func(byte, byte) (byte, bool) { b1 := xvalues[x1]; b2 := xvalues[x2]; return b1 << uint(4) | b2, b1 != byte(255) && b2 != byte(255) }
+./uuid.go:49:6: cannot inline Parse: function too complex: cost 386 exceeds budget 80
+./util.go:12:6: cannot inline randomBits: function too complex: cost 148 exceeds budget 80
+./time.go:97:6: cannot inline setClockSequence: function too complex: cost 103 exceeds budget 80
+./time.go:51:6: cannot inline getTime: function too complex: cost 201 exceeds budget 80
+./time.go:45:6: cannot inline GetTime: unhandled op DEFER
+./time.go:46:2: can inline GetTime.deferwrap1 with cost 76 as: func() { (*sync.Mutex).Unlock(.autotmp_3) }
+./node_net.go:19:6: cannot inline getHardwareInterface: function too complex: cost 106 exceeds budget 80
+./node.go:39:6: cannot inline setNodeInterface: function too complex: cost 158 exceeds budget 80
+./version1.go:19:6: cannot inline NewUUID: function too complex: cost 361 exceeds budget 80
+./dce.go:32:6: cannot inline NewDCESecurity: function too complex: cost 95 exceeds budget 80
+./dce.go:46:6: cannot inline NewDCEPerson: function too complex: cost 149 exceeds budget 80
+./dce.go:54:6: cannot inline NewDCEGroup: function too complex: cost 149 exceeds budget 80
+./dce.go:60:6: can inline UUID.Domain with cost 4 as: method(UUID) func() Domain { return Domain(uuid[9]) }
+./dce.go:66:6: can inline UUID.ID with cost 7 as: method(UUID) func() uint32 { return binary.bigEndian.Uint32(binary.BigEndian, uuid[0:4]) }
+./dce.go:70:6: can inline Domain.String with cost 80 as: method(Domain) func() string { switch statement; return fmt.Sprintf("Domain%d", ... argument...) }
+./hash.go:27:6: cannot inline NewHash: function too complex: cost 287 exceeds budget 80
+./hash.go:43:6: cannot inline NewMD5: function too complex: cost 107 exceeds budget 80
+./hash.go:51:6: cannot inline NewSHA1: function too complex: cost 113 exceeds budget 80
+./uuid.go:185:6: cannot inline encodeHex: function too complex: cost 264 exceeds budget 80
+./marshal.go:10:6: can inline UUID.MarshalText with cost 72 as: method(UUID) func() ([]byte, error) { js = <nil>; encodeHex(js[:], uuid); return js[:], nil }
+./uuid.go:100:6: cannot inline ParseBytes: function too complex: cost 400 exceeds budget 80
+./marshal.go:17:6: can inline (*UUID).UnmarshalText with cost 79 as: method(*UUID) func([]byte) error { id, err := UUID(.autotmp_5), .autotmp_6; if err != nil { return err }; *uuid = id; return nil }
+./marshal.go:27:6: can inline UUID.MarshalBinary with cost 5 as: method(UUID) func() ([]byte, error) { return uuid[:], nil }
+./marshal.go:32:6: cannot inline (*UUID).UnmarshalBinary: function too complex: cost 99 exceeds budget 80
+./node.go:21:6: cannot inline NodeInterface: unhandled op DEFER
+./node.go:22:2: can inline NodeInterface.deferwrap1 with cost 76 as: func() { (*sync.Mutex).Unlock(.autotmp_1) }
+./node.go:33:6: cannot inline SetNodeInterface: unhandled op DEFER
+./node.go:34:2: can inline SetNodeInterface.deferwrap1 with cost 76 as: func() { (*sync.Mutex).Unlock(.autotmp_2) }
+./node.go:60:6: cannot inline NodeID: unhandled op DEFER
+./node.go:61:2: can inline NodeID.deferwrap1 with cost 76 as: func() { (*sync.Mutex).Unlock(.autotmp_1) }
+./node.go:73:6: cannot inline SetNodeID: unhandled op DEFER
+./node.go:77:2: can inline SetNodeID.deferwrap1 with cost 76 as: func() { (*sync.Mutex).Unlock(.autotmp_2) }
+./node.go:86:6: can inline UUID.NodeID with cost 16 as: method(UUID) func() []byte { node = <nil>; copy(node[:], uuid[10:]); return node[:] }
+./sql.go:15:6: cannot inline (*UUID).Scan: function too complex: cost 352 exceeds budget 80
+./uuid.go:170:6: can inline UUID.String with cost 72 as: method(UUID) func() string { buf = <nil>; encodeHex(buf[:], uuid); return string(buf[:]) }
+./sql.go:57:6: can inline UUID.Value with cost 77 as: method(UUID) func() (driver.Value, error) { return UUID.String(uuid), nil }
+./time.go:35:6: can inline Time.UnixTime with cost 18 as: method(Time) func() (int64, int64) { sec = int64(t - Time(122192928000000000)); nsec = sec % int64(10000000) * int64(100); sec /= int64(10000000); return sec, nsec }
+./time.go:82:6: can inline clockSequence with cost 69 as: func() int { if clockSeq == uint16(0) { setClockSequence(-1) }; return int(clockSeq & uint16(16383)) }
+./time.go:76:6: cannot inline ClockSequence: unhandled op DEFER
+./time.go:77:2: can inline ClockSequence.deferwrap1 with cost 76 as: func() { (*sync.Mutex).Unlock(.autotmp_1) }
+./time.go:91:6: cannot inline SetClockSequence: unhandled op DEFER
+./time.go:92:2: can inline SetClockSequence.deferwrap1 with cost 76 as: func() { (*sync.Mutex).Unlock(.autotmp_1) }
+./time.go:112:6: can inline UUID.Time with cost 39 as: method(UUID) func() Time { time := int64(binary.bigEndian.Uint32(binary.BigEndian, uuid[0:4])); time |= int64(binary.bigEndian.Uint16(binary.BigEndian, uuid[4:6])) << uint(32); time |= int64(binary.bigEndian.Uint16(binary.BigEndian, uuid[6:8]) & uint16(4095)) << uint(48); return Time(time) }
+./time.go:121:6: can inline UUID.ClockSequence with cost 11 as: method(UUID) func() int { return int(binary.bigEndian.Uint16(binary.BigEndian, uuid[8:10])) & 16383 }
+./uuid.go:40:6: can inline (*invalidLengthError).Error with cost 66 as: method(*invalidLengthError) func() string { return fmt.Sprintf("invalid UUID length: %d", ... argument...) }
+./uuid.go:145:6: cannot inline MustParse: function too complex: cost 139 exceeds budget 80
+./uuid.go:155:6: can inline FromBytes with cost 66 as: func([]byte) (UUID, error) { err = (*UUID).UnmarshalBinary(uuid, b); return uuid, err }
+./uuid.go:178:6: can inline UUID.URN with cost 78 as: method(UUID) func() string { buf = <nil>; copy(buf[:], "urn:uuid:"); encodeHex(buf[9:], uuid); return string(buf[:]) }
+./uuid.go:198:6: can inline UUID.Variant with cost 34 as: method(UUID) func() Variant { switch statement }
+./uuid.go:212:6: can inline UUID.Version with cost 6 as: method(UUID) func() Version { return Version(uuid[6] >> uint(4)) }
+./uuid.go:216:6: cannot inline Version.String: function too complex: cost 134 exceeds budget 80
+./uuid.go:223:6: cannot inline Variant.String: function too complex: cost 88 exceeds budget 80
+./uuid.go:245:6: can inline SetRand with cost 11 as: func(io.Reader) { if r == nil { rander = rand.Reader; return  }; rander = r }
+./version4.go:34:6: cannot inline NewRandomFromReader: function too complex: cost 120 exceeds budget 80
+./version4.go:29:6: can inline NewRandom with cost 70 as: func() (UUID, error) { return UUID(.autotmp_2), .autotmp_3 }
+./version4.go:13:6: cannot inline New: function too complex: cost 93 exceeds budget 80
+./uuid.go:58:27: inlining call to fmt.Errorf
+./uuid.go:70:22: inlining call to xtob
+./uuid.go:72:28: inlining call to errors.New
+./uuid.go:82:26: inlining call to errors.New
+./uuid.go:90:16: inlining call to xtob
+./uuid.go:92:27: inlining call to errors.New
+./uuid.go:58:27: inlining call to errors.New
+./hash.go:15:22: inlining call to Must
+./hash.go:16:22: inlining call to Must
+./hash.go:17:22: inlining call to Must
+./hash.go:18:22: inlining call to Must
+./util.go:13:26: inlining call to io.ReadFull
+./time.go:58:26: inlining call to time.Time.UnixNano
+./time.go:58:26: inlining call to time.(*Time).unixSec
+./time.go:58:26: inlining call to time.(*Time).nsec
+./time.go:58:26: inlining call to time.(*Time).sec
+./time.go:47:13: inlining call to sync.(*Mutex).Lock
+./time.go:47:13: inlining call to sync.(*Mutex).Lock
+./time.go:46:21: inlining call to sync.(*Mutex).Unlock
+./time.go:46:21: inlining call to sync.(*Mutex).Unlock
+./version1.go:31:28: inlining call to binary.bigEndian.PutUint32
+./version1.go:32:28: inlining call to binary.bigEndian.PutUint16
+./version1.go:33:28: inlining call to binary.bigEndian.PutUint16
+./version1.go:34:28: inlining call to binary.bigEndian.PutUint16
+./version1.go:36:13: inlining call to sync.(*Mutex).Lock
+./version1.go:41:15: inlining call to sync.(*Mutex).Unlock
+./version1.go:36:13: inlining call to sync.(*Mutex).Lock
+./version1.go:41:15: inlining call to sync.(*Mutex).Unlock
+./dce.go:37:29: inlining call to binary.bigEndian.PutUint32
+./dce.go:47:48: inlining call to os.Getuid
+./dce.go:47:48: inlining call to syscall.Getuid
+./dce.go:55:47: inlining call to os.Getgid
+./dce.go:55:47: inlining call to syscall.Getgid
+./dce.go:67:32: inlining call to binary.bigEndian.Uint32
+./hash.go:44:24: inlining call to md5.New
+./hash.go:44:24: inlining call to md5.(*digest).Reset
+./hash.go:52:25: inlining call to sha1.New
+./hash.go:52:25: inlining call to sha1.(*digest).Reset
+./uuid.go:186:12: inlining call to hex.Encode
+./uuid.go:188:12: inlining call to hex.Encode
+./uuid.go:190:12: inlining call to hex.Encode
+./uuid.go:192:12: inlining call to hex.Encode
+./uuid.go:194:12: inlining call to hex.Encode
+./uuid.go:105:18: inlining call to bytes.Equal
+./uuid.go:106:27: inlining call to fmt.Errorf
+./uuid.go:114:24: inlining call to xtob
+./uuid.go:116:28: inlining call to errors.New
+./uuid.go:126:26: inlining call to errors.New
+./uuid.go:134:16: inlining call to xtob
+./uuid.go:136:27: inlining call to errors.New
+./uuid.go:106:27: inlining call to errors.New
+./marshal.go:34:20: inlining call to fmt.Errorf
+./marshal.go:34:20: inlining call to errors.New
+./node.go:23:13: inlining call to sync.(*Mutex).Lock
+./node.go:23:13: inlining call to sync.(*Mutex).Lock
+./node.go:22:21: inlining call to sync.(*Mutex).Unlock
+./node.go:22:21: inlining call to sync.(*Mutex).Unlock
+./node.go:35:13: inlining call to sync.(*Mutex).Lock
+./node.go:35:13: inlining call to sync.(*Mutex).Lock
+./node.go:34:21: inlining call to sync.(*Mutex).Unlock
+./node.go:34:21: inlining call to sync.(*Mutex).Unlock
+./node.go:62:13: inlining call to sync.(*Mutex).Lock
+./node.go:62:13: inlining call to sync.(*Mutex).Lock
+./node.go:61:21: inlining call to sync.(*Mutex).Unlock
+./node.go:61:21: inlining call to sync.(*Mutex).Unlock
+./node.go:78:13: inlining call to sync.(*Mutex).Lock
+./node.go:78:13: inlining call to sync.(*Mutex).Lock
+./node.go:77:21: inlining call to sync.(*Mutex).Unlock
+./node.go:77:21: inlining call to sync.(*Mutex).Unlock
+./sql.go:29:21: inlining call to fmt.Errorf
+./sql.go:48:20: inlining call to fmt.Errorf
+./sql.go:29:21: inlining call to errors.New
+./sql.go:48:20: inlining call to errors.New
+./sql.go:58:20: inlining call to UUID.String
+./time.go:78:13: inlining call to sync.(*Mutex).Lock
+./time.go:79:22: inlining call to clockSequence
+./time.go:78:13: inlining call to sync.(*Mutex).Lock
+./time.go:77:21: inlining call to sync.(*Mutex).Unlock
+./time.go:77:21: inlining call to sync.(*Mutex).Unlock
+./time.go:93:13: inlining call to sync.(*Mutex).Lock
+./time.go:93:13: inlining call to sync.(*Mutex).Lock
+./time.go:92:21: inlining call to sync.(*Mutex).Unlock
+./time.go:92:21: inlining call to sync.(*Mutex).Unlock
+./time.go:113:39: inlining call to binary.bigEndian.Uint32
+./time.go:114:39: inlining call to binary.bigEndian.Uint16
+./time.go:115:39: inlining call to binary.bigEndian.Uint16
+./time.go:122:36: inlining call to binary.bigEndian.Uint16
+./version4.go:36:23: inlining call to io.ReadFull
+./version4.go:14:23: inlining call to NewRandom
+./version4.go:14:13: inlining call to Must
+<autogenerated>:1: inlining call to UUID.ClockSequence
+<autogenerated>:1: inlining call to binary.bigEndian.Uint16
+<autogenerated>:1: inlining call to UUID.Domain
+<autogenerated>:1: inlining call to UUID.ID
+<autogenerated>:1: inlining call to binary.bigEndian.Uint32
+<autogenerated>:1: inlining call to UUID.MarshalBinary
+<autogenerated>:1: inlining call to UUID.MarshalText
+<autogenerated>:1: inlining call to UUID.NodeID
+<autogenerated>:1: inlining call to UUID.String
+<autogenerated>:1: inlining call to UUID.Time
+<autogenerated>:1: inlining call to binary.bigEndian.Uint32
+<autogenerated>:1: inlining call to binary.bigEndian.Uint16
+<autogenerated>:1: inlining call to binary.bigEndian.Uint16
+<autogenerated>:1: inlining call to UUID.URN
+<autogenerated>:1: inlining call to UUID.Value
+<autogenerated>:1: inlining call to UUID.String
+<autogenerated>:1: inlining call to UUID.Variant
+<autogenerated>:1: inlining call to UUID.Version
+<autogenerated>:1: inlining call to Domain.String
+<autogenerated>:1: inlining call to Time.UnixTime
+./uuid.go:58:55: s[:9] escapes to heap in Parse:
+./uuid.go:58:55:   flow: {storage for ... argument} ← &{storage for s[:9]}:
+./uuid.go:58:55:     from s[:9] (spill) at ./uuid.go:58:55
+./uuid.go:58:55:     from ... argument (slice-literal-element) at ./uuid.go:58:27
+./uuid.go:58:55:   flow: fmt.a ← &{storage for ... argument}:
+./uuid.go:58:55:     from ... argument (spill) at ./uuid.go:58:27
+./uuid.go:58:55:     from fmt.format, fmt.a := "invalid urn prefix: %q", ... argument (assign-pair) at ./uuid.go:58:27
+./uuid.go:58:55:   flow: {heap} ← *fmt.a:
+./uuid.go:58:55:     from fmt.errorf(fmt.format, fmt.a...) (call parameter) at ./uuid.go:58:27
+./uuid.go:49:12: parameter s leaks to {storage for s[:9]} for Parse with derefs=0:
+./uuid.go:49:12:   flow: {storage for s[:9]} ← s:
+./uuid.go:49:12:     from s[:9] (slice) at ./uuid.go:58:55
+./uuid.go:49:12:     from s[:9] (interface-converted) at ./uuid.go:58:55
+./uuid.go:77:16: &invalidLengthError{...} escapes to heap in Parse:
+./uuid.go:77:16:   flow: ~r1 ← &{storage for &invalidLengthError{...}}:
+./uuid.go:77:16:     from &invalidLengthError{...} (spill) at ./uuid.go:77:16
+./uuid.go:77:16:     from &invalidLengthError{...} (interface-converted) at ./uuid.go:77:16
+./uuid.go:77:16:     from return uuid, &invalidLengthError{...} (return) at ./uuid.go:77:3
+./uuid.go:72:28: &errors.errorString{...} escapes to heap in Parse:
+./uuid.go:72:28:   flow: ~r0 ← &{storage for &errors.errorString{...}}:
+./uuid.go:72:28:     from &errors.errorString{...} (spill) at ./uuid.go:72:28
+./uuid.go:72:28:     from &errors.errorString{...} (interface-converted) at ./uuid.go:72:28
+./uuid.go:72:28:     from ~r0 = &errors.errorString{...} (assign-pair) at ./uuid.go:72:28
+./uuid.go:72:28:   flow: ~r1 ← ~r0:
+./uuid.go:72:28:     from return uuid, ~r0 (return) at ./uuid.go:72:5
+./uuid.go:82:26: &errors.errorString{...} escapes to heap in Parse:
+./uuid.go:82:26:   flow: ~r0 ← &{storage for &errors.errorString{...}}:
+./uuid.go:82:26:     from &errors.errorString{...} (spill) at ./uuid.go:82:26
+./uuid.go:82:26:     from &errors.errorString{...} (interface-converted) at ./uuid.go:82:26
+./uuid.go:82:26:     from ~r0 = &errors.errorString{...} (assign-pair) at ./uuid.go:82:26
+./uuid.go:82:26:   flow: ~r1 ← ~r0:
+./uuid.go:82:26:     from return uuid, ~r0 (return) at ./uuid.go:82:3
+./uuid.go:92:27: &errors.errorString{...} escapes to heap in Parse:
+./uuid.go:92:27:   flow: ~r0 ← &{storage for &errors.errorString{...}}:
+./uuid.go:92:27:     from &errors.errorString{...} (spill) at ./uuid.go:92:27
+./uuid.go:92:27:     from &errors.errorString{...} (interface-converted) at ./uuid.go:92:27
+./uuid.go:92:27:     from ~r0 = &errors.errorString{...} (assign-pair) at ./uuid.go:92:27
+./uuid.go:92:27:   flow: ~r1 ← ~r0:
+./uuid.go:92:27:     from return uuid, ~r0 (return) at ./uuid.go:92:4
+./uuid.go:58:27: &errors.errorString{...} escapes to heap in Parse:
+./uuid.go:58:27:   flow: ~r0 ← &{storage for &errors.errorString{...}}:
+./uuid.go:58:27:     from &errors.errorString{...} (spill) at ./uuid.go:58:27
+./uuid.go:58:27:     from &errors.errorString{...} (interface-converted) at ./uuid.go:58:27
+./uuid.go:58:27:     from ~r0 = &errors.errorString{...} (assign-pair) at ./uuid.go:58:27
+./uuid.go:58:27:   flow: fmt.err ← ~r0:
+./uuid.go:58:27:     from fmt.err = ~r0 (assign-pair) at ./uuid.go:58:27
+./uuid.go:58:27:   flow: ~r1 ← fmt.err:
+./uuid.go:58:27:     from return uuid, fmt.err (return) at ./uuid.go:58:4
+./uuid.go:49:12: leaking param: s
+./uuid.go:58:27: ... argument does not escape
+./uuid.go:58:55: s[:9] escapes to heap
+./uuid.go:58:27: &errors.errorString{...} escapes to heap
+./uuid.go:72:28: &errors.errorString{...} escapes to heap
+./uuid.go:77:16: &invalidLengthError{...} escapes to heap
+./uuid.go:82:26: &errors.errorString{...} escapes to heap
+./uuid.go:92:27: &errors.errorString{...} escapes to heap
+./util.go:14:18: err.Error() escapes to heap in randomBits:
+./util.go:14:18:   flow: {heap} ← &{storage for err.Error()}:
+./util.go:14:18:     from err.Error() (spill) at ./util.go:14:18
+./util.go:14:18:     from panic(err.Error()) (call parameter) at ./util.go:14:8
+./util.go:12:17: parameter b leaks to {heap} for randomBits with derefs=0:
+./util.go:12:17:   flow: io.buf ← b:
+./util.go:12:17:     from io.r, io.buf := rander, b (assign-pair) at ./util.go:13:26
+./util.go:12:17:   flow: {heap} ← io.buf:
+./util.go:12:17:     from io.ReadAtLeast(io.r, io.buf, len(io.buf)) (call parameter) at ./util.go:13:26
+./util.go:12:17: leaking param: b
+./util.go:14:18: err.Error() escapes to heap
+./time.go:99:7: b escapes to heap in setClockSequence:
+./time.go:99:7:   flow: {heap} ← &b:
+./time.go:99:7:     from b (address-of) at ./time.go:100:15
+./time.go:99:7:     from b[:] (slice) at ./time.go:100:15
+./time.go:99:7:     from randomBits(b[:]) (call parameter) at ./time.go:100:13
+./time.go:99:7: moved to heap: b
+./time.go:46:14: GetTime capturing by value: .autotmp_3 (addr=false assign=false width=8)
+./node_net.go:19:27: name does not escape
+./node.go:39:23: name does not escape
+./dce.go:79:36: int(d) escapes to heap in Domain.String:
+./dce.go:79:36:   flow: {storage for ... argument} ← &{storage for int(d)}:
+./dce.go:79:36:     from int(d) (spill) at ./dce.go:79:36
+./dce.go:79:36:     from ... argument (slice-literal-element) at ./dce.go:79:20
+./dce.go:79:36:   flow: {heap} ← {storage for ... argument}:
+./dce.go:79:36:     from ... argument (spill) at ./dce.go:79:20
+./dce.go:79:36:     from fmt.Sprintf("Domain%d", ... argument...) (call parameter) at ./dce.go:79:20
+./dce.go:79:20: ... argument does not escape
+./dce.go:79:36: int(d) escapes to heap
+./hash.go:27:27: space escapes to heap in NewHash:
+./hash.go:27:27:   flow: {heap} ← &space:
+./hash.go:27:27:     from space (address-of) at ./hash.go:29:15
+./hash.go:27:27:     from space[:] (slice) at ./hash.go:29:15
+./hash.go:27:27:     from h.Write(space[:]) (call parameter) at ./hash.go:29:9
+./hash.go:27:14: parameter h leaks to {heap} for NewHash with derefs=0:
+./hash.go:27:14:   flow: {heap} ← h:
+./hash.go:27:14:     from h.Reset() (call parameter) at ./hash.go:28:9
+./hash.go:27:39: parameter data leaks to {heap} for NewHash with derefs=0:
+./hash.go:27:39:   flow: {heap} ← data:
+./hash.go:27:39:     from h.Write(data) (call parameter) at ./hash.go:30:9
+./hash.go:27:14: leaking param: h
+./hash.go:27:39: leaking param: data
+./hash.go:27:27: moved to heap: space
+./hash.go:43:25: parameter data leaks to {heap} for NewMD5 with derefs=0:
+./hash.go:43:25:   flow: {heap} ← data:
+./hash.go:43:25:     from NewHash(~r0, space, data, 3) (call parameter) at ./hash.go:44:16
+./hash.go:44:24: new(md5.digest) escapes to heap in NewMD5:
+./hash.go:44:24:   flow: md5.d ← &{storage for new(md5.digest)}:
+./hash.go:44:24:     from new(md5.digest) (spill) at ./hash.go:44:24
+./hash.go:44:24:     from md5.d := new(md5.digest) (assign) at ./hash.go:44:24
+./hash.go:44:24:   flow: ~r0 ← md5.d:
+./hash.go:44:24:     from md5.d (interface-converted) at ./hash.go:44:24
+./hash.go:44:24:     from ~r0 = md5.d (assign-pair) at ./hash.go:44:24
+./hash.go:44:24:   flow: {heap} ← ~r0:
+./hash.go:44:24:     from NewHash(~r0, space, data, 3) (call parameter) at ./hash.go:44:16
+./hash.go:43:25: leaking param: data
+./hash.go:44:24: new(md5.digest) escapes to heap
+./hash.go:51:26: parameter data leaks to {heap} for NewSHA1 with derefs=0:
+./hash.go:51:26:   flow: {heap} ← data:
+./hash.go:51:26:     from NewHash(~r0, space, data, 5) (call parameter) at ./hash.go:52:16
+./hash.go:52:25: new(sha1.digest) escapes to heap in NewSHA1:
+./hash.go:52:25:   flow: sha1.d ← &{storage for new(sha1.digest)}:
+./hash.go:52:25:     from new(sha1.digest) (spill) at ./hash.go:52:25
+./hash.go:52:25:     from sha1.d := new(sha1.digest) (assign) at ./hash.go:52:25
+./hash.go:52:25:   flow: ~r0 ← sha1.d:
+./hash.go:52:25:     from sha1.d (interface-converted) at ./hash.go:52:25
+./hash.go:52:25:     from ~r0 = sha1.d (assign-pair) at ./hash.go:52:25
+./hash.go:52:25:   flow: {heap} ← ~r0:
+./hash.go:52:25:     from NewHash(~r0, space, data, 5) (call parameter) at ./hash.go:52:16
+./hash.go:51:26: leaking param: data
+./hash.go:52:25: new(sha1.digest) escapes to heap
+./uuid.go:185:16: dst does not escape
+./marshal.go:11:6: js escapes to heap in UUID.MarshalText:
+./marshal.go:11:6:   flow: ~r0 ← &js:
+./marshal.go:11:6:     from js (address-of) at ./marshal.go:13:11
+./marshal.go:11:6:     from js[:] (slice) at ./marshal.go:13:11
+./marshal.go:11:6:     from return js[:], nil (return) at ./marshal.go:13:2
+./marshal.go:11:6: moved to heap: js
+./uuid.go:106:55: b[:9] escapes to heap in ParseBytes:
+./uuid.go:106:55:   flow: {storage for ... argument} ← &{storage for b[:9]}:
+./uuid.go:106:55:     from b[:9] (spill) at ./uuid.go:106:55
+./uuid.go:106:55:     from ... argument (slice-literal-element) at ./uuid.go:106:27
+./uuid.go:106:55:   flow: fmt.a ← &{storage for ... argument}:
+./uuid.go:106:55:     from ... argument (spill) at ./uuid.go:106:27
+./uuid.go:106:55:     from fmt.format, fmt.a := "invalid urn prefix: %q", ... argument (assign-pair) at ./uuid.go:106:27
+./uuid.go:106:55:   flow: {heap} ← *fmt.a:
+./uuid.go:106:55:     from fmt.errorf(fmt.format, fmt.a...) (call parameter) at ./uuid.go:106:27
+./uuid.go:100:17: parameter b leaks to {storage for b[:9]} for ParseBytes with derefs=0:
+./uuid.go:100:17:   flow: {storage for b[:9]} ← b:
+./uuid.go:100:17:     from b[:9] (slice) at ./uuid.go:106:55
+./uuid.go:100:17:     from b[:9] (interface-converted) at ./uuid.go:106:55
+./uuid.go:121:16: &invalidLengthError{...} escapes to heap in ParseBytes:
+./uuid.go:121:16:   flow: ~r1 ← &{storage for &invalidLengthError{...}}:
+./uuid.go:121:16:     from &invalidLengthError{...} (spill) at ./uuid.go:121:16
+./uuid.go:121:16:     from &invalidLengthError{...} (interface-converted) at ./uuid.go:121:16
+./uuid.go:121:16:     from return uuid, &invalidLengthError{...} (return) at ./uuid.go:121:3
+./uuid.go:116:28: &errors.errorString{...} escapes to heap in ParseBytes:
+./uuid.go:116:28:   flow: ~r0 ← &{storage for &errors.errorString{...}}:
+./uuid.go:116:28:     from &errors.errorString{...} (spill) at ./uuid.go:116:28
+./uuid.go:116:28:     from &errors.errorString{...} (interface-converted) at ./uuid.go:116:28
+./uuid.go:116:28:     from ~r0 = &errors.errorString{...} (assign-pair) at ./uuid.go:116:28
+./uuid.go:116:28:   flow: ~r1 ← ~r0:
+./uuid.go:116:28:     from return uuid, ~r0 (return) at ./uuid.go:116:5
+./uuid.go:126:26: &errors.errorString{...} escapes to heap in ParseBytes:
+./uuid.go:126:26:   flow: ~r0 ← &{storage for &errors.errorString{...}}:
+./uuid.go:126:26:     from &errors.errorString{...} (spill) at ./uuid.go:126:26
+./uuid.go:126:26:     from &errors.errorString{...} (interface-converted) at ./uuid.go:126:26
+./uuid.go:126:26:     from ~r0 = &errors.errorString{...} (assign-pair) at ./uuid.go:126:26
+./uuid.go:126:26:   flow: ~r1 ← ~r0:
+./uuid.go:126:26:     from return uuid, ~r0 (return) at ./uuid.go:126:3
+./uuid.go:136:27: &errors.errorString{...} escapes to heap in ParseBytes:
+./uuid.go:136:27:   flow: ~r0 ← &{storage for &errors.errorString{...}}:
+./uuid.go:136:27:     from &errors.errorString{...} (spill) at ./uuid.go:136:27
+./uuid.go:136:27:     from &errors.errorString{...} (interface-converted) at ./uuid.go:136:27
+./uuid.go:136:27:     from ~r0 = &errors.errorString{...} (assign-pair) at ./uuid.go:136:27
+./uuid.go:136:27:   flow: ~r1 ← ~r0:
+./uuid.go:136:27:     from return uuid, ~r0 (return) at ./uuid.go:136:4
+./uuid.go:106:27: &errors.errorString{...} escapes to heap in ParseBytes:
+./uuid.go:106:27:   flow: ~r0 ← &{storage for &errors.errorString{...}}:
+./uuid.go:106:27:     from &errors.errorString{...} (spill) at ./uuid.go:106:27
+./uuid.go:106:27:     from &errors.errorString{...} (interface-converted) at ./uuid.go:106:27
+./uuid.go:106:27:     from ~r0 = &errors.errorString{...} (assign-pair) at ./uuid.go:106:27
+./uuid.go:106:27:   flow: fmt.err ← ~r0:
+./uuid.go:106:27:     from fmt.err = ~r0 (assign-pair) at ./uuid.go:106:27
+./uuid.go:106:27:   flow: ~r1 ← fmt.err:
+./uuid.go:106:27:     from return uuid, fmt.err (return) at ./uuid.go:106:4
+./uuid.go:100:17: leaking param: b
+./uuid.go:105:48: ([]byte)("urn:uuid:") does not escape
+./uuid.go:105:48: zero-copy string->[]byte conversion
+./uuid.go:105:18: string(bytes.a) does not escape
+./uuid.go:105:18: string(bytes.b) does not escape
+./uuid.go:106:27: ... argument does not escape
+./uuid.go:106:55: b[:9] escapes to heap
+./uuid.go:106:27: &errors.errorString{...} escapes to heap
+./uuid.go:116:28: &errors.errorString{...} escapes to heap
+./uuid.go:121:16: &invalidLengthError{...} escapes to heap
+./uuid.go:126:26: &errors.errorString{...} escapes to heap
+./uuid.go:136:27: &errors.errorString{...} escapes to heap
+./marshal.go:17:33: parameter data leaks to {heap} for (*UUID).UnmarshalText with derefs=0:
+./marshal.go:17:33:   flow: {heap} ← data:
+./marshal.go:17:33:     from ParseBytes(data) (call parameter) at ./marshal.go:18:23
+./marshal.go:17:7: uuid does not escape
+./marshal.go:17:33: leaking param: data
+./marshal.go:27:7: uuid escapes to heap in UUID.MarshalBinary:
+./marshal.go:27:7:   flow: ~r0 ← &uuid:
+./marshal.go:27:7:     from uuid (address-of) at ./marshal.go:28:13
+./marshal.go:27:7:     from uuid[:] (slice) at ./marshal.go:28:13
+./marshal.go:27:7:     from return uuid[:], nil (return) at ./marshal.go:28:2
+./marshal.go:27:7: parameter uuid leaks to ~r0 for UUID.MarshalBinary with derefs=0:
+./marshal.go:27:7:   flow: ~r0 ← &uuid:
+./marshal.go:27:7:     from uuid (address-of) at ./marshal.go:28:13
+./marshal.go:27:7:     from uuid[:] (slice) at ./marshal.go:28:13
+./marshal.go:27:7:     from return uuid[:], nil (return) at ./marshal.go:28:2
+./marshal.go:27:7: moved to heap: uuid
+./marshal.go:34:55: len(data) escapes to heap in (*UUID).UnmarshalBinary:
+./marshal.go:34:55:   flow: {storage for ... argument} ← &{storage for len(data)}:
+./marshal.go:34:55:     from len(data) (spill) at ./marshal.go:34:55
+./marshal.go:34:55:     from ... argument (slice-literal-element) at ./marshal.go:34:20
+./marshal.go:34:55:   flow: fmt.a ← &{storage for ... argument}:
+./marshal.go:34:55:     from ... argument (spill) at ./marshal.go:34:20
+./marshal.go:34:55:     from fmt.format, fmt.a := "invalid UUID (got %d bytes)", ... argument (assign-pair) at ./marshal.go:34:20
+./marshal.go:34:55:   flow: {heap} ← *fmt.a:
+./marshal.go:34:55:     from fmt.errorf(fmt.format, fmt.a...) (call parameter) at ./marshal.go:34:20
+./marshal.go:34:20: &errors.errorString{...} escapes to heap in (*UUID).UnmarshalBinary:
+./marshal.go:34:20:   flow: ~r0 ← &{storage for &errors.errorString{...}}:
+./marshal.go:34:20:     from &errors.errorString{...} (spill) at ./marshal.go:34:20
+./marshal.go:34:20:     from &errors.errorString{...} (interface-converted) at ./marshal.go:34:20
+./marshal.go:34:20:     from ~r0 = &errors.errorString{...} (assign-pair) at ./marshal.go:34:20
+./marshal.go:34:20:   flow: fmt.err ← ~r0:
+./marshal.go:34:20:     from fmt.err = ~r0 (assign-pair) at ./marshal.go:34:20
+./marshal.go:34:20:   flow: ~r0 ← fmt.err:
+./marshal.go:34:20:     from return fmt.err (return) at ./marshal.go:34:3
+./marshal.go:32:7: uuid does not escape
+./marshal.go:32:35: data does not escape
+./marshal.go:34:20: ... argument does not escape
+./marshal.go:34:55: len(data) escapes to heap
+./marshal.go:34:20: &errors.errorString{...} escapes to heap
+./node.go:22:14: NodeInterface capturing by value: .autotmp_1 (addr=false assign=false width=8)
+./node.go:34:14: SetNodeInterface capturing by value: .autotmp_2 (addr=false assign=false width=8)
+./node.go:33:23: name does not escape
+./node.go:61:14: NodeID capturing by value: .autotmp_1 (addr=false assign=false width=8)
+./node.go:66:2: nid escapes to heap in NodeID:
+./node.go:66:2:   flow: ~r0 ← &nid:
+./node.go:66:2:     from nid (address-of) at ./node.go:67:12
+./node.go:66:2:     from nid[:] (slice) at ./node.go:67:12
+./node.go:66:2:     from return nid[:] (return) at ./node.go:67:2
+./node.go:66:2: moved to heap: nid
+./node.go:77:14: SetNodeID capturing by value: .autotmp_2 (addr=false assign=false width=8)
+./node.go:73:16: id does not escape
+./node.go:87:6: node escapes to heap in UUID.NodeID:
+./node.go:87:6:   flow: ~r0 ← &node:
+./node.go:87:6:     from node (address-of) at ./node.go:89:13
+./node.go:87:6:     from node[:] (slice) at ./node.go:89:13
+./node.go:87:6:     from return node[:] (return) at ./node.go:89:2
+./node.go:87:6: moved to heap: node
+./sql.go:15:24: parameter src leaks to {heap} for (*UUID).Scan with derefs=1:
+./sql.go:15:24:   flow: {temp} ← src:
+./sql.go:15:24:   flow: src ← *{temp}:
+./sql.go:15:24:     from case string: if src == "" { return nil }; u, err := UUID(.autotmp_7), .autotmp_8; if err != nil { return fmt.err }; *uuid = u (switch case) at ./sql.go:20:2
+./sql.go:15:24:   flow: {heap} ← src:
+./sql.go:15:24:     from Parse(src) (call parameter) at ./sql.go:27:18
+./sql.go:43:28: string(src) escapes to heap in (*UUID).Scan:
+./sql.go:43:28:   flow: {storage for string(src)} ← &{storage for string(src)}:
+./sql.go:43:28:     from string(src) (spill) at ./sql.go:43:28
+./sql.go:43:28:     from string(src) (interface-converted) at ./sql.go:43:27
+./sql.go:43:28:   flow: src ← &{storage for string(src)}:
+./sql.go:43:28:     from string(src) (spill) at ./sql.go:43:27
+./sql.go:43:28:     from (*UUID).Scan(uuid, string(src)) (call parameter) at ./sql.go:43:20
+./sql.go:43:28:   flow: {temp} ← src:
+./sql.go:43:28:   flow: src ← {temp}:
+./sql.go:43:28:     from default: return fmt.err (switch case) at ./sql.go:47:2
+./sql.go:43:28:   flow: {storage for ... argument} ← src:
+./sql.go:43:28:     from ... argument (slice-literal-element) at ./sql.go:48:20
+./sql.go:43:28:   flow: fmt.a ← &{storage for ... argument}:
+./sql.go:43:28:     from ... argument (spill) at ./sql.go:48:20
+./sql.go:43:28:     from fmt.format, fmt.a := "Scan: unable to scan type %T into UUID", ... argument (assign-pair) at ./sql.go:48:20
+./sql.go:43:28:   flow: {heap} ← *fmt.a:
+./sql.go:43:28:     from fmt.errorf(fmt.format, fmt.a...) (call parameter) at ./sql.go:48:20
+./sql.go:15:24: parameter src leaks to {heap} for (*UUID).Scan with derefs=0:
+./sql.go:15:24:   flow: {temp} ← src:
+./sql.go:15:24:   flow: src ← {temp}:
+./sql.go:15:24:     from default: return fmt.err (switch case) at ./sql.go:47:2
+./sql.go:15:24:   flow: {storage for ... argument} ← src:
+./sql.go:15:24:     from ... argument (slice-literal-element) at ./sql.go:48:20
+./sql.go:15:24:   flow: fmt.a ← &{storage for ... argument}:
+./sql.go:15:24:     from ... argument (spill) at ./sql.go:48:20
+./sql.go:15:24:     from fmt.format, fmt.a := "Scan: unable to scan type %T into UUID", ... argument (assign-pair) at ./sql.go:48:20
+./sql.go:15:24:   flow: {heap} ← *fmt.a:
+./sql.go:15:24:     from fmt.errorf(fmt.format, fmt.a...) (call parameter) at ./sql.go:48:20
+./sql.go:43:27: string(src) escapes to heap in (*UUID).Scan:
+./sql.go:43:27:   flow: src ← &{storage for string(src)}:
+./sql.go:43:27:     from string(src) (spill) at ./sql.go:43:27
+./sql.go:43:27:     from (*UUID).Scan(uuid, string(src)) (call parameter) at ./sql.go:43:20
+./sql.go:43:27:   flow: {temp} ← src:
+./sql.go:43:27:   flow: src ← {temp}:
+./sql.go:43:27:     from default: return fmt.err (switch case) at ./sql.go:47:2
+./sql.go:43:27:   flow: {storage for ... argument} ← src:
+./sql.go:43:27:     from ... argument (slice-literal-element) at ./sql.go:48:20
+./sql.go:43:27:   flow: fmt.a ← &{storage for ... argument}:
+./sql.go:43:27:     from ... argument (spill) at ./sql.go:48:20
+./sql.go:43:27:     from fmt.format, fmt.a := "Scan: unable to scan type %T into UUID", ... argument (assign-pair) at ./sql.go:48:20
+./sql.go:43:27:   flow: {heap} ← *fmt.a:
+./sql.go:43:27:     from fmt.errorf(fmt.format, fmt.a...) (call parameter) at ./sql.go:48:20
+./sql.go:29:21: &errors.errorString{...} escapes to heap in (*UUID).Scan:
+./sql.go:29:21:   flow: ~r0 ← &{storage for &errors.errorString{...}}:
+./sql.go:29:21:     from &errors.errorString{...} (spill) at ./sql.go:29:21
+./sql.go:29:21:     from &errors.errorString{...} (interface-converted) at ./sql.go:29:21
+./sql.go:29:21:     from ~r0 = &errors.errorString{...} (assign-pair) at ./sql.go:29:21
+./sql.go:29:21:   flow: fmt.err ← ~r0:
+./sql.go:29:21:     from fmt.err = ~r0 (assign-pair) at ./sql.go:29:21
+./sql.go:29:21:   flow: ~r0 ← fmt.err:
+./sql.go:29:21:     from return fmt.err (return) at ./sql.go:29:4
+./sql.go:48:20: &errors.errorString{...} escapes to heap in (*UUID).Scan:
+./sql.go:48:20:   flow: ~r0 ← &{storage for &errors.errorString{...}}:
+./sql.go:48:20:     from &errors.errorString{...} (spill) at ./sql.go:48:20
+./sql.go:48:20:     from &errors.errorString{...} (interface-converted) at ./sql.go:48:20
+./sql.go:48:20:     from ~r0 = &errors.errorString{...} (assign-pair) at ./sql.go:48:20
+./sql.go:48:20:   flow: fmt.err ← ~r0:
+./sql.go:48:20:     from fmt.err = ~r0 (assign-pair) at ./sql.go:48:20
+./sql.go:48:20:   flow: ~r0 ← fmt.err:
+./sql.go:48:20:     from return fmt.err (return) at ./sql.go:48:3
+./sql.go:15:7: uuid does not escape
+./sql.go:15:24: leaking param: src
+./sql.go:29:21: ... argument does not escape
+./sql.go:29:21: &errors.errorString{...} escapes to heap
+./sql.go:43:27: string(src) escapes to heap
+./sql.go:43:28: string(src) escapes to heap
+./sql.go:48:20: ... argument does not escape
+./sql.go:48:20: &errors.errorString{...} escapes to heap
+./sql.go:58:20: ~r0 escapes to heap in UUID.Value:
+./sql.go:58:20:   flow: ~r0 ← &{storage for ~r0}:
+./sql.go:58:20:     from ~r0 (spill) at ./sql.go:58:20
+./sql.go:58:20:     from return ~r0, nil (return) at ./sql.go:58:2
+./sql.go:58:20: string(buf[:]) escapes to heap in UUID.Value:
+./sql.go:58:20:   flow: ~r0 ← &{storage for string(buf[:])}:
+./sql.go:58:20:     from string(buf[:]) (spill) at ./sql.go:58:20
+./sql.go:58:20:     from ~r0 = string(buf[:]) (assign-pair) at ./sql.go:58:20
+./sql.go:58:20:   flow: {storage for ~r0} ← ~r0:
+./sql.go:58:20:     from ~r0 (interface-converted) at ./sql.go:58:20
+./sql.go:58:20: ~r0 escapes to heap
+./sql.go:58:20: string(buf[:]) escapes to heap
+./time.go:77:14: ClockSequence capturing by value: .autotmp_1 (addr=false assign=false width=8)
+./time.go:92:14: SetClockSequence capturing by value: .autotmp_1 (addr=false assign=false width=8)
+./uuid.go:41:51: err.len escapes to heap in (*invalidLengthError).Error:
+./uuid.go:41:51:   flow: {storage for ... argument} ← &{storage for err.len}:
+./uuid.go:41:51:     from err.len (spill) at ./uuid.go:41:51
+./uuid.go:41:51:     from ... argument (slice-literal-element) at ./uuid.go:41:20
+./uuid.go:41:51:   flow: {heap} ← {storage for ... argument}:
+./uuid.go:41:51:     from ... argument (spill) at ./uuid.go:41:20
+./uuid.go:41:51:     from fmt.Sprintf("invalid UUID length: %d", ... argument...) (call parameter) at ./uuid.go:41:20
+./uuid.go:40:7: err does not escape
+./uuid.go:41:20: ... argument does not escape
+./uuid.go:41:51: err.len escapes to heap
+./uuid.go:148:36: "uuid: Parse(" + s + "): " + err.Error() escapes to heap in MustParse:
+./uuid.go:148:36:   flow: {heap} ← &{storage for "uuid: Parse(" + s + "): " + err.Error()}:
+./uuid.go:148:36:     from "uuid: Parse(" + s + "): " + err.Error() (spill) at ./uuid.go:148:36
+./uuid.go:148:36:     from panic("uuid: Parse(" + s + "): " + err.Error()) (call parameter) at ./uuid.go:148:8
+./uuid.go:148:36: "uuid: Parse(" + s + "): " + err.Error() escapes to heap in MustParse:
+./uuid.go:148:36:   flow: {storage for "uuid: Parse(" + s + "): " + err.Error()} ← &{storage for "uuid: Parse(" + s + "): " + err.Error()}:
+./uuid.go:148:36:     from "uuid: Parse(" + s + "): " + err.Error() (spill) at ./uuid.go:148:36
+./uuid.go:148:36:     from "uuid: Parse(" + s + "): " + err.Error() (interface-converted) at ./uuid.go:148:36
+./uuid.go:145:16: parameter s leaks to {heap} for MustParse with derefs=0:
+./uuid.go:145:16:   flow: {heap} ← s:
+./uuid.go:145:16:     from Parse(s) (call parameter) at ./uuid.go:146:20
+./uuid.go:145:16: leaking param: s
+./uuid.go:148:36: "uuid: Parse(" + s + "): " + err.Error() escapes to heap
+./uuid.go:148:36: "uuid: Parse(" + s + "): " + err.Error() escapes to heap
+./uuid.go:155:16: b does not escape
+./uuid.go:161:22: parameter err leaks to {heap} for Must with derefs=0:
+./uuid.go:161:22:   flow: {heap} ← err:
+./uuid.go:161:22:     from err (interface-converted) at ./uuid.go:163:9
+./uuid.go:161:22:     from panic(err) (call parameter) at ./uuid.go:163:8
+./uuid.go:161:22: leaking param: err
+./uuid.go:173:19: string(buf[:]) escapes to heap in UUID.String:
+./uuid.go:173:19:   flow: ~r0 ← &{storage for string(buf[:])}:
+./uuid.go:173:19:     from string(buf[:]) (spill) at ./uuid.go:173:19
+./uuid.go:173:19:     from return string(buf[:]) (return) at ./uuid.go:173:2
+./uuid.go:173:19: string(buf[:]) escapes to heap
+./uuid.go:182:19: string(buf[:]) escapes to heap in UUID.URN:
+./uuid.go:182:19:   flow: ~r0 ← &{storage for string(buf[:])}:
+./uuid.go:182:19:     from string(buf[:]) (spill) at ./uuid.go:182:19
+./uuid.go:182:19:     from return string(buf[:]) (return) at ./uuid.go:182:2
+./uuid.go:182:19: string(buf[:]) escapes to heap
+./uuid.go:218:40: v escapes to heap in Version.String:
+./uuid.go:218:40:   flow: {storage for ... argument} ← &{storage for v}:
+./uuid.go:218:40:     from v (spill) at ./uuid.go:218:40
+./uuid.go:218:40:     from ... argument (slice-literal-element) at ./uuid.go:218:21
+./uuid.go:218:40:   flow: {heap} ← {storage for ... argument}:
+./uuid.go:218:40:     from ... argument (spill) at ./uuid.go:218:21
+./uuid.go:218:40:     from fmt.Sprintf("BAD_VERSION_%d", ... argument...) (call parameter) at ./uuid.go:218:21
+./uuid.go:220:35: v escapes to heap in Version.String:
+./uuid.go:220:35:   flow: {storage for ... argument} ← &{storage for v}:
+./uuid.go:220:35:     from v (spill) at ./uuid.go:220:35
+./uuid.go:220:35:     from ... argument (slice-literal-element) at ./uuid.go:220:20
+./uuid.go:220:35:   flow: {heap} ← {storage for ... argument}:
+./uuid.go:220:35:     from ... argument (spill) at ./uuid.go:220:20
+./uuid.go:220:35:     from fmt.Sprintf("VERSION_%d", ... argument...) (call parameter) at ./uuid.go:220:20
+./uuid.go:218:21: ... argument does not escape
+./uuid.go:218:40: v escapes to heap
+./uuid.go:220:20: ... argument does not escape
+./uuid.go:220:35: v escapes to heap
+./uuid.go:236:40: int(v) escapes to heap in Variant.String:
+./uuid.go:236:40:   flow: {storage for ... argument} ← &{storage for int(v)}:
+./uuid.go:236:40:     from int(v) (spill) at ./uuid.go:236:40
+./uuid.go:236:40:     from ... argument (slice-literal-element) at ./uuid.go:236:20
+./uuid.go:236:40:   flow: {heap} ← {storage for ... argument}:
+./uuid.go:236:40:     from ... argument (spill) at ./uuid.go:236:20
+./uuid.go:236:40:     from fmt.Sprintf("BadVariant%d", ... argument...) (call parameter) at ./uuid.go:236:20
+./uuid.go:236:20: ... argument does not escape
+./uuid.go:236:40: int(v) escapes to heap
+./uuid.go:245:14: parameter r leaks to {heap} for SetRand with derefs=0:
+./uuid.go:245:14:   flow: {heap} ← r:
+./uuid.go:245:14:     from rander = r (assign) at ./uuid.go:250:9
+./uuid.go:245:14: leaking param: r
+./version4.go:34:26: parameter r leaks to {heap} for NewRandomFromReader with derefs=0:
+./version4.go:34:26:   flow: io.r ← r:
+./version4.go:34:26:     from io.r, io.buf := r, uuid[:] (assign-pair) at ./version4.go:36:23
+./version4.go:34:26:   flow: {heap} ← io.r:
+./version4.go:34:26:     from io.ReadAtLeast(io.r, io.buf, len(io.buf)) (call parameter) at ./version4.go:36:23
+./version4.go:35:6: uuid escapes to heap in NewRandomFromReader:
+./version4.go:35:6:   flow: io.buf ← &uuid:
+./version4.go:35:6:     from uuid (address-of) at ./version4.go:36:31
+./version4.go:35:6:     from uuid[:] (slice) at ./version4.go:36:31
+./version4.go:35:6:     from io.r, io.buf := r, uuid[:] (assign-pair) at ./version4.go:36:23
+./version4.go:35:6:   flow: {heap} ← io.buf:
+./version4.go:35:6:     from io.ReadAtLeast(io.r, io.buf, len(io.buf)) (call parameter) at ./version4.go:36:23
+./version4.go:34:26: leaking param: r
+./version4.go:35:6: moved to heap: uuid
+<autogenerated>:1: uuid escapes to heap in (*UUID).MarshalBinary:
+<autogenerated>:1:   flow: ~r0 ← &uuid:
+<autogenerated>:1:     from uuid (address-of) at <autogenerated>:1
+<autogenerated>:1:     from uuid[:] (slice) at <autogenerated>:1
+<autogenerated>:1:     from ~r0, ~r1 = uuid[:], nil (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: .autotmp_3 ← ~r0:
+<autogenerated>:1:   flow: ~r0 ← .autotmp_3:
+<autogenerated>:1:     from return .autotmp_3, .autotmp_4 (return) at <autogenerated>:1
+<autogenerated>:1: moved to heap: uuid
+<autogenerated>:1: js escapes to heap in (*UUID).MarshalText:
+<autogenerated>:1:   flow: ~r0 ← &js:
+<autogenerated>:1:     from js (address-of) at <autogenerated>:1
+<autogenerated>:1:     from js[:] (slice) at <autogenerated>:1
+<autogenerated>:1:     from ~r0, ~r1 = js[:], nil (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: .autotmp_3 ← ~r0:
+<autogenerated>:1:   flow: ~r0 ← .autotmp_3:
+<autogenerated>:1:     from return .autotmp_3, .autotmp_4 (return) at <autogenerated>:1
+<autogenerated>:1: moved to heap: js
+<autogenerated>:1: node escapes to heap in (*UUID).NodeID:
+<autogenerated>:1:   flow: ~r0 ← &node:
+<autogenerated>:1:     from node (address-of) at <autogenerated>:1
+<autogenerated>:1:     from node[:] (slice) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = node[:] (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: moved to heap: node
+<autogenerated>:1: string(buf[:]) escapes to heap in (*UUID).String:
+<autogenerated>:1:   flow: ~r0 ← &{storage for string(buf[:])}:
+<autogenerated>:1:     from string(buf[:]) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = string(buf[:]) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: string(buf[:]) escapes to heap
+<autogenerated>:1: string(buf[:]) escapes to heap in (*UUID).URN:
+<autogenerated>:1:   flow: ~r0 ← &{storage for string(buf[:])}:
+<autogenerated>:1:     from string(buf[:]) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = string(buf[:]) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: string(buf[:]) escapes to heap
+<autogenerated>:1: ~r0 escapes to heap in (*UUID).Value:
+<autogenerated>:1:   flow: ~r0 ← &{storage for ~r0}:
+<autogenerated>:1:     from ~r0 (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0, ~r1 = ~r0, nil (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: .autotmp_3 ← ~r0:
+<autogenerated>:1:   flow: ~r0 ← .autotmp_3:
+<autogenerated>:1:     from return .autotmp_3, .autotmp_4 (return) at <autogenerated>:1
+<autogenerated>:1: string(buf[:]) escapes to heap in (*UUID).Value:
+<autogenerated>:1:   flow: ~r0 ← &{storage for string(buf[:])}:
+<autogenerated>:1:     from string(buf[:]) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = string(buf[:]) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: {storage for ~r0} ← ~r0:
+<autogenerated>:1:     from ~r0 (interface-converted) at <autogenerated>:1
+<autogenerated>:1: ~r0 escapes to heap
+<autogenerated>:1: string(buf[:]) escapes to heap
+<autogenerated>:1: int(d) escapes to heap in (*Domain).String:
+<autogenerated>:1:   flow: {storage for ... argument} ← &{storage for int(d)}:
+<autogenerated>:1:     from int(d) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ... argument (slice-literal-element) at <autogenerated>:1
+<autogenerated>:1:   flow: {heap} ← {storage for ... argument}:
+<autogenerated>:1:     from ... argument (spill) at <autogenerated>:1
+<autogenerated>:1:     from fmt.Sprintf("Domain%d", ... argument...) (call parameter) at <autogenerated>:1
+<autogenerated>:1: ... argument does not escape
+<autogenerated>:1: int(d) escapes to heap
+./util.go:40:15: index bounds check elided
+./util.go:41:15: index bounds check elided
+./uuid.go:70:22: index bounds check elided
+./uuid.go:70:22: index bounds check elided
+./uuid.go:90:16: index bounds check elided
+./uuid.go:90:16: index bounds check elided
+./uuid.go:114:24: index bounds check elided
+./uuid.go:114:24: index bounds check elided
+./uuid.go:134:16: index bounds check elided
+./uuid.go:134:16: index bounds check elided
+./uuid.go:186:12: index bounds check elided
+./uuid.go:186:12: index bounds check elided
+./uuid.go:188:12: index bounds check elided
+./uuid.go:188:12: index bounds check elided
+./uuid.go:190:12: index bounds check elided
+./uuid.go:190:12: index bounds check elided
+./uuid.go:192:12: index bounds check elided
+./uuid.go:192:12: index bounds check elided
+./uuid.go:194:12: index bounds check elided
+./uuid.go:194:12: index bounds check elided

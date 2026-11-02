@@ -1,0 +1,2013 @@
+# github.com/rs/zerolog/internal/json
+internal/json/string.go:66:6: cannot inline appendStringComplex: function too complex: cost 259 exceeds budget 80
+internal/json/string.go:41:6: cannot inline Encoder.AppendString: function too complex: cost 102 exceeds budget 80
+internal/json/base.go:6:6: cannot inline Encoder.AppendKey: function too complex: cost 86 exceeds budget 80
+internal/json/bytes.go:33:6: cannot inline appendBytesComplex: function too complex: cost 258 exceeds budget 80
+internal/json/bytes.go:6:6: cannot inline Encoder.AppendBytes: function too complex: cost 102 exceeds budget 80
+internal/json/bytes.go:23:6: can inline Encoder.AppendHex with cost 29 as: method(Encoder) func([]byte, []byte) []byte { dst = append(dst, byte(34)); for loop; return append(dst, byte(34)) }
+internal/json/string.go:9:6: can inline init.0 with cost 27 as: func() { for loop }
+internal/json/string.go:17:6: cannot inline Encoder.AppendStrings: function too complex: cost 165 exceeds budget 80
+internal/json/types.go:166:6: can inline Encoder.AppendInt64 with cost 69 as: method(Encoder) func([]byte, int64) []byte { return strconv.AppendInt(dst, val, 10) }
+internal/json/time.go:17:6: cannot inline Encoder.AppendTime: function too complex: cost 416 exceeds budget 80
+internal/json/time.go:52:6: cannot inline appendUnixTimes: function too complex: cost 239 exceeds budget 80
+internal/json/time.go:67:6: cannot inline appendUnixMsTimes: function too complex: cost 269 exceeds budget 80
+internal/json/time.go:31:6: cannot inline Encoder.AppendTimes: function too complex: cost 302 exceeds budget 80
+internal/json/types.go:302:6: cannot inline appendFloat: function too complex: cost 146 exceeds budget 80
+internal/json/types.go:342:6: can inline Encoder.AppendFloat64 with cost 63 as: method(Encoder) func([]byte, float64) []byte { return appendFloat(dst, val, 64) }
+internal/json/time.go:84:6: cannot inline Encoder.AppendDuration: function too complex: cost 145 exceeds budget 80
+internal/json/time.go:93:6: cannot inline Encoder.AppendDurations: function too complex: cost 169 exceeds budget 80
+internal/json/types.go:12:6: can inline Encoder.AppendNil with cost 4 as: method(Encoder) func([]byte) []byte { return append(dst, "null"...) }
+internal/json/types.go:17:6: can inline Encoder.AppendBeginMarker with cost 4 as: method(Encoder) func([]byte) []byte { return append(dst, byte(123)) }
+internal/json/types.go:22:6: can inline Encoder.AppendEndMarker with cost 4 as: method(Encoder) func([]byte) []byte { return append(dst, byte(125)) }
+internal/json/types.go:27:6: can inline Encoder.AppendLineBreak with cost 4 as: method(Encoder) func([]byte) []byte { return append(dst, byte(10)) }
+internal/json/types.go:32:6: can inline Encoder.AppendArrayStart with cost 4 as: method(Encoder) func([]byte) []byte { return append(dst, byte(91)) }
+internal/json/types.go:37:6: can inline Encoder.AppendArrayEnd with cost 4 as: method(Encoder) func([]byte) []byte { return append(dst, byte(93)) }
+internal/json/types.go:42:6: can inline Encoder.AppendArrayDelim with cost 11 as: method(Encoder) func([]byte) []byte { if len(dst) > 0 { return append(dst, byte(44)) }; return dst }
+internal/json/types.go:51:6: can inline Encoder.AppendBool with cost 20 as: method(Encoder) func([]byte, bool) []byte { return strconv.AppendBool(dst, val) }
+internal/json/types.go:57:6: cannot inline Encoder.AppendBools: function too complex: cost 81 exceeds budget 80
+internal/json/types.go:74:6: can inline Encoder.AppendInt with cost 69 as: method(Encoder) func([]byte, int) []byte { return strconv.AppendInt(dst, int64(val), 10) }
+internal/json/types.go:80:6: cannot inline Encoder.AppendInts: function too complex: cost 179 exceeds budget 80
+internal/json/types.go:97:6: can inline Encoder.AppendInt8 with cost 70 as: method(Encoder) func([]byte, int8) []byte { return strconv.AppendInt(dst, int64(val), 10) }
+internal/json/types.go:103:6: cannot inline Encoder.AppendInts8: function too complex: cost 181 exceeds budget 80
+internal/json/types.go:120:6: can inline Encoder.AppendInt16 with cost 70 as: method(Encoder) func([]byte, int16) []byte { return strconv.AppendInt(dst, int64(val), 10) }
+internal/json/types.go:126:6: cannot inline Encoder.AppendInts16: function too complex: cost 181 exceeds budget 80
+internal/json/types.go:143:6: can inline Encoder.AppendInt32 with cost 70 as: method(Encoder) func([]byte, int32) []byte { return strconv.AppendInt(dst, int64(val), 10) }
+internal/json/types.go:149:6: cannot inline Encoder.AppendInts32: function too complex: cost 181 exceeds budget 80
+internal/json/types.go:172:6: cannot inline Encoder.AppendInts64: function too complex: cost 179 exceeds budget 80
+internal/json/types.go:189:6: can inline Encoder.AppendUint with cost 69 as: method(Encoder) func([]byte, uint) []byte { return strconv.AppendUint(dst, uint64(val), 10) }
+internal/json/types.go:195:6: cannot inline Encoder.AppendUints: function too complex: cost 179 exceeds budget 80
+internal/json/types.go:212:6: can inline Encoder.AppendUint8 with cost 70 as: method(Encoder) func([]byte, uint8) []byte { return strconv.AppendUint(dst, uint64(val), 10) }
+internal/json/types.go:218:6: cannot inline Encoder.AppendUints8: function too complex: cost 181 exceeds budget 80
+internal/json/types.go:235:6: can inline Encoder.AppendUint16 with cost 70 as: method(Encoder) func([]byte, uint16) []byte { return strconv.AppendUint(dst, uint64(val), 10) }
+internal/json/types.go:241:6: cannot inline Encoder.AppendUints16: function too complex: cost 181 exceeds budget 80
+internal/json/types.go:258:6: can inline Encoder.AppendUint32 with cost 70 as: method(Encoder) func([]byte, uint32) []byte { return strconv.AppendUint(dst, uint64(val), 10) }
+internal/json/types.go:264:6: cannot inline Encoder.AppendUints32: function too complex: cost 181 exceeds budget 80
+internal/json/types.go:281:6: can inline Encoder.AppendUint64 with cost 69 as: method(Encoder) func([]byte, uint64) []byte { return strconv.AppendUint(dst, uint64(val), 10) }
+internal/json/types.go:287:6: cannot inline Encoder.AppendUints64: function too complex: cost 179 exceeds budget 80
+internal/json/types.go:319:6: can inline Encoder.AppendFloat32 with cost 64 as: method(Encoder) func([]byte, float32) []byte { return appendFloat(dst, float64(val), 32) }
+internal/json/types.go:325:6: cannot inline Encoder.AppendFloats32: function too complex: cost 169 exceeds budget 80
+internal/json/types.go:348:6: cannot inline Encoder.AppendFloats64: function too complex: cost 167 exceeds budget 80
+internal/json/types.go:365:6: cannot inline Encoder.AppendInterface: function too complex: cost 221 exceeds budget 80
+internal/json/types.go:375:6: can inline Encoder.AppendObjectData with cost 35 as: method(Encoder) func([]byte, []byte) []byte { if o[0] == byte(123) { if len(dst) == 0 { o = o[1:] } else { o[0] = byte(44) } } else { if len(dst) > 1 { dst = append(dst, byte(44)) } }; return append(dst, o...) }
+internal/json/types.go:394:6: cannot inline Encoder.AppendIPAddr: function too complex: cost 120 exceeds budget 80
+internal/json/types.go:399:6: cannot inline Encoder.AppendIPPrefix: function too complex: cost 121 exceeds budget 80
+internal/json/types.go:405:6: cannot inline Encoder.AppendMACAddr: function too complex: cost 120 exceeds budget 80
+internal/json/string.go:71:38: inlining call to utf8.DecodeRuneInString
+internal/json/bytes.go:38:30: inlining call to utf8.DecodeRune
+internal/json/types.go:167:26: inlining call to strconv.AppendInt
+internal/json/time.go:20:35: inlining call to time.Time.Unix
+internal/json/time.go:20:23: inlining call to Encoder.AppendInt64
+internal/json/time.go:22:39: inlining call to time.Time.UnixNano
+internal/json/time.go:22:23: inlining call to Encoder.AppendInt64
+internal/json/time.go:24:39: inlining call to time.Time.UnixNano
+internal/json/time.go:24:23: inlining call to Encoder.AppendInt64
+internal/json/time.go:20:35: inlining call to time.(*Time).unixSec
+internal/json/time.go:20:23: inlining call to strconv.AppendInt
+internal/json/time.go:22:39: inlining call to time.(*Time).unixSec
+internal/json/time.go:22:39: inlining call to time.(*Time).nsec
+internal/json/time.go:22:23: inlining call to strconv.AppendInt
+internal/json/time.go:24:39: inlining call to time.(*Time).unixSec
+internal/json/time.go:24:39: inlining call to time.(*Time).nsec
+internal/json/time.go:24:23: inlining call to strconv.AppendInt
+internal/json/time.go:20:35: inlining call to time.(*Time).sec
+internal/json/time.go:22:39: inlining call to time.(*Time).sec
+internal/json/time.go:24:39: inlining call to time.(*Time).sec
+internal/json/time.go:57:43: inlining call to time.Time.Unix
+internal/json/time.go:57:25: inlining call to strconv.AppendInt
+internal/json/time.go:60:52: inlining call to time.Time.Unix
+internal/json/time.go:60:27: inlining call to strconv.AppendInt
+internal/json/time.go:57:43: inlining call to time.(*Time).unixSec
+internal/json/time.go:60:52: inlining call to time.(*Time).unixSec
+internal/json/time.go:57:43: inlining call to time.(*Time).sec
+internal/json/time.go:60:52: inlining call to time.(*Time).sec
+internal/json/time.go:72:47: inlining call to time.Time.UnixNano
+internal/json/time.go:72:25: inlining call to strconv.AppendInt
+internal/json/time.go:75:56: inlining call to time.Time.UnixNano
+internal/json/time.go:75:27: inlining call to strconv.AppendInt
+internal/json/time.go:72:47: inlining call to time.(*Time).unixSec
+internal/json/time.go:72:47: inlining call to time.(*Time).nsec
+internal/json/time.go:75:56: inlining call to time.(*Time).unixSec
+internal/json/time.go:75:56: inlining call to time.(*Time).nsec
+internal/json/time.go:72:47: inlining call to time.(*Time).sec
+internal/json/time.go:75:56: inlining call to time.(*Time).sec
+internal/json/types.go:307:17: inlining call to math.IsNaN
+internal/json/types.go:309:17: inlining call to math.IsInf
+internal/json/types.go:311:17: inlining call to math.IsInf
+internal/json/types.go:314:28: inlining call to strconv.AppendFloat
+internal/json/time.go:86:27: inlining call to strconv.AppendInt
+internal/json/time.go:88:24: inlining call to Encoder.AppendFloat64
+internal/json/types.go:52:27: inlining call to strconv.AppendBool
+internal/json/types.go:52:27: inlining call to strconv.AppendBool
+internal/json/types.go:62:26: inlining call to strconv.AppendBool
+internal/json/types.go:65:28: inlining call to strconv.AppendBool
+internal/json/types.go:62:26: inlining call to strconv.AppendBool
+internal/json/types.go:65:28: inlining call to strconv.AppendBool
+internal/json/types.go:75:26: inlining call to strconv.AppendInt
+internal/json/types.go:85:25: inlining call to strconv.AppendInt
+internal/json/types.go:88:27: inlining call to strconv.AppendInt
+internal/json/types.go:98:26: inlining call to strconv.AppendInt
+internal/json/types.go:108:25: inlining call to strconv.AppendInt
+internal/json/types.go:111:27: inlining call to strconv.AppendInt
+internal/json/types.go:121:26: inlining call to strconv.AppendInt
+internal/json/types.go:131:25: inlining call to strconv.AppendInt
+internal/json/types.go:134:27: inlining call to strconv.AppendInt
+internal/json/types.go:144:26: inlining call to strconv.AppendInt
+internal/json/types.go:154:25: inlining call to strconv.AppendInt
+internal/json/types.go:157:27: inlining call to strconv.AppendInt
+internal/json/types.go:177:25: inlining call to strconv.AppendInt
+internal/json/types.go:180:27: inlining call to strconv.AppendInt
+internal/json/types.go:190:27: inlining call to strconv.AppendUint
+internal/json/types.go:200:26: inlining call to strconv.AppendUint
+internal/json/types.go:203:28: inlining call to strconv.AppendUint
+internal/json/types.go:213:27: inlining call to strconv.AppendUint
+internal/json/types.go:223:26: inlining call to strconv.AppendUint
+internal/json/types.go:226:28: inlining call to strconv.AppendUint
+internal/json/types.go:236:27: inlining call to strconv.AppendUint
+internal/json/types.go:246:26: inlining call to strconv.AppendUint
+internal/json/types.go:249:28: inlining call to strconv.AppendUint
+internal/json/types.go:259:27: inlining call to strconv.AppendUint
+internal/json/types.go:269:26: inlining call to strconv.AppendUint
+internal/json/types.go:272:28: inlining call to strconv.AppendUint
+internal/json/types.go:282:27: inlining call to strconv.AppendUint
+internal/json/types.go:292:26: inlining call to strconv.AppendUint
+internal/json/types.go:295:28: inlining call to strconv.AppendUint
+internal/json/types.go:366:32: inlining call to json.Marshal
+internal/json/types.go:366:32: inlining call to json.DefaultOptionsV1
+internal/json/types.go:406:38: inlining call to net.HardwareAddr.String
+<autogenerated>:1: inlining call to Encoder.AppendArrayDelim
+<autogenerated>:1: inlining call to Encoder.AppendArrayEnd
+<autogenerated>:1: inlining call to Encoder.AppendArrayStart
+<autogenerated>:1: inlining call to Encoder.AppendBeginMarker
+<autogenerated>:1: inlining call to Encoder.AppendBool
+<autogenerated>:1: inlining call to strconv.AppendBool
+<autogenerated>:1: inlining call to strconv.AppendBool
+<autogenerated>:1: inlining call to Encoder.AppendEndMarker
+<autogenerated>:1: inlining call to Encoder.AppendFloat32
+<autogenerated>:1: inlining call to Encoder.AppendFloat64
+<autogenerated>:1: inlining call to Encoder.AppendHex
+<autogenerated>:1: inlining call to Encoder.AppendInt
+<autogenerated>:1: inlining call to strconv.AppendInt
+<autogenerated>:1: inlining call to Encoder.AppendInt16
+<autogenerated>:1: inlining call to strconv.AppendInt
+<autogenerated>:1: inlining call to Encoder.AppendInt32
+<autogenerated>:1: inlining call to strconv.AppendInt
+<autogenerated>:1: inlining call to Encoder.AppendInt64
+<autogenerated>:1: inlining call to strconv.AppendInt
+<autogenerated>:1: inlining call to Encoder.AppendInt8
+<autogenerated>:1: inlining call to strconv.AppendInt
+<autogenerated>:1: inlining call to Encoder.AppendLineBreak
+<autogenerated>:1: inlining call to Encoder.AppendNil
+<autogenerated>:1: inlining call to Encoder.AppendObjectData
+<autogenerated>:1: inlining call to Encoder.AppendUint
+<autogenerated>:1: inlining call to strconv.AppendUint
+<autogenerated>:1: inlining call to Encoder.AppendUint16
+<autogenerated>:1: inlining call to strconv.AppendUint
+<autogenerated>:1: inlining call to Encoder.AppendUint32
+<autogenerated>:1: inlining call to strconv.AppendUint
+<autogenerated>:1: inlining call to Encoder.AppendUint64
+<autogenerated>:1: inlining call to strconv.AppendUint
+<autogenerated>:1: inlining call to Encoder.AppendUint8
+<autogenerated>:1: inlining call to strconv.AppendUint
+internal/json/string.go:66:26: parameter dst leaks to ~r0 for appendStringComplex with derefs=0:
+internal/json/string.go:66:26:   flow: ~r0 ← dst:
+internal/json/string.go:66:26:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:77:18: append(dst, s[start:i]...) escapes to heap in appendStringComplex:
+internal/json/string.go:77:18:   flow: dst ← &{storage for append(dst, s[start:i]...)}:
+internal/json/string.go:77:18:     from append(dst, s[start:i]...) (spill) at internal/json/string.go:77:18
+internal/json/string.go:77:18:     from dst = append(dst, s[start:i]...) (assign) at internal/json/string.go:77:10
+internal/json/string.go:77:18:   flow: ~r0 ← dst:
+internal/json/string.go:77:18:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:79:17: append(dst, "\\ufffd"...) escapes to heap in appendStringComplex:
+internal/json/string.go:79:17:   flow: dst ← &{storage for append(dst, "\\ufffd"...)}:
+internal/json/string.go:79:17:     from append(dst, "\\ufffd"...) (spill) at internal/json/string.go:79:17
+internal/json/string.go:79:17:     from dst = append(dst, "\\ufffd"...) (assign) at internal/json/string.go:79:9
+internal/json/string.go:79:17:   flow: ~r0 ← dst:
+internal/json/string.go:79:17:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:96:16: append(dst, s[start:i]...) escapes to heap in appendStringComplex:
+internal/json/string.go:96:16:   flow: dst ← &{storage for append(dst, s[start:i]...)}:
+internal/json/string.go:96:16:     from append(dst, s[start:i]...) (spill) at internal/json/string.go:96:16
+internal/json/string.go:96:16:     from dst = append(dst, s[start:i]...) (assign) at internal/json/string.go:96:8
+internal/json/string.go:96:16:   flow: ~r0 ← dst:
+internal/json/string.go:96:16:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:100:16: append(dst, byte(92), b) escapes to heap in appendStringComplex:
+internal/json/string.go:100:16:   flow: dst ← &{storage for append(dst, byte(92), b)}:
+internal/json/string.go:100:16:     from append(dst, byte(92), b) (spill) at internal/json/string.go:100:16
+internal/json/string.go:100:16:     from dst = append(dst, byte(92), b) (assign) at internal/json/string.go:100:8
+internal/json/string.go:100:16:   flow: ~r0 ← dst:
+internal/json/string.go:100:16:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:102:16: append(dst, byte(92), byte(98)) escapes to heap in appendStringComplex:
+internal/json/string.go:102:16:   flow: dst ← &{storage for append(dst, byte(92), byte(98))}:
+internal/json/string.go:102:16:     from append(dst, byte(92), byte(98)) (spill) at internal/json/string.go:102:16
+internal/json/string.go:102:16:     from dst = append(dst, byte(92), byte(98)) (assign) at internal/json/string.go:102:8
+internal/json/string.go:102:16:   flow: ~r0 ← dst:
+internal/json/string.go:102:16:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:104:16: append(dst, byte(92), byte(102)) escapes to heap in appendStringComplex:
+internal/json/string.go:104:16:   flow: dst ← &{storage for append(dst, byte(92), byte(102))}:
+internal/json/string.go:104:16:     from append(dst, byte(92), byte(102)) (spill) at internal/json/string.go:104:16
+internal/json/string.go:104:16:     from dst = append(dst, byte(92), byte(102)) (assign) at internal/json/string.go:104:8
+internal/json/string.go:104:16:   flow: ~r0 ← dst:
+internal/json/string.go:104:16:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:106:16: append(dst, byte(92), byte(110)) escapes to heap in appendStringComplex:
+internal/json/string.go:106:16:   flow: dst ← &{storage for append(dst, byte(92), byte(110))}:
+internal/json/string.go:106:16:     from append(dst, byte(92), byte(110)) (spill) at internal/json/string.go:106:16
+internal/json/string.go:106:16:     from dst = append(dst, byte(92), byte(110)) (assign) at internal/json/string.go:106:8
+internal/json/string.go:106:16:   flow: ~r0 ← dst:
+internal/json/string.go:106:16:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:108:16: append(dst, byte(92), byte(114)) escapes to heap in appendStringComplex:
+internal/json/string.go:108:16:   flow: dst ← &{storage for append(dst, byte(92), byte(114))}:
+internal/json/string.go:108:16:     from append(dst, byte(92), byte(114)) (spill) at internal/json/string.go:108:16
+internal/json/string.go:108:16:     from dst = append(dst, byte(92), byte(114)) (assign) at internal/json/string.go:108:8
+internal/json/string.go:108:16:   flow: ~r0 ← dst:
+internal/json/string.go:108:16:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:110:16: append(dst, byte(92), byte(116)) escapes to heap in appendStringComplex:
+internal/json/string.go:110:16:   flow: dst ← &{storage for append(dst, byte(92), byte(116))}:
+internal/json/string.go:110:16:     from append(dst, byte(92), byte(116)) (spill) at internal/json/string.go:110:16
+internal/json/string.go:110:16:     from dst = append(dst, byte(92), byte(116)) (assign) at internal/json/string.go:110:8
+internal/json/string.go:110:16:   flow: ~r0 ← dst:
+internal/json/string.go:110:16:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:112:16: append(dst, byte(92), byte(117), byte(48), byte(48), "0123456789abcdef"[b >> uint(4)], "0123456789abcdef"[b & byte(15)]) escapes to heap in appendStringComplex:
+internal/json/string.go:112:16:   flow: dst ← &{storage for append(dst, byte(92), byte(117), byte(48), byte(48), "0123456789abcdef"[b >> uint(4)], "0123456789abcdef"[b & byte(15)])}:
+internal/json/string.go:112:16:     from append(dst, byte(92), byte(117), byte(48), byte(48), "0123456789abcdef"[b >> uint(4)], "0123456789abcdef"[b & byte(15)]) (spill) at internal/json/string.go:112:16
+internal/json/string.go:112:16:     from dst = append(dst, byte(92), byte(117), byte(48), byte(48), "0123456789abcdef"[b >> uint(4)], "0123456789abcdef"[b & byte(15)]) (assign) at internal/json/string.go:112:8
+internal/json/string.go:112:16:   flow: ~r0 ← dst:
+internal/json/string.go:112:16:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:118:15: append(dst, s[start:]...) escapes to heap in appendStringComplex:
+internal/json/string.go:118:15:   flow: dst ← &{storage for append(dst, s[start:]...)}:
+internal/json/string.go:118:15:     from append(dst, s[start:]...) (spill) at internal/json/string.go:118:15
+internal/json/string.go:118:15:     from dst = append(dst, s[start:]...) (assign) at internal/json/string.go:118:7
+internal/json/string.go:118:15:   flow: ~r0 ← dst:
+internal/json/string.go:118:15:     from return dst (return) at internal/json/string.go:120:2
+internal/json/string.go:66:26: leaking param: dst to result ~r0 level=0
+internal/json/string.go:66:38: s does not escape
+internal/json/string.go:77:18: append escapes to heap
+internal/json/string.go:79:17: append escapes to heap
+internal/json/string.go:96:16: append escapes to heap
+internal/json/string.go:100:16: append escapes to heap
+internal/json/string.go:102:16: append escapes to heap
+internal/json/string.go:104:16: append escapes to heap
+internal/json/string.go:106:16: append escapes to heap
+internal/json/string.go:108:16: append escapes to heap
+internal/json/string.go:110:16: append escapes to heap
+internal/json/string.go:112:16: append escapes to heap
+internal/json/string.go:118:15: append escapes to heap
+internal/json/string.go:53:17: append(dst, byte(34)) escapes to heap in Encoder.AppendString:
+internal/json/string.go:53:17:   flow: ~r0 ← &{storage for append(dst, byte(34))}:
+internal/json/string.go:53:17:     from append(dst, byte(34)) (spill) at internal/json/string.go:53:17
+internal/json/string.go:53:17:     from return append(dst, byte(34)) (return) at internal/json/string.go:53:4
+internal/json/string.go:60:15: append(dst, byte(34)) escapes to heap in Encoder.AppendString:
+internal/json/string.go:60:15:   flow: ~r0 ← &{storage for append(dst, byte(34))}:
+internal/json/string.go:60:15:     from append(dst, byte(34)) (spill) at internal/json/string.go:60:15
+internal/json/string.go:60:15:     from return append(dst, byte(34)) (return) at internal/json/string.go:60:2
+internal/json/string.go:41:29: parameter dst leaks to ~r0 for Encoder.AppendString with derefs=0:
+internal/json/string.go:41:29:   flow: {temp} ← dst:
+internal/json/string.go:41:29:     from append(dst, byte(34)) (call parameter) at internal/json/string.go:53:17
+internal/json/string.go:41:29:   flow: ~r0 ← {temp}:
+internal/json/string.go:41:29:     from return append(dst, byte(34)) (return) at internal/json/string.go:53:4
+internal/json/string.go:43:14: append(dst, byte(34)) escapes to heap in Encoder.AppendString:
+internal/json/string.go:43:14:   flow: dst ← &{storage for append(dst, byte(34))}:
+internal/json/string.go:43:14:     from append(dst, byte(34)) (spill) at internal/json/string.go:43:14
+internal/json/string.go:43:14:     from dst = append(dst, byte(34)) (assign) at internal/json/string.go:43:6
+internal/json/string.go:43:14:   flow: {temp} ← dst:
+internal/json/string.go:43:14:     from append(dst, byte(34)) (call parameter) at internal/json/string.go:53:17
+internal/json/string.go:43:14:   flow: ~r0 ← {temp}:
+internal/json/string.go:43:14:     from return append(dst, byte(34)) (return) at internal/json/string.go:53:4
+internal/json/string.go:58:14: append(dst, s...) escapes to heap in Encoder.AppendString:
+internal/json/string.go:58:14:   flow: dst ← &{storage for append(dst, s...)}:
+internal/json/string.go:58:14:     from append(dst, s...) (spill) at internal/json/string.go:58:14
+internal/json/string.go:58:14:     from dst = append(dst, s...) (assign) at internal/json/string.go:58:6
+internal/json/string.go:58:14:   flow: {temp} ← dst:
+internal/json/string.go:58:14:     from append(dst, byte(34)) (call parameter) at internal/json/string.go:53:17
+internal/json/string.go:58:14:   flow: ~r0 ← {temp}:
+internal/json/string.go:58:14:     from return append(dst, byte(34)) (return) at internal/json/string.go:53:4
+internal/json/string.go:41:29: leaking param: dst to result ~r0 level=0
+internal/json/string.go:41:41: s does not escape
+internal/json/string.go:43:14: append escapes to heap
+internal/json/string.go:53:17: append escapes to heap
+internal/json/string.go:58:14: append escapes to heap
+internal/json/string.go:60:15: append escapes to heap
+internal/json/base.go:11:15: append(dst, byte(58)) escapes to heap in Encoder.AppendKey:
+internal/json/base.go:11:15:   flow: ~r0 ← &{storage for append(dst, byte(58))}:
+internal/json/base.go:11:15:     from append(dst, byte(58)) (spill) at internal/json/base.go:11:15
+internal/json/base.go:11:15:     from return append(dst, byte(58)) (return) at internal/json/base.go:11:2
+internal/json/base.go:6:28: parameter dst leaks to ~r0 for Encoder.AppendKey with derefs=0:
+internal/json/base.go:6:28:   flow: {temp} ← dst:
+internal/json/base.go:6:28:     from append(dst, byte(58)) (call parameter) at internal/json/base.go:11:15
+internal/json/base.go:6:28:   flow: ~r0 ← {temp}:
+internal/json/base.go:6:28:     from return append(dst, byte(58)) (return) at internal/json/base.go:11:2
+internal/json/base.go:8:15: append(dst, byte(44)) escapes to heap in Encoder.AppendKey:
+internal/json/base.go:8:15:   flow: dst ← &{storage for append(dst, byte(44))}:
+internal/json/base.go:8:15:     from append(dst, byte(44)) (spill) at internal/json/base.go:8:15
+internal/json/base.go:8:15:     from dst = append(dst, byte(44)) (assign) at internal/json/base.go:8:7
+internal/json/base.go:8:15:   flow: {temp} ← dst:
+internal/json/base.go:8:15:     from append(dst, byte(58)) (call parameter) at internal/json/base.go:11:15
+internal/json/base.go:8:15:   flow: ~r0 ← {temp}:
+internal/json/base.go:8:15:     from return append(dst, byte(58)) (return) at internal/json/base.go:11:2
+internal/json/base.go:6:28: leaking param: dst to result ~r0 level=0
+internal/json/base.go:6:40: key does not escape
+internal/json/base.go:8:15: append escapes to heap
+internal/json/base.go:11:15: append escapes to heap
+internal/json/bytes.go:33:25: parameter dst leaks to ~r0 for appendBytesComplex with derefs=0:
+internal/json/bytes.go:33:25:   flow: ~r0 ← dst:
+internal/json/bytes.go:33:25:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:41:18: append(dst, s[start:i]...) escapes to heap in appendBytesComplex:
+internal/json/bytes.go:41:18:   flow: dst ← &{storage for append(dst, s[start:i]...)}:
+internal/json/bytes.go:41:18:     from append(dst, s[start:i]...) (spill) at internal/json/bytes.go:41:18
+internal/json/bytes.go:41:18:     from dst = append(dst, s[start:i]...) (assign) at internal/json/bytes.go:41:10
+internal/json/bytes.go:41:18:   flow: ~r0 ← dst:
+internal/json/bytes.go:41:18:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:43:17: append(dst, "\\ufffd"...) escapes to heap in appendBytesComplex:
+internal/json/bytes.go:43:17:   flow: dst ← &{storage for append(dst, "\\ufffd"...)}:
+internal/json/bytes.go:43:17:     from append(dst, "\\ufffd"...) (spill) at internal/json/bytes.go:43:17
+internal/json/bytes.go:43:17:     from dst = append(dst, "\\ufffd"...) (assign) at internal/json/bytes.go:43:9
+internal/json/bytes.go:43:17:   flow: ~r0 ← dst:
+internal/json/bytes.go:43:17:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:60:16: append(dst, s[start:i]...) escapes to heap in appendBytesComplex:
+internal/json/bytes.go:60:16:   flow: dst ← &{storage for append(dst, s[start:i]...)}:
+internal/json/bytes.go:60:16:     from append(dst, s[start:i]...) (spill) at internal/json/bytes.go:60:16
+internal/json/bytes.go:60:16:     from dst = append(dst, s[start:i]...) (assign) at internal/json/bytes.go:60:8
+internal/json/bytes.go:60:16:   flow: ~r0 ← dst:
+internal/json/bytes.go:60:16:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:64:16: append(dst, byte(92), b) escapes to heap in appendBytesComplex:
+internal/json/bytes.go:64:16:   flow: dst ← &{storage for append(dst, byte(92), b)}:
+internal/json/bytes.go:64:16:     from append(dst, byte(92), b) (spill) at internal/json/bytes.go:64:16
+internal/json/bytes.go:64:16:     from dst = append(dst, byte(92), b) (assign) at internal/json/bytes.go:64:8
+internal/json/bytes.go:64:16:   flow: ~r0 ← dst:
+internal/json/bytes.go:64:16:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:66:16: append(dst, byte(92), byte(98)) escapes to heap in appendBytesComplex:
+internal/json/bytes.go:66:16:   flow: dst ← &{storage for append(dst, byte(92), byte(98))}:
+internal/json/bytes.go:66:16:     from append(dst, byte(92), byte(98)) (spill) at internal/json/bytes.go:66:16
+internal/json/bytes.go:66:16:     from dst = append(dst, byte(92), byte(98)) (assign) at internal/json/bytes.go:66:8
+internal/json/bytes.go:66:16:   flow: ~r0 ← dst:
+internal/json/bytes.go:66:16:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:68:16: append(dst, byte(92), byte(102)) escapes to heap in appendBytesComplex:
+internal/json/bytes.go:68:16:   flow: dst ← &{storage for append(dst, byte(92), byte(102))}:
+internal/json/bytes.go:68:16:     from append(dst, byte(92), byte(102)) (spill) at internal/json/bytes.go:68:16
+internal/json/bytes.go:68:16:     from dst = append(dst, byte(92), byte(102)) (assign) at internal/json/bytes.go:68:8
+internal/json/bytes.go:68:16:   flow: ~r0 ← dst:
+internal/json/bytes.go:68:16:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:70:16: append(dst, byte(92), byte(110)) escapes to heap in appendBytesComplex:
+internal/json/bytes.go:70:16:   flow: dst ← &{storage for append(dst, byte(92), byte(110))}:
+internal/json/bytes.go:70:16:     from append(dst, byte(92), byte(110)) (spill) at internal/json/bytes.go:70:16
+internal/json/bytes.go:70:16:     from dst = append(dst, byte(92), byte(110)) (assign) at internal/json/bytes.go:70:8
+internal/json/bytes.go:70:16:   flow: ~r0 ← dst:
+internal/json/bytes.go:70:16:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:72:16: append(dst, byte(92), byte(114)) escapes to heap in appendBytesComplex:
+internal/json/bytes.go:72:16:   flow: dst ← &{storage for append(dst, byte(92), byte(114))}:
+internal/json/bytes.go:72:16:     from append(dst, byte(92), byte(114)) (spill) at internal/json/bytes.go:72:16
+internal/json/bytes.go:72:16:     from dst = append(dst, byte(92), byte(114)) (assign) at internal/json/bytes.go:72:8
+internal/json/bytes.go:72:16:   flow: ~r0 ← dst:
+internal/json/bytes.go:72:16:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:74:16: append(dst, byte(92), byte(116)) escapes to heap in appendBytesComplex:
+internal/json/bytes.go:74:16:   flow: dst ← &{storage for append(dst, byte(92), byte(116))}:
+internal/json/bytes.go:74:16:     from append(dst, byte(92), byte(116)) (spill) at internal/json/bytes.go:74:16
+internal/json/bytes.go:74:16:     from dst = append(dst, byte(92), byte(116)) (assign) at internal/json/bytes.go:74:8
+internal/json/bytes.go:74:16:   flow: ~r0 ← dst:
+internal/json/bytes.go:74:16:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:76:16: append(dst, byte(92), byte(117), byte(48), byte(48), "0123456789abcdef"[b >> uint(4)], "0123456789abcdef"[b & byte(15)]) escapes to heap in appendBytesComplex:
+internal/json/bytes.go:76:16:   flow: dst ← &{storage for append(dst, byte(92), byte(117), byte(48), byte(48), "0123456789abcdef"[b >> uint(4)], "0123456789abcdef"[b & byte(15)])}:
+internal/json/bytes.go:76:16:     from append(dst, byte(92), byte(117), byte(48), byte(48), "0123456789abcdef"[b >> uint(4)], "0123456789abcdef"[b & byte(15)]) (spill) at internal/json/bytes.go:76:16
+internal/json/bytes.go:76:16:     from dst = append(dst, byte(92), byte(117), byte(48), byte(48), "0123456789abcdef"[b >> uint(4)], "0123456789abcdef"[b & byte(15)]) (assign) at internal/json/bytes.go:76:8
+internal/json/bytes.go:76:16:   flow: ~r0 ← dst:
+internal/json/bytes.go:76:16:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:82:15: append(dst, s[start:]...) escapes to heap in appendBytesComplex:
+internal/json/bytes.go:82:15:   flow: dst ← &{storage for append(dst, s[start:]...)}:
+internal/json/bytes.go:82:15:     from append(dst, s[start:]...) (spill) at internal/json/bytes.go:82:15
+internal/json/bytes.go:82:15:     from dst = append(dst, s[start:]...) (assign) at internal/json/bytes.go:82:7
+internal/json/bytes.go:82:15:   flow: ~r0 ← dst:
+internal/json/bytes.go:82:15:     from return dst (return) at internal/json/bytes.go:84:2
+internal/json/bytes.go:33:25: leaking param: dst to result ~r0 level=0
+internal/json/bytes.go:33:30: s does not escape
+internal/json/bytes.go:41:18: append escapes to heap
+internal/json/bytes.go:43:17: append escapes to heap
+internal/json/bytes.go:60:16: append escapes to heap
+internal/json/bytes.go:64:16: append escapes to heap
+internal/json/bytes.go:66:16: append escapes to heap
+internal/json/bytes.go:68:16: append escapes to heap
+internal/json/bytes.go:70:16: append escapes to heap
+internal/json/bytes.go:72:16: append escapes to heap
+internal/json/bytes.go:74:16: append escapes to heap
+internal/json/bytes.go:76:16: append escapes to heap
+internal/json/bytes.go:82:15: append escapes to heap
+internal/json/bytes.go:11:17: append(dst, byte(34)) escapes to heap in Encoder.AppendBytes:
+internal/json/bytes.go:11:17:   flow: ~r0 ← &{storage for append(dst, byte(34))}:
+internal/json/bytes.go:11:17:     from append(dst, byte(34)) (spill) at internal/json/bytes.go:11:17
+internal/json/bytes.go:11:17:     from return append(dst, byte(34)) (return) at internal/json/bytes.go:11:4
+internal/json/bytes.go:15:15: append(dst, byte(34)) escapes to heap in Encoder.AppendBytes:
+internal/json/bytes.go:15:15:   flow: ~r0 ← &{storage for append(dst, byte(34))}:
+internal/json/bytes.go:15:15:     from append(dst, byte(34)) (spill) at internal/json/bytes.go:15:15
+internal/json/bytes.go:15:15:     from return append(dst, byte(34)) (return) at internal/json/bytes.go:15:2
+internal/json/bytes.go:6:28: parameter dst leaks to ~r0 for Encoder.AppendBytes with derefs=0:
+internal/json/bytes.go:6:28:   flow: {temp} ← dst:
+internal/json/bytes.go:6:28:     from append(dst, byte(34)) (call parameter) at internal/json/bytes.go:11:17
+internal/json/bytes.go:6:28:   flow: ~r0 ← {temp}:
+internal/json/bytes.go:6:28:     from return append(dst, byte(34)) (return) at internal/json/bytes.go:11:4
+internal/json/bytes.go:7:14: append(dst, byte(34)) escapes to heap in Encoder.AppendBytes:
+internal/json/bytes.go:7:14:   flow: dst ← &{storage for append(dst, byte(34))}:
+internal/json/bytes.go:7:14:     from append(dst, byte(34)) (spill) at internal/json/bytes.go:7:14
+internal/json/bytes.go:7:14:     from dst = append(dst, byte(34)) (assign) at internal/json/bytes.go:7:6
+internal/json/bytes.go:7:14:   flow: {temp} ← dst:
+internal/json/bytes.go:7:14:     from append(dst, byte(34)) (call parameter) at internal/json/bytes.go:11:17
+internal/json/bytes.go:7:14:   flow: ~r0 ← {temp}:
+internal/json/bytes.go:7:14:     from return append(dst, byte(34)) (return) at internal/json/bytes.go:11:4
+internal/json/bytes.go:14:14: append(dst, s...) escapes to heap in Encoder.AppendBytes:
+internal/json/bytes.go:14:14:   flow: dst ← &{storage for append(dst, s...)}:
+internal/json/bytes.go:14:14:     from append(dst, s...) (spill) at internal/json/bytes.go:14:14
+internal/json/bytes.go:14:14:     from dst = append(dst, s...) (assign) at internal/json/bytes.go:14:6
+internal/json/bytes.go:14:14:   flow: {temp} ← dst:
+internal/json/bytes.go:14:14:     from append(dst, byte(34)) (call parameter) at internal/json/bytes.go:11:17
+internal/json/bytes.go:14:14:   flow: ~r0 ← {temp}:
+internal/json/bytes.go:14:14:     from return append(dst, byte(34)) (return) at internal/json/bytes.go:11:4
+internal/json/bytes.go:6:28: leaking param: dst to result ~r0 level=0
+internal/json/bytes.go:6:33: s does not escape
+internal/json/bytes.go:7:14: append escapes to heap
+internal/json/bytes.go:11:17: append escapes to heap
+internal/json/bytes.go:14:14: append escapes to heap
+internal/json/bytes.go:15:15: append escapes to heap
+internal/json/bytes.go:28:15: append(dst, byte(34)) escapes to heap in Encoder.AppendHex:
+internal/json/bytes.go:28:15:   flow: ~r0 ← &{storage for append(dst, byte(34))}:
+internal/json/bytes.go:28:15:     from append(dst, byte(34)) (spill) at internal/json/bytes.go:28:15
+internal/json/bytes.go:28:15:     from return append(dst, byte(34)) (return) at internal/json/bytes.go:28:2
+internal/json/bytes.go:23:26: parameter dst leaks to ~r0 for Encoder.AppendHex with derefs=0:
+internal/json/bytes.go:23:26:   flow: {temp} ← dst:
+internal/json/bytes.go:23:26:     from append(dst, byte(34)) (call parameter) at internal/json/bytes.go:28:15
+internal/json/bytes.go:23:26:   flow: ~r0 ← {temp}:
+internal/json/bytes.go:23:26:     from return append(dst, byte(34)) (return) at internal/json/bytes.go:28:2
+internal/json/bytes.go:24:14: append(dst, byte(34)) escapes to heap in Encoder.AppendHex:
+internal/json/bytes.go:24:14:   flow: dst ← &{storage for append(dst, byte(34))}:
+internal/json/bytes.go:24:14:     from append(dst, byte(34)) (spill) at internal/json/bytes.go:24:14
+internal/json/bytes.go:24:14:     from dst = append(dst, byte(34)) (assign) at internal/json/bytes.go:24:6
+internal/json/bytes.go:24:14:   flow: {temp} ← dst:
+internal/json/bytes.go:24:14:     from append(dst, byte(34)) (call parameter) at internal/json/bytes.go:28:15
+internal/json/bytes.go:24:14:   flow: ~r0 ← {temp}:
+internal/json/bytes.go:24:14:     from return append(dst, byte(34)) (return) at internal/json/bytes.go:28:2
+internal/json/bytes.go:26:15: append(dst, "0123456789abcdef"[v >> uint(4)], "0123456789abcdef"[v & byte(15)]) escapes to heap in Encoder.AppendHex:
+internal/json/bytes.go:26:15:   flow: dst ← &{storage for append(dst, "0123456789abcdef"[v >> uint(4)], "0123456789abcdef"[v & byte(15)])}:
+internal/json/bytes.go:26:15:     from append(dst, "0123456789abcdef"[v >> uint(4)], "0123456789abcdef"[v & byte(15)]) (spill) at internal/json/bytes.go:26:15
+internal/json/bytes.go:26:15:     from dst = append(dst, "0123456789abcdef"[v >> uint(4)], "0123456789abcdef"[v & byte(15)]) (assign) at internal/json/bytes.go:26:7
+internal/json/bytes.go:26:15:   flow: {temp} ← dst:
+internal/json/bytes.go:26:15:     from append(dst, byte(34)) (call parameter) at internal/json/bytes.go:28:15
+internal/json/bytes.go:26:15:   flow: ~r0 ← {temp}:
+internal/json/bytes.go:26:15:     from return append(dst, byte(34)) (return) at internal/json/bytes.go:28:2
+internal/json/bytes.go:23:26: leaking param: dst to result ~r0 level=0
+internal/json/bytes.go:23:31: s does not escape
+internal/json/bytes.go:24:14: append escapes to heap
+internal/json/bytes.go:26:15: append escapes to heap
+internal/json/bytes.go:28:15: append escapes to heap
+internal/json/string.go:19:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendStrings:
+internal/json/string.go:19:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/string.go:19:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/string.go:19:16
+internal/json/string.go:19:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/string.go:19:3
+internal/json/string.go:17:32: parameter dst leaks to ~r0 for Encoder.AppendStrings with derefs=0:
+internal/json/string.go:17:32:   flow: ~r0 ← dst:
+internal/json/string.go:17:32:     from return dst (return) at internal/json/string.go:29:2
+internal/json/string.go:21:14: append(dst, byte(91)) escapes to heap in Encoder.AppendStrings:
+internal/json/string.go:21:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/string.go:21:14:     from append(dst, byte(91)) (spill) at internal/json/string.go:21:14
+internal/json/string.go:21:14:     from dst = append(dst, byte(91)) (assign) at internal/json/string.go:21:6
+internal/json/string.go:21:14:   flow: ~r0 ← dst:
+internal/json/string.go:21:14:     from return dst (return) at internal/json/string.go:29:2
+internal/json/string.go:28:14: append(dst, byte(93)) escapes to heap in Encoder.AppendStrings:
+internal/json/string.go:28:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/string.go:28:14:     from append(dst, byte(93)) (spill) at internal/json/string.go:28:14
+internal/json/string.go:28:14:     from dst = append(dst, byte(93)) (assign) at internal/json/string.go:28:6
+internal/json/string.go:28:14:   flow: ~r0 ← dst:
+internal/json/string.go:28:14:     from return dst (return) at internal/json/string.go:29:2
+internal/json/string.go:25:31: append(dst, byte(44)) escapes to heap in Encoder.AppendStrings:
+internal/json/string.go:25:31:   flow: {temp} ← &{storage for append(dst, byte(44))}:
+internal/json/string.go:25:31:     from append(dst, byte(44)) (spill) at internal/json/string.go:25:31
+internal/json/string.go:25:31:     from Encoder.AppendString(e, append(dst, byte(44)), val) (call parameter) at internal/json/string.go:25:24
+internal/json/string.go:25:31:   flow: dst ← {temp}:
+internal/json/string.go:25:31:     from dst = Encoder.AppendString(e, append(dst, byte(44)), val) (assign) at internal/json/string.go:25:8
+internal/json/string.go:25:31:   flow: ~r0 ← dst:
+internal/json/string.go:25:31:     from return dst (return) at internal/json/string.go:29:2
+internal/json/string.go:17:32: leaking param: dst to result ~r0 level=0
+internal/json/string.go:17:44: vals does not escape
+internal/json/string.go:19:16: append escapes to heap
+internal/json/string.go:21:14: append escapes to heap
+internal/json/string.go:25:31: append escapes to heap
+internal/json/string.go:28:14: append escapes to heap
+internal/json/time.go:26:15: append(time.Time.AppendFormat(t, append(dst, byte(34)), format), byte(34)) escapes to heap in Encoder.AppendTime:
+internal/json/time.go:26:15:   flow: ~r0 ← &{storage for append(time.Time.AppendFormat(t, append(dst, byte(34)), format), byte(34))}:
+internal/json/time.go:26:15:     from append(time.Time.AppendFormat(t, append(dst, byte(34)), format), byte(34)) (spill) at internal/json/time.go:26:15
+internal/json/time.go:26:15:     from return append(time.Time.AppendFormat(t, append(dst, byte(34)), format), byte(34)) (return) at internal/json/time.go:26:2
+internal/json/time.go:26:37: append(dst, byte(34)) escapes to heap in Encoder.AppendTime:
+internal/json/time.go:26:37:   flow: {temp} ← &{storage for append(dst, byte(34))}:
+internal/json/time.go:26:37:     from append(dst, byte(34)) (spill) at internal/json/time.go:26:37
+internal/json/time.go:26:37:     from time.Time.AppendFormat(t, append(dst, byte(34)), format) (call parameter) at internal/json/time.go:26:30
+internal/json/time.go:26:37:   flow: {temp} ← {temp}:
+internal/json/time.go:26:37:     from append(time.Time.AppendFormat(t, append(dst, byte(34)), format), byte(34)) (call parameter) at internal/json/time.go:26:15
+internal/json/time.go:26:37:   flow: ~r0 ← {temp}:
+internal/json/time.go:26:37:     from return append(time.Time.AppendFormat(t, append(dst, byte(34)), format), byte(34)) (return) at internal/json/time.go:26:2
+internal/json/time.go:17:29: parameter dst leaks to ~r0 for Encoder.AppendTime with derefs=0:
+internal/json/time.go:17:29:   flow: {temp} ← dst:
+internal/json/time.go:17:29:     from append(dst, byte(34)) (call parameter) at internal/json/time.go:26:37
+internal/json/time.go:17:29:   flow: {temp} ← {temp}:
+internal/json/time.go:17:29:     from time.Time.AppendFormat(t, append(dst, byte(34)), format) (call parameter) at internal/json/time.go:26:30
+internal/json/time.go:17:29:   flow: {temp} ← {temp}:
+internal/json/time.go:17:29:     from append(time.Time.AppendFormat(t, append(dst, byte(34)), format), byte(34)) (call parameter) at internal/json/time.go:26:15
+internal/json/time.go:17:29:   flow: ~r0 ← {temp}:
+internal/json/time.go:17:29:     from return append(time.Time.AppendFormat(t, append(dst, byte(34)), format), byte(34)) (return) at internal/json/time.go:26:2
+internal/json/time.go:17:29: leaking param: dst to result ~r0 level=0
+internal/json/time.go:17:41: t does not escape
+internal/json/time.go:17:54: format does not escape
+internal/json/time.go:26:37: append escapes to heap
+internal/json/time.go:26:15: append escapes to heap
+internal/json/time.go:54:16: append(dst, byte(91), byte(93)) escapes to heap in appendUnixTimes:
+internal/json/time.go:54:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/time.go:54:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/time.go:54:16
+internal/json/time.go:54:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/time.go:54:3
+internal/json/time.go:52:22: parameter dst leaks to ~r0 for appendUnixTimes with derefs=0:
+internal/json/time.go:52:22:   flow: ~r0 ← dst:
+internal/json/time.go:52:22:     from return dst (return) at internal/json/time.go:64:2
+internal/json/time.go:56:14: append(dst, byte(91)) escapes to heap in appendUnixTimes:
+internal/json/time.go:56:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/time.go:56:14:     from append(dst, byte(91)) (spill) at internal/json/time.go:56:14
+internal/json/time.go:56:14:     from dst = append(dst, byte(91)) (assign) at internal/json/time.go:56:6
+internal/json/time.go:56:14:   flow: ~r0 ← dst:
+internal/json/time.go:56:14:     from return dst (return) at internal/json/time.go:64:2
+internal/json/time.go:63:14: append(dst, byte(93)) escapes to heap in appendUnixTimes:
+internal/json/time.go:63:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/time.go:63:14:     from append(dst, byte(93)) (spill) at internal/json/time.go:63:14
+internal/json/time.go:63:14:     from dst = append(dst, byte(93)) (assign) at internal/json/time.go:63:6
+internal/json/time.go:63:14:   flow: ~r0 ← dst:
+internal/json/time.go:63:14:     from return dst (return) at internal/json/time.go:64:2
+internal/json/time.go:60:34: append(dst, byte(44)) escapes to heap in appendUnixTimes:
+internal/json/time.go:60:34:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/time.go:60:34:     from append(dst, byte(44)) (spill) at internal/json/time.go:60:34
+internal/json/time.go:60:34:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), ~r0, 10 (assign-pair) at internal/json/time.go:60:27
+internal/json/time.go:60:34:   flow: {temp} ← strconv.dst:
+internal/json/time.go:60:34:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/time.go:60:27
+internal/json/time.go:60:34:   flow: ~r0 ← {temp}:
+internal/json/time.go:60:34:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/time.go:60:27
+internal/json/time.go:60:34:   flow: dst ← ~r0:
+internal/json/time.go:60:34:     from dst = ~r0 (assign) at internal/json/time.go:60:8
+internal/json/time.go:60:34:   flow: ~r0 ← dst:
+internal/json/time.go:60:34:     from return dst (return) at internal/json/time.go:64:2
+internal/json/time.go:52:22: leaking param: dst to result ~r0 level=0
+internal/json/time.go:52:34: vals does not escape
+internal/json/time.go:54:16: append escapes to heap
+internal/json/time.go:56:14: append escapes to heap
+internal/json/time.go:60:34: append escapes to heap
+internal/json/time.go:63:14: append escapes to heap
+internal/json/time.go:69:16: append(dst, byte(91), byte(93)) escapes to heap in appendUnixMsTimes:
+internal/json/time.go:69:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/time.go:69:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/time.go:69:16
+internal/json/time.go:69:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/time.go:69:3
+internal/json/time.go:67:24: parameter dst leaks to ~r0 for appendUnixMsTimes with derefs=0:
+internal/json/time.go:67:24:   flow: ~r0 ← dst:
+internal/json/time.go:67:24:     from return dst (return) at internal/json/time.go:79:2
+internal/json/time.go:71:14: append(dst, byte(91)) escapes to heap in appendUnixMsTimes:
+internal/json/time.go:71:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/time.go:71:14:     from append(dst, byte(91)) (spill) at internal/json/time.go:71:14
+internal/json/time.go:71:14:     from dst = append(dst, byte(91)) (assign) at internal/json/time.go:71:6
+internal/json/time.go:71:14:   flow: ~r0 ← dst:
+internal/json/time.go:71:14:     from return dst (return) at internal/json/time.go:79:2
+internal/json/time.go:78:14: append(dst, byte(93)) escapes to heap in appendUnixMsTimes:
+internal/json/time.go:78:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/time.go:78:14:     from append(dst, byte(93)) (spill) at internal/json/time.go:78:14
+internal/json/time.go:78:14:     from dst = append(dst, byte(93)) (assign) at internal/json/time.go:78:6
+internal/json/time.go:78:14:   flow: ~r0 ← dst:
+internal/json/time.go:78:14:     from return dst (return) at internal/json/time.go:79:2
+internal/json/time.go:75:34: append(dst, byte(44)) escapes to heap in appendUnixMsTimes:
+internal/json/time.go:75:34:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/time.go:75:34:     from append(dst, byte(44)) (spill) at internal/json/time.go:75:34
+internal/json/time.go:75:34:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), (~r0) / int64(1000000), 10 (assign-pair) at internal/json/time.go:75:27
+internal/json/time.go:75:34:   flow: {temp} ← strconv.dst:
+internal/json/time.go:75:34:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/time.go:75:27
+internal/json/time.go:75:34:   flow: ~r0 ← {temp}:
+internal/json/time.go:75:34:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/time.go:75:27
+internal/json/time.go:75:34:   flow: dst ← ~r0:
+internal/json/time.go:75:34:     from dst = ~r0 (assign) at internal/json/time.go:75:8
+internal/json/time.go:75:34:   flow: ~r0 ← dst:
+internal/json/time.go:75:34:     from return dst (return) at internal/json/time.go:79:2
+internal/json/time.go:67:24: leaking param: dst to result ~r0 level=0
+internal/json/time.go:67:36: vals does not escape
+internal/json/time.go:69:16: append escapes to heap
+internal/json/time.go:71:14: append escapes to heap
+internal/json/time.go:75:34: append escapes to heap
+internal/json/time.go:78:14: append escapes to heap
+internal/json/time.go:39:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendTimes:
+internal/json/time.go:39:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/time.go:39:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/time.go:39:16
+internal/json/time.go:39:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/time.go:39:3
+internal/json/time.go:31:28: parameter dst leaks to ~r0 for Encoder.AppendTimes with derefs=0:
+internal/json/time.go:31:28:   flow: ~r0 ← dst:
+internal/json/time.go:31:28:     from return dst (return) at internal/json/time.go:49:2
+internal/json/time.go:41:14: append(dst, byte(91)) escapes to heap in Encoder.AppendTimes:
+internal/json/time.go:41:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/time.go:41:14:     from append(dst, byte(91)) (spill) at internal/json/time.go:41:14
+internal/json/time.go:41:14:     from dst = append(dst, byte(91)) (assign) at internal/json/time.go:41:6
+internal/json/time.go:41:14:   flow: ~r0 ← dst:
+internal/json/time.go:41:14:     from return dst (return) at internal/json/time.go:49:2
+internal/json/time.go:42:14: append(time.Time.AppendFormat(vals[0], append(dst, byte(34)), format), byte(34)) escapes to heap in Encoder.AppendTimes:
+internal/json/time.go:42:14:   flow: dst ← &{storage for append(time.Time.AppendFormat(vals[0], append(dst, byte(34)), format), byte(34))}:
+internal/json/time.go:42:14:     from append(time.Time.AppendFormat(vals[0], append(dst, byte(34)), format), byte(34)) (spill) at internal/json/time.go:42:14
+internal/json/time.go:42:14:     from dst = append(time.Time.AppendFormat(vals[0], append(dst, byte(34)), format), byte(34)) (assign) at internal/json/time.go:42:6
+internal/json/time.go:42:14:   flow: ~r0 ← dst:
+internal/json/time.go:42:14:     from return dst (return) at internal/json/time.go:49:2
+internal/json/time.go:45:16: append(time.Time.AppendFormat(t, append(dst, byte(44), byte(34)), format), byte(34)) escapes to heap in Encoder.AppendTimes:
+internal/json/time.go:45:16:   flow: dst ← &{storage for append(time.Time.AppendFormat(t, append(dst, byte(44), byte(34)), format), byte(34))}:
+internal/json/time.go:45:16:     from append(time.Time.AppendFormat(t, append(dst, byte(44), byte(34)), format), byte(34)) (spill) at internal/json/time.go:45:16
+internal/json/time.go:45:16:     from dst = append(time.Time.AppendFormat(t, append(dst, byte(44), byte(34)), format), byte(34)) (assign) at internal/json/time.go:45:8
+internal/json/time.go:45:16:   flow: ~r0 ← dst:
+internal/json/time.go:45:16:     from return dst (return) at internal/json/time.go:49:2
+internal/json/time.go:48:14: append(dst, byte(93)) escapes to heap in Encoder.AppendTimes:
+internal/json/time.go:48:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/time.go:48:14:     from append(dst, byte(93)) (spill) at internal/json/time.go:48:14
+internal/json/time.go:48:14:     from dst = append(dst, byte(93)) (assign) at internal/json/time.go:48:6
+internal/json/time.go:48:14:   flow: ~r0 ← dst:
+internal/json/time.go:48:14:     from return dst (return) at internal/json/time.go:49:2
+internal/json/time.go:42:42: append(dst, byte(34)) escapes to heap in Encoder.AppendTimes:
+internal/json/time.go:42:42:   flow: {temp} ← &{storage for append(dst, byte(34))}:
+internal/json/time.go:42:42:     from append(dst, byte(34)) (spill) at internal/json/time.go:42:42
+internal/json/time.go:42:42:     from time.Time.AppendFormat(vals[0], append(dst, byte(34)), format) (call parameter) at internal/json/time.go:42:35
+internal/json/time.go:42:42:   flow: {temp} ← {temp}:
+internal/json/time.go:42:42:     from append(time.Time.AppendFormat(vals[0], append(dst, byte(34)), format), byte(34)) (call parameter) at internal/json/time.go:42:14
+internal/json/time.go:42:42:   flow: dst ← {temp}:
+internal/json/time.go:42:42:     from dst = append(time.Time.AppendFormat(vals[0], append(dst, byte(34)), format), byte(34)) (assign) at internal/json/time.go:42:6
+internal/json/time.go:42:42:   flow: ~r0 ← dst:
+internal/json/time.go:42:42:     from return dst (return) at internal/json/time.go:49:2
+internal/json/time.go:45:38: append(dst, byte(44), byte(34)) escapes to heap in Encoder.AppendTimes:
+internal/json/time.go:45:38:   flow: {temp} ← &{storage for append(dst, byte(44), byte(34))}:
+internal/json/time.go:45:38:     from append(dst, byte(44), byte(34)) (spill) at internal/json/time.go:45:38
+internal/json/time.go:45:38:     from time.Time.AppendFormat(t, append(dst, byte(44), byte(34)), format) (call parameter) at internal/json/time.go:45:31
+internal/json/time.go:45:38:   flow: {temp} ← {temp}:
+internal/json/time.go:45:38:     from append(time.Time.AppendFormat(t, append(dst, byte(44), byte(34)), format), byte(34)) (call parameter) at internal/json/time.go:45:16
+internal/json/time.go:45:38:   flow: dst ← {temp}:
+internal/json/time.go:45:38:     from dst = append(time.Time.AppendFormat(t, append(dst, byte(44), byte(34)), format), byte(34)) (assign) at internal/json/time.go:45:8
+internal/json/time.go:45:38:   flow: ~r0 ← dst:
+internal/json/time.go:45:38:     from return dst (return) at internal/json/time.go:49:2
+internal/json/time.go:31:28: leaking param: dst to result ~r0 level=0
+internal/json/time.go:31:40: vals does not escape
+internal/json/time.go:31:58: format does not escape
+internal/json/time.go:39:16: append escapes to heap
+internal/json/time.go:41:14: append escapes to heap
+internal/json/time.go:42:42: append escapes to heap
+internal/json/time.go:42:14: append escapes to heap
+internal/json/time.go:45:38: append escapes to heap
+internal/json/time.go:45:16: append escapes to heap
+internal/json/time.go:48:14: append escapes to heap
+internal/json/types.go:308:16: append(dst, "\"NaN\""...) escapes to heap in appendFloat:
+internal/json/types.go:308:16:   flow: ~r0 ← &{storage for append(dst, "\"NaN\""...)}:
+internal/json/types.go:308:16:     from append(dst, "\"NaN\""...) (spill) at internal/json/types.go:308:16
+internal/json/types.go:308:16:     from return append(dst, "\"NaN\""...) (return) at internal/json/types.go:308:3
+internal/json/types.go:310:16: append(dst, "\"+Inf\""...) escapes to heap in appendFloat:
+internal/json/types.go:310:16:   flow: ~r0 ← &{storage for append(dst, "\"+Inf\""...)}:
+internal/json/types.go:310:16:     from append(dst, "\"+Inf\""...) (spill) at internal/json/types.go:310:16
+internal/json/types.go:310:16:     from return append(dst, "\"+Inf\""...) (return) at internal/json/types.go:310:3
+internal/json/types.go:312:16: append(dst, "\"-Inf\""...) escapes to heap in appendFloat:
+internal/json/types.go:312:16:   flow: ~r0 ← &{storage for append(dst, "\"-Inf\""...)}:
+internal/json/types.go:312:16:     from append(dst, "\"-Inf\""...) (spill) at internal/json/types.go:312:16
+internal/json/types.go:312:16:     from return append(dst, "\"-Inf\""...) (return) at internal/json/types.go:312:3
+internal/json/types.go:302:18: parameter dst leaks to ~r0 for appendFloat with derefs=0:
+internal/json/types.go:302:18:   flow: {temp} ← dst:
+internal/json/types.go:302:18:     from append(dst, "\"NaN\""...) (call parameter) at internal/json/types.go:308:16
+internal/json/types.go:302:18:   flow: ~r0 ← {temp}:
+internal/json/types.go:302:18:     from return append(dst, "\"NaN\""...) (return) at internal/json/types.go:308:3
+internal/json/types.go:302:18: leaking param: dst to result ~r0 level=0
+internal/json/types.go:308:16: append escapes to heap
+internal/json/types.go:310:16: append escapes to heap
+internal/json/types.go:312:16: append escapes to heap
+internal/json/time.go:84:33: parameter dst leaks to ~r0 for Encoder.AppendDuration with derefs=0:
+internal/json/time.go:84:33:   flow: strconv.dst ← dst:
+internal/json/time.go:84:33:     from strconv.dst, strconv.i, strconv.base := dst, int64(d / unit), 10 (assign-pair) at internal/json/time.go:86:27
+internal/json/time.go:84:33:   flow: {temp} ← strconv.dst:
+internal/json/time.go:84:33:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/time.go:86:27
+internal/json/time.go:84:33:   flow: ~r0 ← {temp}:
+internal/json/time.go:84:33:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/time.go:86:27
+internal/json/time.go:84:33:   flow: ~r0 ← ~r0:
+internal/json/time.go:84:33:     from return ~r0 (return) at internal/json/time.go:86:3
+internal/json/time.go:84:33: leaking param: dst to result ~r0 level=0
+internal/json/time.go:95:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendDurations:
+internal/json/time.go:95:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/time.go:95:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/time.go:95:16
+internal/json/time.go:95:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/time.go:95:3
+internal/json/time.go:93:34: parameter dst leaks to ~r0 for Encoder.AppendDurations with derefs=0:
+internal/json/time.go:93:34:   flow: ~r0 ← dst:
+internal/json/time.go:93:34:     from return dst (return) at internal/json/time.go:105:2
+internal/json/time.go:97:14: append(dst, byte(91)) escapes to heap in Encoder.AppendDurations:
+internal/json/time.go:97:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/time.go:97:14:     from append(dst, byte(91)) (spill) at internal/json/time.go:97:14
+internal/json/time.go:97:14:     from dst = append(dst, byte(91)) (assign) at internal/json/time.go:97:6
+internal/json/time.go:97:14:   flow: ~r0 ← dst:
+internal/json/time.go:97:14:     from return dst (return) at internal/json/time.go:105:2
+internal/json/time.go:104:14: append(dst, byte(93)) escapes to heap in Encoder.AppendDurations:
+internal/json/time.go:104:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/time.go:104:14:     from append(dst, byte(93)) (spill) at internal/json/time.go:104:14
+internal/json/time.go:104:14:     from dst = append(dst, byte(93)) (assign) at internal/json/time.go:104:6
+internal/json/time.go:104:14:   flow: ~r0 ← dst:
+internal/json/time.go:104:14:     from return dst (return) at internal/json/time.go:105:2
+internal/json/time.go:101:33: append(dst, byte(44)) escapes to heap in Encoder.AppendDurations:
+internal/json/time.go:101:33:   flow: {temp} ← &{storage for append(dst, byte(44))}:
+internal/json/time.go:101:33:     from append(dst, byte(44)) (spill) at internal/json/time.go:101:33
+internal/json/time.go:101:33:     from Encoder.AppendDuration(e, append(dst, byte(44)), d, unit, useInt) (call parameter) at internal/json/time.go:101:26
+internal/json/time.go:101:33:   flow: dst ← {temp}:
+internal/json/time.go:101:33:     from dst = Encoder.AppendDuration(e, append(dst, byte(44)), d, unit, useInt) (assign) at internal/json/time.go:101:8
+internal/json/time.go:101:33:   flow: ~r0 ← dst:
+internal/json/time.go:101:33:     from return dst (return) at internal/json/time.go:105:2
+internal/json/time.go:93:34: leaking param: dst to result ~r0 level=0
+internal/json/time.go:93:46: vals does not escape
+internal/json/time.go:95:16: append escapes to heap
+internal/json/time.go:97:14: append escapes to heap
+internal/json/time.go:101:33: append escapes to heap
+internal/json/time.go:104:14: append escapes to heap
+internal/json/types.go:13:15: append(dst, "null"...) escapes to heap in Encoder.AppendNil:
+internal/json/types.go:13:15:   flow: ~r0 ← &{storage for append(dst, "null"...)}:
+internal/json/types.go:13:15:     from append(dst, "null"...) (spill) at internal/json/types.go:13:15
+internal/json/types.go:13:15:     from return append(dst, "null"...) (return) at internal/json/types.go:13:2
+internal/json/types.go:12:26: parameter dst leaks to ~r0 for Encoder.AppendNil with derefs=0:
+internal/json/types.go:12:26:   flow: {temp} ← dst:
+internal/json/types.go:12:26:     from append(dst, "null"...) (call parameter) at internal/json/types.go:13:15
+internal/json/types.go:12:26:   flow: ~r0 ← {temp}:
+internal/json/types.go:12:26:     from return append(dst, "null"...) (return) at internal/json/types.go:13:2
+internal/json/types.go:12:26: leaking param: dst to result ~r0 level=0
+internal/json/types.go:13:15: append escapes to heap
+internal/json/types.go:18:15: append(dst, byte(123)) escapes to heap in Encoder.AppendBeginMarker:
+internal/json/types.go:18:15:   flow: ~r0 ← &{storage for append(dst, byte(123))}:
+internal/json/types.go:18:15:     from append(dst, byte(123)) (spill) at internal/json/types.go:18:15
+internal/json/types.go:18:15:     from return append(dst, byte(123)) (return) at internal/json/types.go:18:2
+internal/json/types.go:17:34: parameter dst leaks to ~r0 for Encoder.AppendBeginMarker with derefs=0:
+internal/json/types.go:17:34:   flow: {temp} ← dst:
+internal/json/types.go:17:34:     from append(dst, byte(123)) (call parameter) at internal/json/types.go:18:15
+internal/json/types.go:17:34:   flow: ~r0 ← {temp}:
+internal/json/types.go:17:34:     from return append(dst, byte(123)) (return) at internal/json/types.go:18:2
+internal/json/types.go:17:34: leaking param: dst to result ~r0 level=0
+internal/json/types.go:18:15: append escapes to heap
+internal/json/types.go:23:15: append(dst, byte(125)) escapes to heap in Encoder.AppendEndMarker:
+internal/json/types.go:23:15:   flow: ~r0 ← &{storage for append(dst, byte(125))}:
+internal/json/types.go:23:15:     from append(dst, byte(125)) (spill) at internal/json/types.go:23:15
+internal/json/types.go:23:15:     from return append(dst, byte(125)) (return) at internal/json/types.go:23:2
+internal/json/types.go:22:32: parameter dst leaks to ~r0 for Encoder.AppendEndMarker with derefs=0:
+internal/json/types.go:22:32:   flow: {temp} ← dst:
+internal/json/types.go:22:32:     from append(dst, byte(125)) (call parameter) at internal/json/types.go:23:15
+internal/json/types.go:22:32:   flow: ~r0 ← {temp}:
+internal/json/types.go:22:32:     from return append(dst, byte(125)) (return) at internal/json/types.go:23:2
+internal/json/types.go:22:32: leaking param: dst to result ~r0 level=0
+internal/json/types.go:23:15: append escapes to heap
+internal/json/types.go:28:15: append(dst, byte(10)) escapes to heap in Encoder.AppendLineBreak:
+internal/json/types.go:28:15:   flow: ~r0 ← &{storage for append(dst, byte(10))}:
+internal/json/types.go:28:15:     from append(dst, byte(10)) (spill) at internal/json/types.go:28:15
+internal/json/types.go:28:15:     from return append(dst, byte(10)) (return) at internal/json/types.go:28:2
+internal/json/types.go:27:32: parameter dst leaks to ~r0 for Encoder.AppendLineBreak with derefs=0:
+internal/json/types.go:27:32:   flow: {temp} ← dst:
+internal/json/types.go:27:32:     from append(dst, byte(10)) (call parameter) at internal/json/types.go:28:15
+internal/json/types.go:27:32:   flow: ~r0 ← {temp}:
+internal/json/types.go:27:32:     from return append(dst, byte(10)) (return) at internal/json/types.go:28:2
+internal/json/types.go:27:32: leaking param: dst to result ~r0 level=0
+internal/json/types.go:28:15: append escapes to heap
+internal/json/types.go:33:15: append(dst, byte(91)) escapes to heap in Encoder.AppendArrayStart:
+internal/json/types.go:33:15:   flow: ~r0 ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:33:15:     from append(dst, byte(91)) (spill) at internal/json/types.go:33:15
+internal/json/types.go:33:15:     from return append(dst, byte(91)) (return) at internal/json/types.go:33:2
+internal/json/types.go:32:33: parameter dst leaks to ~r0 for Encoder.AppendArrayStart with derefs=0:
+internal/json/types.go:32:33:   flow: {temp} ← dst:
+internal/json/types.go:32:33:     from append(dst, byte(91)) (call parameter) at internal/json/types.go:33:15
+internal/json/types.go:32:33:   flow: ~r0 ← {temp}:
+internal/json/types.go:32:33:     from return append(dst, byte(91)) (return) at internal/json/types.go:33:2
+internal/json/types.go:32:33: leaking param: dst to result ~r0 level=0
+internal/json/types.go:33:15: append escapes to heap
+internal/json/types.go:38:15: append(dst, byte(93)) escapes to heap in Encoder.AppendArrayEnd:
+internal/json/types.go:38:15:   flow: ~r0 ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:38:15:     from append(dst, byte(93)) (spill) at internal/json/types.go:38:15
+internal/json/types.go:38:15:     from return append(dst, byte(93)) (return) at internal/json/types.go:38:2
+internal/json/types.go:37:31: parameter dst leaks to ~r0 for Encoder.AppendArrayEnd with derefs=0:
+internal/json/types.go:37:31:   flow: {temp} ← dst:
+internal/json/types.go:37:31:     from append(dst, byte(93)) (call parameter) at internal/json/types.go:38:15
+internal/json/types.go:37:31:   flow: ~r0 ← {temp}:
+internal/json/types.go:37:31:     from return append(dst, byte(93)) (return) at internal/json/types.go:38:2
+internal/json/types.go:37:31: leaking param: dst to result ~r0 level=0
+internal/json/types.go:38:15: append escapes to heap
+internal/json/types.go:44:16: append(dst, byte(44)) escapes to heap in Encoder.AppendArrayDelim:
+internal/json/types.go:44:16:   flow: ~r0 ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:44:16:     from append(dst, byte(44)) (spill) at internal/json/types.go:44:16
+internal/json/types.go:44:16:     from return append(dst, byte(44)) (return) at internal/json/types.go:44:3
+internal/json/types.go:42:33: parameter dst leaks to ~r0 for Encoder.AppendArrayDelim with derefs=0:
+internal/json/types.go:42:33:   flow: ~r0 ← dst:
+internal/json/types.go:42:33:     from return dst (return) at internal/json/types.go:46:2
+internal/json/types.go:42:33: leaking param: dst to result ~r0 level=0
+internal/json/types.go:44:16: append escapes to heap
+internal/json/types.go:52:27: append(strconv.dst, "true"...) escapes to heap in Encoder.AppendBool:
+internal/json/types.go:52:27:   flow: ~r0 ← &{storage for append(strconv.dst, "true"...)}:
+internal/json/types.go:52:27:     from append(strconv.dst, "true"...) (spill) at internal/json/types.go:52:27
+internal/json/types.go:52:27:     from ~r0 = append(strconv.dst, "true"...) (assign-pair) at internal/json/types.go:52:27
+internal/json/types.go:52:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:52:27:     from ~r0 = ~r0 (assign-pair) at internal/json/types.go:52:27
+internal/json/types.go:52:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:52:27:     from return ~r0 (return) at internal/json/types.go:52:2
+internal/json/types.go:52:27: append(strconv.dst, "false"...) escapes to heap in Encoder.AppendBool:
+internal/json/types.go:52:27:   flow: ~r0 ← &{storage for append(strconv.dst, "false"...)}:
+internal/json/types.go:52:27:     from append(strconv.dst, "false"...) (spill) at internal/json/types.go:52:27
+internal/json/types.go:52:27:     from ~r0 = append(strconv.dst, "false"...) (assign-pair) at internal/json/types.go:52:27
+internal/json/types.go:52:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:52:27:     from ~r0 = ~r0 (assign-pair) at internal/json/types.go:52:27
+internal/json/types.go:52:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:52:27:     from return ~r0 (return) at internal/json/types.go:52:2
+internal/json/types.go:51:27: parameter dst leaks to ~r0 for Encoder.AppendBool with derefs=0:
+internal/json/types.go:51:27:   flow: strconv.dst ← dst:
+internal/json/types.go:51:27:     from strconv.dst, strconv.b := dst, val (assign-pair) at internal/json/types.go:52:27
+internal/json/types.go:51:27:   flow: strconv.dst ← strconv.dst:
+internal/json/types.go:51:27:     from strconv.dst, strconv.b := strconv.dst, strconv.b (assign-pair) at internal/json/types.go:52:27
+internal/json/types.go:51:27:   flow: {temp} ← strconv.dst:
+internal/json/types.go:51:27:     from append(strconv.dst, "true"...) (call parameter) at internal/json/types.go:52:27
+internal/json/types.go:51:27:   flow: ~r0 ← {temp}:
+internal/json/types.go:51:27:     from ~r0 = append(strconv.dst, "true"...) (assign-pair) at internal/json/types.go:52:27
+internal/json/types.go:51:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:51:27:     from ~r0 = ~r0 (assign-pair) at internal/json/types.go:52:27
+internal/json/types.go:51:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:51:27:     from return ~r0 (return) at internal/json/types.go:52:2
+internal/json/types.go:51:27: leaking param: dst to result ~r0 level=0
+internal/json/types.go:52:27: append escapes to heap
+internal/json/types.go:52:27: append escapes to heap
+internal/json/types.go:59:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendBools:
+internal/json/types.go:59:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:59:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:59:16
+internal/json/types.go:59:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:59:3
+internal/json/types.go:57:28: parameter dst leaks to ~r0 for Encoder.AppendBools with derefs=0:
+internal/json/types.go:57:28:   flow: ~r0 ← dst:
+internal/json/types.go:57:28:     from return dst (return) at internal/json/types.go:69:2
+internal/json/types.go:61:14: append(dst, byte(91)) escapes to heap in Encoder.AppendBools:
+internal/json/types.go:61:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:61:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:61:14
+internal/json/types.go:61:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:61:6
+internal/json/types.go:61:14:   flow: ~r0 ← dst:
+internal/json/types.go:61:14:     from return dst (return) at internal/json/types.go:69:2
+internal/json/types.go:68:14: append(dst, byte(93)) escapes to heap in Encoder.AppendBools:
+internal/json/types.go:68:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:68:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:68:14
+internal/json/types.go:68:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:68:6
+internal/json/types.go:68:14:   flow: ~r0 ← dst:
+internal/json/types.go:68:14:     from return dst (return) at internal/json/types.go:69:2
+internal/json/types.go:62:26: append(strconv.dst, "true"...) escapes to heap in Encoder.AppendBools:
+internal/json/types.go:62:26:   flow: ~r0 ← &{storage for append(strconv.dst, "true"...)}:
+internal/json/types.go:62:26:     from append(strconv.dst, "true"...) (spill) at internal/json/types.go:62:26
+internal/json/types.go:62:26:     from ~r0 = append(strconv.dst, "true"...) (assign-pair) at internal/json/types.go:62:26
+internal/json/types.go:62:26:   flow: ~r0 ← ~r0:
+internal/json/types.go:62:26:     from ~r0 = ~r0 (assign-pair) at internal/json/types.go:62:26
+internal/json/types.go:62:26:   flow: dst ← ~r0:
+internal/json/types.go:62:26:     from dst = ~r0 (assign) at internal/json/types.go:62:6
+internal/json/types.go:62:26:   flow: ~r0 ← dst:
+internal/json/types.go:62:26:     from return dst (return) at internal/json/types.go:69:2
+internal/json/types.go:62:26: append(strconv.dst, "false"...) escapes to heap in Encoder.AppendBools:
+internal/json/types.go:62:26:   flow: ~r0 ← &{storage for append(strconv.dst, "false"...)}:
+internal/json/types.go:62:26:     from append(strconv.dst, "false"...) (spill) at internal/json/types.go:62:26
+internal/json/types.go:62:26:     from ~r0 = append(strconv.dst, "false"...) (assign-pair) at internal/json/types.go:62:26
+internal/json/types.go:62:26:   flow: ~r0 ← ~r0:
+internal/json/types.go:62:26:     from ~r0 = ~r0 (assign-pair) at internal/json/types.go:62:26
+internal/json/types.go:62:26:   flow: dst ← ~r0:
+internal/json/types.go:62:26:     from dst = ~r0 (assign) at internal/json/types.go:62:6
+internal/json/types.go:62:26:   flow: ~r0 ← dst:
+internal/json/types.go:62:26:     from return dst (return) at internal/json/types.go:69:2
+internal/json/types.go:65:28: append(strconv.dst, "true"...) escapes to heap in Encoder.AppendBools:
+internal/json/types.go:65:28:   flow: ~r0 ← &{storage for append(strconv.dst, "true"...)}:
+internal/json/types.go:65:28:     from append(strconv.dst, "true"...) (spill) at internal/json/types.go:65:28
+internal/json/types.go:65:28:     from ~r0 = append(strconv.dst, "true"...) (assign-pair) at internal/json/types.go:65:28
+internal/json/types.go:65:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:65:28:     from ~r0 = ~r0 (assign-pair) at internal/json/types.go:65:28
+internal/json/types.go:65:28:   flow: dst ← ~r0:
+internal/json/types.go:65:28:     from dst = ~r0 (assign) at internal/json/types.go:65:8
+internal/json/types.go:65:28:   flow: ~r0 ← dst:
+internal/json/types.go:65:28:     from return dst (return) at internal/json/types.go:69:2
+internal/json/types.go:65:28: append(strconv.dst, "false"...) escapes to heap in Encoder.AppendBools:
+internal/json/types.go:65:28:   flow: ~r0 ← &{storage for append(strconv.dst, "false"...)}:
+internal/json/types.go:65:28:     from append(strconv.dst, "false"...) (spill) at internal/json/types.go:65:28
+internal/json/types.go:65:28:     from ~r0 = append(strconv.dst, "false"...) (assign-pair) at internal/json/types.go:65:28
+internal/json/types.go:65:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:65:28:     from ~r0 = ~r0 (assign-pair) at internal/json/types.go:65:28
+internal/json/types.go:65:28:   flow: dst ← ~r0:
+internal/json/types.go:65:28:     from dst = ~r0 (assign) at internal/json/types.go:65:8
+internal/json/types.go:65:28:   flow: ~r0 ← dst:
+internal/json/types.go:65:28:     from return dst (return) at internal/json/types.go:69:2
+internal/json/types.go:65:35: append(dst, byte(44)) escapes to heap in Encoder.AppendBools:
+internal/json/types.go:65:35:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:65:35:     from append(dst, byte(44)) (spill) at internal/json/types.go:65:35
+internal/json/types.go:65:35:     from strconv.dst, strconv.b := append(dst, byte(44)), val (assign-pair) at internal/json/types.go:65:28
+internal/json/types.go:65:35:   flow: strconv.dst ← strconv.dst:
+internal/json/types.go:65:35:     from strconv.dst, strconv.b := strconv.dst, strconv.b (assign-pair) at internal/json/types.go:65:28
+internal/json/types.go:65:35:   flow: {temp} ← strconv.dst:
+internal/json/types.go:65:35:     from append(strconv.dst, "true"...) (call parameter) at internal/json/types.go:65:28
+internal/json/types.go:65:35:   flow: ~r0 ← {temp}:
+internal/json/types.go:65:35:     from ~r0 = append(strconv.dst, "true"...) (assign-pair) at internal/json/types.go:65:28
+internal/json/types.go:65:35:   flow: ~r0 ← ~r0:
+internal/json/types.go:65:35:     from ~r0 = ~r0 (assign-pair) at internal/json/types.go:65:28
+internal/json/types.go:65:35:   flow: dst ← ~r0:
+internal/json/types.go:65:35:     from dst = ~r0 (assign) at internal/json/types.go:65:8
+internal/json/types.go:65:35:   flow: ~r0 ← dst:
+internal/json/types.go:65:35:     from return dst (return) at internal/json/types.go:69:2
+internal/json/types.go:57:28: leaking param: dst to result ~r0 level=0
+internal/json/types.go:57:40: vals does not escape
+internal/json/types.go:59:16: append escapes to heap
+internal/json/types.go:61:14: append escapes to heap
+internal/json/types.go:62:26: append escapes to heap
+internal/json/types.go:62:26: append escapes to heap
+internal/json/types.go:65:35: append escapes to heap
+internal/json/types.go:65:28: append escapes to heap
+internal/json/types.go:65:28: append escapes to heap
+internal/json/types.go:68:14: append escapes to heap
+internal/json/types.go:74:26: parameter dst leaks to ~r0 for Encoder.AppendInt with derefs=0:
+internal/json/types.go:74:26:   flow: strconv.dst ← dst:
+internal/json/types.go:74:26:     from strconv.dst, strconv.i, strconv.base := dst, int64(val), 10 (assign-pair) at internal/json/types.go:75:26
+internal/json/types.go:74:26:   flow: {temp} ← strconv.dst:
+internal/json/types.go:74:26:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:75:26
+internal/json/types.go:74:26:   flow: ~r0 ← {temp}:
+internal/json/types.go:74:26:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:75:26
+internal/json/types.go:74:26:   flow: ~r0 ← ~r0:
+internal/json/types.go:74:26:     from return ~r0 (return) at internal/json/types.go:75:2
+internal/json/types.go:74:26: leaking param: dst to result ~r0 level=0
+internal/json/types.go:82:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendInts:
+internal/json/types.go:82:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:82:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:82:16
+internal/json/types.go:82:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:82:3
+internal/json/types.go:80:27: parameter dst leaks to ~r0 for Encoder.AppendInts with derefs=0:
+internal/json/types.go:80:27:   flow: ~r0 ← dst:
+internal/json/types.go:80:27:     from return dst (return) at internal/json/types.go:92:2
+internal/json/types.go:84:14: append(dst, byte(91)) escapes to heap in Encoder.AppendInts:
+internal/json/types.go:84:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:84:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:84:14
+internal/json/types.go:84:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:84:6
+internal/json/types.go:84:14:   flow: ~r0 ← dst:
+internal/json/types.go:84:14:     from return dst (return) at internal/json/types.go:92:2
+internal/json/types.go:91:14: append(dst, byte(93)) escapes to heap in Encoder.AppendInts:
+internal/json/types.go:91:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:91:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:91:14
+internal/json/types.go:91:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:91:6
+internal/json/types.go:91:14:   flow: ~r0 ← dst:
+internal/json/types.go:91:14:     from return dst (return) at internal/json/types.go:92:2
+internal/json/types.go:88:34: append(dst, byte(44)) escapes to heap in Encoder.AppendInts:
+internal/json/types.go:88:34:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:88:34:     from append(dst, byte(44)) (spill) at internal/json/types.go:88:34
+internal/json/types.go:88:34:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), int64(val), 10 (assign-pair) at internal/json/types.go:88:27
+internal/json/types.go:88:34:   flow: {temp} ← strconv.dst:
+internal/json/types.go:88:34:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:88:27
+internal/json/types.go:88:34:   flow: ~r0 ← {temp}:
+internal/json/types.go:88:34:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:88:27
+internal/json/types.go:88:34:   flow: dst ← ~r0:
+internal/json/types.go:88:34:     from dst = ~r0 (assign) at internal/json/types.go:88:8
+internal/json/types.go:88:34:   flow: ~r0 ← dst:
+internal/json/types.go:88:34:     from return dst (return) at internal/json/types.go:92:2
+internal/json/types.go:80:27: leaking param: dst to result ~r0 level=0
+internal/json/types.go:80:39: vals does not escape
+internal/json/types.go:82:16: append escapes to heap
+internal/json/types.go:84:14: append escapes to heap
+internal/json/types.go:88:34: append escapes to heap
+internal/json/types.go:91:14: append escapes to heap
+internal/json/types.go:97:27: parameter dst leaks to ~r0 for Encoder.AppendInt8 with derefs=0:
+internal/json/types.go:97:27:   flow: strconv.dst ← dst:
+internal/json/types.go:97:27:     from strconv.dst, strconv.i, strconv.base := dst, int64(val), 10 (assign-pair) at internal/json/types.go:98:26
+internal/json/types.go:97:27:   flow: {temp} ← strconv.dst:
+internal/json/types.go:97:27:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:98:26
+internal/json/types.go:97:27:   flow: ~r0 ← {temp}:
+internal/json/types.go:97:27:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:98:26
+internal/json/types.go:97:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:97:27:     from return ~r0 (return) at internal/json/types.go:98:2
+internal/json/types.go:97:27: leaking param: dst to result ~r0 level=0
+internal/json/types.go:105:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendInts8:
+internal/json/types.go:105:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:105:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:105:16
+internal/json/types.go:105:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:105:3
+internal/json/types.go:103:28: parameter dst leaks to ~r0 for Encoder.AppendInts8 with derefs=0:
+internal/json/types.go:103:28:   flow: ~r0 ← dst:
+internal/json/types.go:103:28:     from return dst (return) at internal/json/types.go:115:2
+internal/json/types.go:107:14: append(dst, byte(91)) escapes to heap in Encoder.AppendInts8:
+internal/json/types.go:107:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:107:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:107:14
+internal/json/types.go:107:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:107:6
+internal/json/types.go:107:14:   flow: ~r0 ← dst:
+internal/json/types.go:107:14:     from return dst (return) at internal/json/types.go:115:2
+internal/json/types.go:114:14: append(dst, byte(93)) escapes to heap in Encoder.AppendInts8:
+internal/json/types.go:114:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:114:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:114:14
+internal/json/types.go:114:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:114:6
+internal/json/types.go:114:14:   flow: ~r0 ← dst:
+internal/json/types.go:114:14:     from return dst (return) at internal/json/types.go:115:2
+internal/json/types.go:111:34: append(dst, byte(44)) escapes to heap in Encoder.AppendInts8:
+internal/json/types.go:111:34:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:111:34:     from append(dst, byte(44)) (spill) at internal/json/types.go:111:34
+internal/json/types.go:111:34:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), int64(val), 10 (assign-pair) at internal/json/types.go:111:27
+internal/json/types.go:111:34:   flow: {temp} ← strconv.dst:
+internal/json/types.go:111:34:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:111:27
+internal/json/types.go:111:34:   flow: ~r0 ← {temp}:
+internal/json/types.go:111:34:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:111:27
+internal/json/types.go:111:34:   flow: dst ← ~r0:
+internal/json/types.go:111:34:     from dst = ~r0 (assign) at internal/json/types.go:111:8
+internal/json/types.go:111:34:   flow: ~r0 ← dst:
+internal/json/types.go:111:34:     from return dst (return) at internal/json/types.go:115:2
+internal/json/types.go:103:28: leaking param: dst to result ~r0 level=0
+internal/json/types.go:103:40: vals does not escape
+internal/json/types.go:105:16: append escapes to heap
+internal/json/types.go:107:14: append escapes to heap
+internal/json/types.go:111:34: append escapes to heap
+internal/json/types.go:114:14: append escapes to heap
+internal/json/types.go:120:28: parameter dst leaks to ~r0 for Encoder.AppendInt16 with derefs=0:
+internal/json/types.go:120:28:   flow: strconv.dst ← dst:
+internal/json/types.go:120:28:     from strconv.dst, strconv.i, strconv.base := dst, int64(val), 10 (assign-pair) at internal/json/types.go:121:26
+internal/json/types.go:120:28:   flow: {temp} ← strconv.dst:
+internal/json/types.go:120:28:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:121:26
+internal/json/types.go:120:28:   flow: ~r0 ← {temp}:
+internal/json/types.go:120:28:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:121:26
+internal/json/types.go:120:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:120:28:     from return ~r0 (return) at internal/json/types.go:121:2
+internal/json/types.go:120:28: leaking param: dst to result ~r0 level=0
+internal/json/types.go:128:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendInts16:
+internal/json/types.go:128:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:128:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:128:16
+internal/json/types.go:128:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:128:3
+internal/json/types.go:126:29: parameter dst leaks to ~r0 for Encoder.AppendInts16 with derefs=0:
+internal/json/types.go:126:29:   flow: ~r0 ← dst:
+internal/json/types.go:126:29:     from return dst (return) at internal/json/types.go:138:2
+internal/json/types.go:130:14: append(dst, byte(91)) escapes to heap in Encoder.AppendInts16:
+internal/json/types.go:130:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:130:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:130:14
+internal/json/types.go:130:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:130:6
+internal/json/types.go:130:14:   flow: ~r0 ← dst:
+internal/json/types.go:130:14:     from return dst (return) at internal/json/types.go:138:2
+internal/json/types.go:137:14: append(dst, byte(93)) escapes to heap in Encoder.AppendInts16:
+internal/json/types.go:137:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:137:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:137:14
+internal/json/types.go:137:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:137:6
+internal/json/types.go:137:14:   flow: ~r0 ← dst:
+internal/json/types.go:137:14:     from return dst (return) at internal/json/types.go:138:2
+internal/json/types.go:134:34: append(dst, byte(44)) escapes to heap in Encoder.AppendInts16:
+internal/json/types.go:134:34:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:134:34:     from append(dst, byte(44)) (spill) at internal/json/types.go:134:34
+internal/json/types.go:134:34:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), int64(val), 10 (assign-pair) at internal/json/types.go:134:27
+internal/json/types.go:134:34:   flow: {temp} ← strconv.dst:
+internal/json/types.go:134:34:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:134:27
+internal/json/types.go:134:34:   flow: ~r0 ← {temp}:
+internal/json/types.go:134:34:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:134:27
+internal/json/types.go:134:34:   flow: dst ← ~r0:
+internal/json/types.go:134:34:     from dst = ~r0 (assign) at internal/json/types.go:134:8
+internal/json/types.go:134:34:   flow: ~r0 ← dst:
+internal/json/types.go:134:34:     from return dst (return) at internal/json/types.go:138:2
+internal/json/types.go:126:29: leaking param: dst to result ~r0 level=0
+internal/json/types.go:126:41: vals does not escape
+internal/json/types.go:128:16: append escapes to heap
+internal/json/types.go:130:14: append escapes to heap
+internal/json/types.go:134:34: append escapes to heap
+internal/json/types.go:137:14: append escapes to heap
+internal/json/types.go:143:28: parameter dst leaks to ~r0 for Encoder.AppendInt32 with derefs=0:
+internal/json/types.go:143:28:   flow: strconv.dst ← dst:
+internal/json/types.go:143:28:     from strconv.dst, strconv.i, strconv.base := dst, int64(val), 10 (assign-pair) at internal/json/types.go:144:26
+internal/json/types.go:143:28:   flow: {temp} ← strconv.dst:
+internal/json/types.go:143:28:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:144:26
+internal/json/types.go:143:28:   flow: ~r0 ← {temp}:
+internal/json/types.go:143:28:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:144:26
+internal/json/types.go:143:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:143:28:     from return ~r0 (return) at internal/json/types.go:144:2
+internal/json/types.go:143:28: leaking param: dst to result ~r0 level=0
+internal/json/types.go:151:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendInts32:
+internal/json/types.go:151:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:151:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:151:16
+internal/json/types.go:151:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:151:3
+internal/json/types.go:149:29: parameter dst leaks to ~r0 for Encoder.AppendInts32 with derefs=0:
+internal/json/types.go:149:29:   flow: ~r0 ← dst:
+internal/json/types.go:149:29:     from return dst (return) at internal/json/types.go:161:2
+internal/json/types.go:153:14: append(dst, byte(91)) escapes to heap in Encoder.AppendInts32:
+internal/json/types.go:153:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:153:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:153:14
+internal/json/types.go:153:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:153:6
+internal/json/types.go:153:14:   flow: ~r0 ← dst:
+internal/json/types.go:153:14:     from return dst (return) at internal/json/types.go:161:2
+internal/json/types.go:160:14: append(dst, byte(93)) escapes to heap in Encoder.AppendInts32:
+internal/json/types.go:160:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:160:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:160:14
+internal/json/types.go:160:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:160:6
+internal/json/types.go:160:14:   flow: ~r0 ← dst:
+internal/json/types.go:160:14:     from return dst (return) at internal/json/types.go:161:2
+internal/json/types.go:157:34: append(dst, byte(44)) escapes to heap in Encoder.AppendInts32:
+internal/json/types.go:157:34:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:157:34:     from append(dst, byte(44)) (spill) at internal/json/types.go:157:34
+internal/json/types.go:157:34:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), int64(val), 10 (assign-pair) at internal/json/types.go:157:27
+internal/json/types.go:157:34:   flow: {temp} ← strconv.dst:
+internal/json/types.go:157:34:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:157:27
+internal/json/types.go:157:34:   flow: ~r0 ← {temp}:
+internal/json/types.go:157:34:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:157:27
+internal/json/types.go:157:34:   flow: dst ← ~r0:
+internal/json/types.go:157:34:     from dst = ~r0 (assign) at internal/json/types.go:157:8
+internal/json/types.go:157:34:   flow: ~r0 ← dst:
+internal/json/types.go:157:34:     from return dst (return) at internal/json/types.go:161:2
+internal/json/types.go:149:29: leaking param: dst to result ~r0 level=0
+internal/json/types.go:149:41: vals does not escape
+internal/json/types.go:151:16: append escapes to heap
+internal/json/types.go:153:14: append escapes to heap
+internal/json/types.go:157:34: append escapes to heap
+internal/json/types.go:160:14: append escapes to heap
+internal/json/types.go:166:28: parameter dst leaks to ~r0 for Encoder.AppendInt64 with derefs=0:
+internal/json/types.go:166:28:   flow: strconv.dst ← dst:
+internal/json/types.go:166:28:     from strconv.dst, strconv.i, strconv.base := dst, val, 10 (assign-pair) at internal/json/types.go:167:26
+internal/json/types.go:166:28:   flow: {temp} ← strconv.dst:
+internal/json/types.go:166:28:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:167:26
+internal/json/types.go:166:28:   flow: ~r0 ← {temp}:
+internal/json/types.go:166:28:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:167:26
+internal/json/types.go:166:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:166:28:     from return ~r0 (return) at internal/json/types.go:167:2
+internal/json/types.go:166:28: leaking param: dst to result ~r0 level=0
+internal/json/types.go:174:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendInts64:
+internal/json/types.go:174:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:174:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:174:16
+internal/json/types.go:174:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:174:3
+internal/json/types.go:172:29: parameter dst leaks to ~r0 for Encoder.AppendInts64 with derefs=0:
+internal/json/types.go:172:29:   flow: ~r0 ← dst:
+internal/json/types.go:172:29:     from return dst (return) at internal/json/types.go:184:2
+internal/json/types.go:176:14: append(dst, byte(91)) escapes to heap in Encoder.AppendInts64:
+internal/json/types.go:176:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:176:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:176:14
+internal/json/types.go:176:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:176:6
+internal/json/types.go:176:14:   flow: ~r0 ← dst:
+internal/json/types.go:176:14:     from return dst (return) at internal/json/types.go:184:2
+internal/json/types.go:183:14: append(dst, byte(93)) escapes to heap in Encoder.AppendInts64:
+internal/json/types.go:183:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:183:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:183:14
+internal/json/types.go:183:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:183:6
+internal/json/types.go:183:14:   flow: ~r0 ← dst:
+internal/json/types.go:183:14:     from return dst (return) at internal/json/types.go:184:2
+internal/json/types.go:180:34: append(dst, byte(44)) escapes to heap in Encoder.AppendInts64:
+internal/json/types.go:180:34:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:180:34:     from append(dst, byte(44)) (spill) at internal/json/types.go:180:34
+internal/json/types.go:180:34:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), val, 10 (assign-pair) at internal/json/types.go:180:27
+internal/json/types.go:180:34:   flow: {temp} ← strconv.dst:
+internal/json/types.go:180:34:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:180:27
+internal/json/types.go:180:34:   flow: ~r0 ← {temp}:
+internal/json/types.go:180:34:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:180:27
+internal/json/types.go:180:34:   flow: dst ← ~r0:
+internal/json/types.go:180:34:     from dst = ~r0 (assign) at internal/json/types.go:180:8
+internal/json/types.go:180:34:   flow: ~r0 ← dst:
+internal/json/types.go:180:34:     from return dst (return) at internal/json/types.go:184:2
+internal/json/types.go:172:29: leaking param: dst to result ~r0 level=0
+internal/json/types.go:172:41: vals does not escape
+internal/json/types.go:174:16: append escapes to heap
+internal/json/types.go:176:14: append escapes to heap
+internal/json/types.go:180:34: append escapes to heap
+internal/json/types.go:183:14: append escapes to heap
+internal/json/types.go:189:27: parameter dst leaks to ~r0 for Encoder.AppendUint with derefs=0:
+internal/json/types.go:189:27:   flow: strconv.dst ← dst:
+internal/json/types.go:189:27:     from strconv.dst, strconv.i, strconv.base := dst, uint64(val), 10 (assign-pair) at internal/json/types.go:190:27
+internal/json/types.go:189:27:   flow: {temp} ← strconv.dst:
+internal/json/types.go:189:27:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:190:27
+internal/json/types.go:189:27:   flow: ~r0 ← {temp}:
+internal/json/types.go:189:27:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:190:27
+internal/json/types.go:189:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:189:27:     from return ~r0 (return) at internal/json/types.go:190:2
+internal/json/types.go:189:27: leaking param: dst to result ~r0 level=0
+internal/json/types.go:197:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendUints:
+internal/json/types.go:197:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:197:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:197:16
+internal/json/types.go:197:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:197:3
+internal/json/types.go:195:28: parameter dst leaks to ~r0 for Encoder.AppendUints with derefs=0:
+internal/json/types.go:195:28:   flow: ~r0 ← dst:
+internal/json/types.go:195:28:     from return dst (return) at internal/json/types.go:207:2
+internal/json/types.go:199:14: append(dst, byte(91)) escapes to heap in Encoder.AppendUints:
+internal/json/types.go:199:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:199:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:199:14
+internal/json/types.go:199:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:199:6
+internal/json/types.go:199:14:   flow: ~r0 ← dst:
+internal/json/types.go:199:14:     from return dst (return) at internal/json/types.go:207:2
+internal/json/types.go:206:14: append(dst, byte(93)) escapes to heap in Encoder.AppendUints:
+internal/json/types.go:206:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:206:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:206:14
+internal/json/types.go:206:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:206:6
+internal/json/types.go:206:14:   flow: ~r0 ← dst:
+internal/json/types.go:206:14:     from return dst (return) at internal/json/types.go:207:2
+internal/json/types.go:203:35: append(dst, byte(44)) escapes to heap in Encoder.AppendUints:
+internal/json/types.go:203:35:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:203:35:     from append(dst, byte(44)) (spill) at internal/json/types.go:203:35
+internal/json/types.go:203:35:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), uint64(val), 10 (assign-pair) at internal/json/types.go:203:28
+internal/json/types.go:203:35:   flow: {temp} ← strconv.dst:
+internal/json/types.go:203:35:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:203:28
+internal/json/types.go:203:35:   flow: ~r0 ← {temp}:
+internal/json/types.go:203:35:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:203:28
+internal/json/types.go:203:35:   flow: dst ← ~r0:
+internal/json/types.go:203:35:     from dst = ~r0 (assign) at internal/json/types.go:203:8
+internal/json/types.go:203:35:   flow: ~r0 ← dst:
+internal/json/types.go:203:35:     from return dst (return) at internal/json/types.go:207:2
+internal/json/types.go:195:28: leaking param: dst to result ~r0 level=0
+internal/json/types.go:195:40: vals does not escape
+internal/json/types.go:197:16: append escapes to heap
+internal/json/types.go:199:14: append escapes to heap
+internal/json/types.go:203:35: append escapes to heap
+internal/json/types.go:206:14: append escapes to heap
+internal/json/types.go:212:28: parameter dst leaks to ~r0 for Encoder.AppendUint8 with derefs=0:
+internal/json/types.go:212:28:   flow: strconv.dst ← dst:
+internal/json/types.go:212:28:     from strconv.dst, strconv.i, strconv.base := dst, uint64(val), 10 (assign-pair) at internal/json/types.go:213:27
+internal/json/types.go:212:28:   flow: {temp} ← strconv.dst:
+internal/json/types.go:212:28:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:213:27
+internal/json/types.go:212:28:   flow: ~r0 ← {temp}:
+internal/json/types.go:212:28:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:213:27
+internal/json/types.go:212:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:212:28:     from return ~r0 (return) at internal/json/types.go:213:2
+internal/json/types.go:212:28: leaking param: dst to result ~r0 level=0
+internal/json/types.go:220:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendUints8:
+internal/json/types.go:220:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:220:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:220:16
+internal/json/types.go:220:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:220:3
+internal/json/types.go:218:29: parameter dst leaks to ~r0 for Encoder.AppendUints8 with derefs=0:
+internal/json/types.go:218:29:   flow: ~r0 ← dst:
+internal/json/types.go:218:29:     from return dst (return) at internal/json/types.go:230:2
+internal/json/types.go:222:14: append(dst, byte(91)) escapes to heap in Encoder.AppendUints8:
+internal/json/types.go:222:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:222:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:222:14
+internal/json/types.go:222:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:222:6
+internal/json/types.go:222:14:   flow: ~r0 ← dst:
+internal/json/types.go:222:14:     from return dst (return) at internal/json/types.go:230:2
+internal/json/types.go:229:14: append(dst, byte(93)) escapes to heap in Encoder.AppendUints8:
+internal/json/types.go:229:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:229:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:229:14
+internal/json/types.go:229:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:229:6
+internal/json/types.go:229:14:   flow: ~r0 ← dst:
+internal/json/types.go:229:14:     from return dst (return) at internal/json/types.go:230:2
+internal/json/types.go:226:35: append(dst, byte(44)) escapes to heap in Encoder.AppendUints8:
+internal/json/types.go:226:35:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:226:35:     from append(dst, byte(44)) (spill) at internal/json/types.go:226:35
+internal/json/types.go:226:35:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), uint64(val), 10 (assign-pair) at internal/json/types.go:226:28
+internal/json/types.go:226:35:   flow: {temp} ← strconv.dst:
+internal/json/types.go:226:35:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:226:28
+internal/json/types.go:226:35:   flow: ~r0 ← {temp}:
+internal/json/types.go:226:35:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:226:28
+internal/json/types.go:226:35:   flow: dst ← ~r0:
+internal/json/types.go:226:35:     from dst = ~r0 (assign) at internal/json/types.go:226:8
+internal/json/types.go:226:35:   flow: ~r0 ← dst:
+internal/json/types.go:226:35:     from return dst (return) at internal/json/types.go:230:2
+internal/json/types.go:218:29: leaking param: dst to result ~r0 level=0
+internal/json/types.go:218:41: vals does not escape
+internal/json/types.go:220:16: append escapes to heap
+internal/json/types.go:222:14: append escapes to heap
+internal/json/types.go:226:35: append escapes to heap
+internal/json/types.go:229:14: append escapes to heap
+internal/json/types.go:235:29: parameter dst leaks to ~r0 for Encoder.AppendUint16 with derefs=0:
+internal/json/types.go:235:29:   flow: strconv.dst ← dst:
+internal/json/types.go:235:29:     from strconv.dst, strconv.i, strconv.base := dst, uint64(val), 10 (assign-pair) at internal/json/types.go:236:27
+internal/json/types.go:235:29:   flow: {temp} ← strconv.dst:
+internal/json/types.go:235:29:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:236:27
+internal/json/types.go:235:29:   flow: ~r0 ← {temp}:
+internal/json/types.go:235:29:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:236:27
+internal/json/types.go:235:29:   flow: ~r0 ← ~r0:
+internal/json/types.go:235:29:     from return ~r0 (return) at internal/json/types.go:236:2
+internal/json/types.go:235:29: leaking param: dst to result ~r0 level=0
+internal/json/types.go:243:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendUints16:
+internal/json/types.go:243:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:243:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:243:16
+internal/json/types.go:243:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:243:3
+internal/json/types.go:241:30: parameter dst leaks to ~r0 for Encoder.AppendUints16 with derefs=0:
+internal/json/types.go:241:30:   flow: ~r0 ← dst:
+internal/json/types.go:241:30:     from return dst (return) at internal/json/types.go:253:2
+internal/json/types.go:245:14: append(dst, byte(91)) escapes to heap in Encoder.AppendUints16:
+internal/json/types.go:245:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:245:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:245:14
+internal/json/types.go:245:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:245:6
+internal/json/types.go:245:14:   flow: ~r0 ← dst:
+internal/json/types.go:245:14:     from return dst (return) at internal/json/types.go:253:2
+internal/json/types.go:252:14: append(dst, byte(93)) escapes to heap in Encoder.AppendUints16:
+internal/json/types.go:252:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:252:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:252:14
+internal/json/types.go:252:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:252:6
+internal/json/types.go:252:14:   flow: ~r0 ← dst:
+internal/json/types.go:252:14:     from return dst (return) at internal/json/types.go:253:2
+internal/json/types.go:249:35: append(dst, byte(44)) escapes to heap in Encoder.AppendUints16:
+internal/json/types.go:249:35:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:249:35:     from append(dst, byte(44)) (spill) at internal/json/types.go:249:35
+internal/json/types.go:249:35:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), uint64(val), 10 (assign-pair) at internal/json/types.go:249:28
+internal/json/types.go:249:35:   flow: {temp} ← strconv.dst:
+internal/json/types.go:249:35:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:249:28
+internal/json/types.go:249:35:   flow: ~r0 ← {temp}:
+internal/json/types.go:249:35:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:249:28
+internal/json/types.go:249:35:   flow: dst ← ~r0:
+internal/json/types.go:249:35:     from dst = ~r0 (assign) at internal/json/types.go:249:8
+internal/json/types.go:249:35:   flow: ~r0 ← dst:
+internal/json/types.go:249:35:     from return dst (return) at internal/json/types.go:253:2
+internal/json/types.go:241:30: leaking param: dst to result ~r0 level=0
+internal/json/types.go:241:42: vals does not escape
+internal/json/types.go:243:16: append escapes to heap
+internal/json/types.go:245:14: append escapes to heap
+internal/json/types.go:249:35: append escapes to heap
+internal/json/types.go:252:14: append escapes to heap
+internal/json/types.go:258:29: parameter dst leaks to ~r0 for Encoder.AppendUint32 with derefs=0:
+internal/json/types.go:258:29:   flow: strconv.dst ← dst:
+internal/json/types.go:258:29:     from strconv.dst, strconv.i, strconv.base := dst, uint64(val), 10 (assign-pair) at internal/json/types.go:259:27
+internal/json/types.go:258:29:   flow: {temp} ← strconv.dst:
+internal/json/types.go:258:29:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:259:27
+internal/json/types.go:258:29:   flow: ~r0 ← {temp}:
+internal/json/types.go:258:29:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:259:27
+internal/json/types.go:258:29:   flow: ~r0 ← ~r0:
+internal/json/types.go:258:29:     from return ~r0 (return) at internal/json/types.go:259:2
+internal/json/types.go:258:29: leaking param: dst to result ~r0 level=0
+internal/json/types.go:266:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendUints32:
+internal/json/types.go:266:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:266:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:266:16
+internal/json/types.go:266:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:266:3
+internal/json/types.go:264:30: parameter dst leaks to ~r0 for Encoder.AppendUints32 with derefs=0:
+internal/json/types.go:264:30:   flow: ~r0 ← dst:
+internal/json/types.go:264:30:     from return dst (return) at internal/json/types.go:276:2
+internal/json/types.go:268:14: append(dst, byte(91)) escapes to heap in Encoder.AppendUints32:
+internal/json/types.go:268:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:268:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:268:14
+internal/json/types.go:268:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:268:6
+internal/json/types.go:268:14:   flow: ~r0 ← dst:
+internal/json/types.go:268:14:     from return dst (return) at internal/json/types.go:276:2
+internal/json/types.go:275:14: append(dst, byte(93)) escapes to heap in Encoder.AppendUints32:
+internal/json/types.go:275:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:275:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:275:14
+internal/json/types.go:275:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:275:6
+internal/json/types.go:275:14:   flow: ~r0 ← dst:
+internal/json/types.go:275:14:     from return dst (return) at internal/json/types.go:276:2
+internal/json/types.go:272:35: append(dst, byte(44)) escapes to heap in Encoder.AppendUints32:
+internal/json/types.go:272:35:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:272:35:     from append(dst, byte(44)) (spill) at internal/json/types.go:272:35
+internal/json/types.go:272:35:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), uint64(val), 10 (assign-pair) at internal/json/types.go:272:28
+internal/json/types.go:272:35:   flow: {temp} ← strconv.dst:
+internal/json/types.go:272:35:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:272:28
+internal/json/types.go:272:35:   flow: ~r0 ← {temp}:
+internal/json/types.go:272:35:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:272:28
+internal/json/types.go:272:35:   flow: dst ← ~r0:
+internal/json/types.go:272:35:     from dst = ~r0 (assign) at internal/json/types.go:272:8
+internal/json/types.go:272:35:   flow: ~r0 ← dst:
+internal/json/types.go:272:35:     from return dst (return) at internal/json/types.go:276:2
+internal/json/types.go:264:30: leaking param: dst to result ~r0 level=0
+internal/json/types.go:264:42: vals does not escape
+internal/json/types.go:266:16: append escapes to heap
+internal/json/types.go:268:14: append escapes to heap
+internal/json/types.go:272:35: append escapes to heap
+internal/json/types.go:275:14: append escapes to heap
+internal/json/types.go:281:29: parameter dst leaks to ~r0 for Encoder.AppendUint64 with derefs=0:
+internal/json/types.go:281:29:   flow: strconv.dst ← dst:
+internal/json/types.go:281:29:     from strconv.dst, strconv.i, strconv.base := dst, uint64(val), 10 (assign-pair) at internal/json/types.go:282:27
+internal/json/types.go:281:29:   flow: {temp} ← strconv.dst:
+internal/json/types.go:281:29:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:282:27
+internal/json/types.go:281:29:   flow: ~r0 ← {temp}:
+internal/json/types.go:281:29:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:282:27
+internal/json/types.go:281:29:   flow: ~r0 ← ~r0:
+internal/json/types.go:281:29:     from return ~r0 (return) at internal/json/types.go:282:2
+internal/json/types.go:281:29: leaking param: dst to result ~r0 level=0
+internal/json/types.go:289:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendUints64:
+internal/json/types.go:289:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:289:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:289:16
+internal/json/types.go:289:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:289:3
+internal/json/types.go:287:30: parameter dst leaks to ~r0 for Encoder.AppendUints64 with derefs=0:
+internal/json/types.go:287:30:   flow: ~r0 ← dst:
+internal/json/types.go:287:30:     from return dst (return) at internal/json/types.go:299:2
+internal/json/types.go:291:14: append(dst, byte(91)) escapes to heap in Encoder.AppendUints64:
+internal/json/types.go:291:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:291:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:291:14
+internal/json/types.go:291:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:291:6
+internal/json/types.go:291:14:   flow: ~r0 ← dst:
+internal/json/types.go:291:14:     from return dst (return) at internal/json/types.go:299:2
+internal/json/types.go:298:14: append(dst, byte(93)) escapes to heap in Encoder.AppendUints64:
+internal/json/types.go:298:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:298:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:298:14
+internal/json/types.go:298:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:298:6
+internal/json/types.go:298:14:   flow: ~r0 ← dst:
+internal/json/types.go:298:14:     from return dst (return) at internal/json/types.go:299:2
+internal/json/types.go:295:35: append(dst, byte(44)) escapes to heap in Encoder.AppendUints64:
+internal/json/types.go:295:35:   flow: strconv.dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:295:35:     from append(dst, byte(44)) (spill) at internal/json/types.go:295:35
+internal/json/types.go:295:35:     from strconv.dst, strconv.i, strconv.base := append(dst, byte(44)), val, 10 (assign-pair) at internal/json/types.go:295:28
+internal/json/types.go:295:35:   flow: {temp} ← strconv.dst:
+internal/json/types.go:295:35:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at internal/json/types.go:295:28
+internal/json/types.go:295:35:   flow: ~r0 ← {temp}:
+internal/json/types.go:295:35:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at internal/json/types.go:295:28
+internal/json/types.go:295:35:   flow: dst ← ~r0:
+internal/json/types.go:295:35:     from dst = ~r0 (assign) at internal/json/types.go:295:8
+internal/json/types.go:295:35:   flow: ~r0 ← dst:
+internal/json/types.go:295:35:     from return dst (return) at internal/json/types.go:299:2
+internal/json/types.go:287:30: leaking param: dst to result ~r0 level=0
+internal/json/types.go:287:42: vals does not escape
+internal/json/types.go:289:16: append escapes to heap
+internal/json/types.go:291:14: append escapes to heap
+internal/json/types.go:295:35: append escapes to heap
+internal/json/types.go:298:14: append escapes to heap
+internal/json/types.go:319:30: parameter dst leaks to ~r0 for Encoder.AppendFloat32 with derefs=0:
+internal/json/types.go:319:30:   flow: {temp} ← dst:
+internal/json/types.go:319:30:     from appendFloat(dst, float64(val), 32) (call parameter) at internal/json/types.go:320:20
+internal/json/types.go:319:30:   flow: ~r0 ← {temp}:
+internal/json/types.go:319:30:     from return appendFloat(dst, float64(val), 32) (return) at internal/json/types.go:320:2
+internal/json/types.go:319:30: leaking param: dst to result ~r0 level=0
+internal/json/types.go:327:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendFloats32:
+internal/json/types.go:327:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:327:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:327:16
+internal/json/types.go:327:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:327:3
+internal/json/types.go:325:31: parameter dst leaks to ~r0 for Encoder.AppendFloats32 with derefs=0:
+internal/json/types.go:325:31:   flow: ~r0 ← dst:
+internal/json/types.go:325:31:     from return dst (return) at internal/json/types.go:337:2
+internal/json/types.go:329:14: append(dst, byte(91)) escapes to heap in Encoder.AppendFloats32:
+internal/json/types.go:329:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:329:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:329:14
+internal/json/types.go:329:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:329:6
+internal/json/types.go:329:14:   flow: ~r0 ← dst:
+internal/json/types.go:329:14:     from return dst (return) at internal/json/types.go:337:2
+internal/json/types.go:336:14: append(dst, byte(93)) escapes to heap in Encoder.AppendFloats32:
+internal/json/types.go:336:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:336:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:336:14
+internal/json/types.go:336:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:336:6
+internal/json/types.go:336:14:   flow: ~r0 ← dst:
+internal/json/types.go:336:14:     from return dst (return) at internal/json/types.go:337:2
+internal/json/types.go:333:28: append(dst, byte(44)) escapes to heap in Encoder.AppendFloats32:
+internal/json/types.go:333:28:   flow: {temp} ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:333:28:     from append(dst, byte(44)) (spill) at internal/json/types.go:333:28
+internal/json/types.go:333:28:     from appendFloat(append(dst, byte(44)), float64(val), 32) (call parameter) at internal/json/types.go:333:21
+internal/json/types.go:333:28:   flow: dst ← {temp}:
+internal/json/types.go:333:28:     from dst = appendFloat(append(dst, byte(44)), float64(val), 32) (assign) at internal/json/types.go:333:8
+internal/json/types.go:333:28:   flow: ~r0 ← dst:
+internal/json/types.go:333:28:     from return dst (return) at internal/json/types.go:337:2
+internal/json/types.go:325:31: leaking param: dst to result ~r0 level=0
+internal/json/types.go:325:43: vals does not escape
+internal/json/types.go:327:16: append escapes to heap
+internal/json/types.go:329:14: append escapes to heap
+internal/json/types.go:333:28: append escapes to heap
+internal/json/types.go:336:14: append escapes to heap
+internal/json/types.go:342:30: parameter dst leaks to ~r0 for Encoder.AppendFloat64 with derefs=0:
+internal/json/types.go:342:30:   flow: {temp} ← dst:
+internal/json/types.go:342:30:     from appendFloat(dst, val, 64) (call parameter) at internal/json/types.go:343:20
+internal/json/types.go:342:30:   flow: ~r0 ← {temp}:
+internal/json/types.go:342:30:     from return appendFloat(dst, val, 64) (return) at internal/json/types.go:343:2
+internal/json/types.go:342:30: leaking param: dst to result ~r0 level=0
+internal/json/types.go:350:16: append(dst, byte(91), byte(93)) escapes to heap in Encoder.AppendFloats64:
+internal/json/types.go:350:16:   flow: ~r0 ← &{storage for append(dst, byte(91), byte(93))}:
+internal/json/types.go:350:16:     from append(dst, byte(91), byte(93)) (spill) at internal/json/types.go:350:16
+internal/json/types.go:350:16:     from return append(dst, byte(91), byte(93)) (return) at internal/json/types.go:350:3
+internal/json/types.go:348:31: parameter dst leaks to ~r0 for Encoder.AppendFloats64 with derefs=0:
+internal/json/types.go:348:31:   flow: ~r0 ← dst:
+internal/json/types.go:348:31:     from return dst (return) at internal/json/types.go:360:2
+internal/json/types.go:352:14: append(dst, byte(91)) escapes to heap in Encoder.AppendFloats64:
+internal/json/types.go:352:14:   flow: dst ← &{storage for append(dst, byte(91))}:
+internal/json/types.go:352:14:     from append(dst, byte(91)) (spill) at internal/json/types.go:352:14
+internal/json/types.go:352:14:     from dst = append(dst, byte(91)) (assign) at internal/json/types.go:352:6
+internal/json/types.go:352:14:   flow: ~r0 ← dst:
+internal/json/types.go:352:14:     from return dst (return) at internal/json/types.go:360:2
+internal/json/types.go:359:14: append(dst, byte(93)) escapes to heap in Encoder.AppendFloats64:
+internal/json/types.go:359:14:   flow: dst ← &{storage for append(dst, byte(93))}:
+internal/json/types.go:359:14:     from append(dst, byte(93)) (spill) at internal/json/types.go:359:14
+internal/json/types.go:359:14:     from dst = append(dst, byte(93)) (assign) at internal/json/types.go:359:6
+internal/json/types.go:359:14:   flow: ~r0 ← dst:
+internal/json/types.go:359:14:     from return dst (return) at internal/json/types.go:360:2
+internal/json/types.go:356:28: append(dst, byte(44)) escapes to heap in Encoder.AppendFloats64:
+internal/json/types.go:356:28:   flow: {temp} ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:356:28:     from append(dst, byte(44)) (spill) at internal/json/types.go:356:28
+internal/json/types.go:356:28:     from appendFloat(append(dst, byte(44)), val, 64) (call parameter) at internal/json/types.go:356:21
+internal/json/types.go:356:28:   flow: dst ← {temp}:
+internal/json/types.go:356:28:     from dst = appendFloat(append(dst, byte(44)), val, 64) (assign) at internal/json/types.go:356:8
+internal/json/types.go:356:28:   flow: ~r0 ← dst:
+internal/json/types.go:356:28:     from return dst (return) at internal/json/types.go:360:2
+internal/json/types.go:348:31: leaking param: dst to result ~r0 level=0
+internal/json/types.go:348:43: vals does not escape
+internal/json/types.go:350:16: append escapes to heap
+internal/json/types.go:352:14: append escapes to heap
+internal/json/types.go:356:28: append escapes to heap
+internal/json/types.go:359:14: append escapes to heap
+internal/json/types.go:365:46: parameter i leaks to {heap} for Encoder.AppendInterface with derefs=0:
+internal/json/types.go:365:46:   flow: json.v ← i:
+internal/json/types.go:365:46:     from json.v := i (assign-pair) at internal/json/types.go:366:32
+internal/json/types.go:365:46:   flow: {heap} ← json.v:
+internal/json/types.go:365:46:     from json.Marshal(json.v, ... argument...) (call parameter) at internal/json/types.go:366:32
+internal/json/types.go:370:15: append(dst, marshaled...) escapes to heap in Encoder.AppendInterface:
+internal/json/types.go:370:15:   flow: ~r0 ← &{storage for append(dst, marshaled...)}:
+internal/json/types.go:370:15:     from append(dst, marshaled...) (spill) at internal/json/types.go:370:15
+internal/json/types.go:370:15:     from return append(dst, marshaled...) (return) at internal/json/types.go:370:2
+internal/json/types.go:365:34: parameter dst leaks to ~r0 for Encoder.AppendInterface with derefs=0:
+internal/json/types.go:365:34:   flow: {temp} ← dst:
+internal/json/types.go:365:34:     from Encoder.AppendString(e, dst, fmt.Sprintf("marshaling error: %v", ... argument...)) (call parameter) at internal/json/types.go:368:24
+internal/json/types.go:365:34:   flow: ~r0 ← {temp}:
+internal/json/types.go:365:34:     from return Encoder.AppendString(e, dst, fmt.Sprintf("marshaling error: %v", ... argument...)) (return) at internal/json/types.go:368:3
+internal/json/types.go:365:34: leaking param: dst to result ~r0 level=0
+internal/json/types.go:365:46: leaking param: i
+internal/json/types.go:366:32: ... argument does not escape
+internal/json/types.go:368:41: ... argument does not escape
+internal/json/types.go:370:15: append escapes to heap
+internal/json/types.go:390:15: append(dst, o...) escapes to heap in Encoder.AppendObjectData:
+internal/json/types.go:390:15:   flow: ~r0 ← &{storage for append(dst, o...)}:
+internal/json/types.go:390:15:     from append(dst, o...) (spill) at internal/json/types.go:390:15
+internal/json/types.go:390:15:     from return append(dst, o...) (return) at internal/json/types.go:390:2
+internal/json/types.go:375:33: parameter dst leaks to ~r0 for Encoder.AppendObjectData with derefs=0:
+internal/json/types.go:375:33:   flow: {temp} ← dst:
+internal/json/types.go:375:33:     from append(dst, o...) (call parameter) at internal/json/types.go:390:15
+internal/json/types.go:375:33:   flow: ~r0 ← {temp}:
+internal/json/types.go:375:33:     from return append(dst, o...) (return) at internal/json/types.go:390:2
+internal/json/types.go:388:15: append(dst, byte(44)) escapes to heap in Encoder.AppendObjectData:
+internal/json/types.go:388:15:   flow: dst ← &{storage for append(dst, byte(44))}:
+internal/json/types.go:388:15:     from append(dst, byte(44)) (spill) at internal/json/types.go:388:15
+internal/json/types.go:388:15:     from dst = append(dst, byte(44)) (assign) at internal/json/types.go:388:7
+internal/json/types.go:388:15:   flow: {temp} ← dst:
+internal/json/types.go:388:15:     from append(dst, o...) (call parameter) at internal/json/types.go:390:15
+internal/json/types.go:388:15:   flow: ~r0 ← {temp}:
+internal/json/types.go:388:15:     from return append(dst, o...) (return) at internal/json/types.go:390:2
+internal/json/types.go:375:33: leaking param: dst to result ~r0 level=0
+internal/json/types.go:375:45: o does not escape
+internal/json/types.go:388:15: append escapes to heap
+internal/json/types.go:390:15: append escapes to heap
+internal/json/types.go:394:31: parameter dst leaks to ~r0 for Encoder.AppendIPAddr with derefs=0:
+internal/json/types.go:394:31:   flow: {temp} ← dst:
+internal/json/types.go:394:31:     from Encoder.AppendString(e, dst, net.IP.String(ip)) (call parameter) at internal/json/types.go:395:23
+internal/json/types.go:394:31:   flow: ~r0 ← {temp}:
+internal/json/types.go:394:31:     from return Encoder.AppendString(e, dst, net.IP.String(ip)) (return) at internal/json/types.go:395:2
+internal/json/types.go:394:31: leaking param: dst to result ~r0 level=0
+internal/json/types.go:394:43: ip does not escape
+internal/json/types.go:399:33: parameter dst leaks to ~r0 for Encoder.AppendIPPrefix with derefs=0:
+internal/json/types.go:399:33:   flow: {temp} ← dst:
+internal/json/types.go:399:33:     from Encoder.AppendString(e, dst, (*net.IPNet).String(pfx)) (call parameter) at internal/json/types.go:400:23
+internal/json/types.go:399:33:   flow: ~r0 ← {temp}:
+internal/json/types.go:399:33:     from return Encoder.AppendString(e, dst, (*net.IPNet).String(pfx)) (return) at internal/json/types.go:400:2
+internal/json/types.go:399:33: leaking param: dst to result ~r0 level=0
+internal/json/types.go:399:45: pfx does not escape
+internal/json/types.go:405:32: parameter dst leaks to ~r0 for Encoder.AppendMACAddr with derefs=0:
+internal/json/types.go:405:32:   flow: {temp} ← dst:
+internal/json/types.go:405:32:     from Encoder.AppendString(e, dst, ~r0) (call parameter) at internal/json/types.go:406:23
+internal/json/types.go:405:32:   flow: ~r0 ← {temp}:
+internal/json/types.go:405:32:     from return Encoder.AppendString(e, dst, ~r0) (return) at internal/json/types.go:406:2
+internal/json/types.go:405:32: leaking param: dst to result ~r0 level=0
+internal/json/types.go:405:44: ha does not escape
+internal/json/types.go:406:38: make([]byte, 0, len(net.a) * 3 - 1) does not escape
+internal/json/types.go:406:38: append does not escape
+internal/json/types.go:406:38: append does not escape
+internal/json/types.go:406:38: append does not escape
+internal/json/types.go:406:38: string(net.buf) does not escape
+<autogenerated>:1: append(dst, byte(44)) escapes to heap in (*Encoder).AppendArrayDelim:
+<autogenerated>:1:   flow: ~r0 ← &{storage for append(dst, byte(44))}:
+<autogenerated>:1:     from append(dst, byte(44)) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = append(dst, byte(44)) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:42:33: parameter dst leaks to ~r0 for (*Encoder).AppendArrayDelim with derefs=0:
+internal/json/types.go:42:33:   flow: dst ← dst:
+internal/json/types.go:42:33:     from ~p0, dst := ~p0, dst (assign-pair) at <autogenerated>:1
+internal/json/types.go:42:33:   flow: ~r0 ← dst:
+internal/json/types.go:42:33:     from ~r0 = dst (assign-pair) at <autogenerated>:1
+internal/json/types.go:42:33:   flow: ~r0 ← ~r0:
+internal/json/types.go:42:33:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append escapes to heap
+<autogenerated>:1: append(dst, byte(93)) escapes to heap in (*Encoder).AppendArrayEnd:
+<autogenerated>:1:   flow: ~r0 ← &{storage for append(dst, byte(93))}:
+<autogenerated>:1:     from append(dst, byte(93)) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = append(dst, byte(93)) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:37:31: parameter dst leaks to ~r0 for (*Encoder).AppendArrayEnd with derefs=0:
+internal/json/types.go:37:31:   flow: dst ← dst:
+internal/json/types.go:37:31:     from ~p0, dst := ~p0, dst (assign-pair) at <autogenerated>:1
+internal/json/types.go:37:31:   flow: {temp} ← dst:
+internal/json/types.go:37:31:     from append(dst, byte(93)) (call parameter) at <autogenerated>:1
+internal/json/types.go:37:31:   flow: ~r0 ← {temp}:
+internal/json/types.go:37:31:     from ~r0 = append(dst, byte(93)) (assign-pair) at <autogenerated>:1
+internal/json/types.go:37:31:   flow: ~r0 ← ~r0:
+internal/json/types.go:37:31:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append escapes to heap
+<autogenerated>:1: append(dst, byte(91)) escapes to heap in (*Encoder).AppendArrayStart:
+<autogenerated>:1:   flow: ~r0 ← &{storage for append(dst, byte(91))}:
+<autogenerated>:1:     from append(dst, byte(91)) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = append(dst, byte(91)) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:32:33: parameter dst leaks to ~r0 for (*Encoder).AppendArrayStart with derefs=0:
+internal/json/types.go:32:33:   flow: dst ← dst:
+internal/json/types.go:32:33:     from ~p0, dst := ~p0, dst (assign-pair) at <autogenerated>:1
+internal/json/types.go:32:33:   flow: {temp} ← dst:
+internal/json/types.go:32:33:     from append(dst, byte(91)) (call parameter) at <autogenerated>:1
+internal/json/types.go:32:33:   flow: ~r0 ← {temp}:
+internal/json/types.go:32:33:     from ~r0 = append(dst, byte(91)) (assign-pair) at <autogenerated>:1
+internal/json/types.go:32:33:   flow: ~r0 ← ~r0:
+internal/json/types.go:32:33:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append escapes to heap
+<autogenerated>:1: append(dst, byte(123)) escapes to heap in (*Encoder).AppendBeginMarker:
+<autogenerated>:1:   flow: ~r0 ← &{storage for append(dst, byte(123))}:
+<autogenerated>:1:     from append(dst, byte(123)) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = append(dst, byte(123)) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:17:34: parameter dst leaks to ~r0 for (*Encoder).AppendBeginMarker with derefs=0:
+internal/json/types.go:17:34:   flow: dst ← dst:
+internal/json/types.go:17:34:     from ~p0, dst := ~p0, dst (assign-pair) at <autogenerated>:1
+internal/json/types.go:17:34:   flow: {temp} ← dst:
+internal/json/types.go:17:34:     from append(dst, byte(123)) (call parameter) at <autogenerated>:1
+internal/json/types.go:17:34:   flow: ~r0 ← {temp}:
+internal/json/types.go:17:34:     from ~r0 = append(dst, byte(123)) (assign-pair) at <autogenerated>:1
+internal/json/types.go:17:34:   flow: ~r0 ← ~r0:
+internal/json/types.go:17:34:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append escapes to heap
+<autogenerated>:1: append(strconv.dst, "true"...) escapes to heap in (*Encoder).AppendBool:
+<autogenerated>:1:   flow: ~r0 ← &{storage for append(strconv.dst, "true"...)}:
+<autogenerated>:1:     from append(strconv.dst, "true"...) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = append(strconv.dst, "true"...) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append(strconv.dst, "false"...) escapes to heap in (*Encoder).AppendBool:
+<autogenerated>:1:   flow: ~r0 ← &{storage for append(strconv.dst, "false"...)}:
+<autogenerated>:1:     from append(strconv.dst, "false"...) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = append(strconv.dst, "false"...) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:51:27: parameter dst leaks to ~r0 for (*Encoder).AppendBool with derefs=0:
+internal/json/types.go:51:27:   flow: dst ← dst:
+internal/json/types.go:51:27:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:51:27:   flow: strconv.dst ← dst:
+internal/json/types.go:51:27:     from strconv.dst, strconv.b := dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:51:27:   flow: strconv.dst ← strconv.dst:
+internal/json/types.go:51:27:     from strconv.dst, strconv.b := strconv.dst, strconv.b (assign-pair) at <autogenerated>:1
+internal/json/types.go:51:27:   flow: {temp} ← strconv.dst:
+internal/json/types.go:51:27:     from append(strconv.dst, "true"...) (call parameter) at <autogenerated>:1
+internal/json/types.go:51:27:   flow: ~r0 ← {temp}:
+internal/json/types.go:51:27:     from ~r0 = append(strconv.dst, "true"...) (assign-pair) at <autogenerated>:1
+internal/json/types.go:51:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:51:27:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:51:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:51:27:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:51:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:51:27:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append escapes to heap
+<autogenerated>:1: append escapes to heap
+internal/json/types.go:57:28: parameter dst leaks to ~r0 for (*Encoder).AppendBools with derefs=0:
+internal/json/types.go:57:28:   flow: {temp} ← dst:
+internal/json/types.go:57:28:     from Encoder.AppendBools(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:57:28:   flow: ~r0 ← {temp}:
+internal/json/types.go:57:28:     from return Encoder.AppendBools(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/bytes.go:6:28: parameter dst leaks to ~r0 for (*Encoder).AppendBytes with derefs=0:
+internal/json/bytes.go:6:28:   flow: {temp} ← dst:
+internal/json/bytes.go:6:28:     from Encoder.AppendBytes(~p0, dst, s) (call parameter) at <autogenerated>:1
+internal/json/bytes.go:6:28:   flow: ~r0 ← {temp}:
+internal/json/bytes.go:6:28:     from return Encoder.AppendBytes(~p0, dst, s) (return) at <autogenerated>:1
+internal/json/time.go:84:33: parameter dst leaks to ~r0 for (*Encoder).AppendDuration with derefs=0:
+internal/json/time.go:84:33:   flow: {temp} ← dst:
+internal/json/time.go:84:33:     from Encoder.AppendDuration(e, dst, d, unit, useInt) (call parameter) at <autogenerated>:1
+internal/json/time.go:84:33:   flow: ~r0 ← {temp}:
+internal/json/time.go:84:33:     from return Encoder.AppendDuration(e, dst, d, unit, useInt) (return) at <autogenerated>:1
+internal/json/time.go:93:34: parameter dst leaks to ~r0 for (*Encoder).AppendDurations with derefs=0:
+internal/json/time.go:93:34:   flow: {temp} ← dst:
+internal/json/time.go:93:34:     from Encoder.AppendDurations(e, dst, vals, unit, useInt) (call parameter) at <autogenerated>:1
+internal/json/time.go:93:34:   flow: ~r0 ← {temp}:
+internal/json/time.go:93:34:     from return Encoder.AppendDurations(e, dst, vals, unit, useInt) (return) at <autogenerated>:1
+<autogenerated>:1: append(dst, byte(125)) escapes to heap in (*Encoder).AppendEndMarker:
+<autogenerated>:1:   flow: ~r0 ← &{storage for append(dst, byte(125))}:
+<autogenerated>:1:     from append(dst, byte(125)) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = append(dst, byte(125)) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:22:32: parameter dst leaks to ~r0 for (*Encoder).AppendEndMarker with derefs=0:
+internal/json/types.go:22:32:   flow: dst ← dst:
+internal/json/types.go:22:32:     from ~p0, dst := ~p0, dst (assign-pair) at <autogenerated>:1
+internal/json/types.go:22:32:   flow: {temp} ← dst:
+internal/json/types.go:22:32:     from append(dst, byte(125)) (call parameter) at <autogenerated>:1
+internal/json/types.go:22:32:   flow: ~r0 ← {temp}:
+internal/json/types.go:22:32:     from ~r0 = append(dst, byte(125)) (assign-pair) at <autogenerated>:1
+internal/json/types.go:22:32:   flow: ~r0 ← ~r0:
+internal/json/types.go:22:32:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append escapes to heap
+internal/json/types.go:319:30: parameter dst leaks to ~r0 for (*Encoder).AppendFloat32 with derefs=0:
+internal/json/types.go:319:30:   flow: dst ← dst:
+internal/json/types.go:319:30:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:319:30:   flow: {temp} ← dst:
+internal/json/types.go:319:30:     from appendFloat(dst, float64(val), 32) (call parameter) at <autogenerated>:1
+internal/json/types.go:319:30:   flow: ~r0 ← {temp}:
+internal/json/types.go:319:30:     from ~r0 = appendFloat(dst, float64(val), 32) (assign-pair) at <autogenerated>:1
+internal/json/types.go:319:30:   flow: ~r0 ← ~r0:
+internal/json/types.go:319:30:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:342:30: parameter dst leaks to ~r0 for (*Encoder).AppendFloat64 with derefs=0:
+internal/json/types.go:342:30:   flow: dst ← dst:
+internal/json/types.go:342:30:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:342:30:   flow: {temp} ← dst:
+internal/json/types.go:342:30:     from appendFloat(dst, val, 64) (call parameter) at <autogenerated>:1
+internal/json/types.go:342:30:   flow: ~r0 ← {temp}:
+internal/json/types.go:342:30:     from ~r0 = appendFloat(dst, val, 64) (assign-pair) at <autogenerated>:1
+internal/json/types.go:342:30:   flow: ~r0 ← ~r0:
+internal/json/types.go:342:30:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:325:31: parameter dst leaks to ~r0 for (*Encoder).AppendFloats32 with derefs=0:
+internal/json/types.go:325:31:   flow: {temp} ← dst:
+internal/json/types.go:325:31:     from Encoder.AppendFloats32(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:325:31:   flow: ~r0 ← {temp}:
+internal/json/types.go:325:31:     from return Encoder.AppendFloats32(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/types.go:348:31: parameter dst leaks to ~r0 for (*Encoder).AppendFloats64 with derefs=0:
+internal/json/types.go:348:31:   flow: {temp} ← dst:
+internal/json/types.go:348:31:     from Encoder.AppendFloats64(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:348:31:   flow: ~r0 ← {temp}:
+internal/json/types.go:348:31:     from return Encoder.AppendFloats64(~p0, dst, vals) (return) at <autogenerated>:1
+<autogenerated>:1: append(dst, byte(34)) escapes to heap in (*Encoder).AppendHex:
+<autogenerated>:1:   flow: ~r0 ← &{storage for append(dst, byte(34))}:
+<autogenerated>:1:     from append(dst, byte(34)) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = append(dst, byte(34)) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+internal/json/bytes.go:23:26: parameter dst leaks to ~r0 for (*Encoder).AppendHex with derefs=0:
+internal/json/bytes.go:23:26:   flow: dst ← dst:
+internal/json/bytes.go:23:26:     from ~p0, dst, s := ~p0, dst, s (assign-pair) at <autogenerated>:1
+internal/json/bytes.go:23:26:   flow: {temp} ← dst:
+internal/json/bytes.go:23:26:     from append(dst, byte(34)) (call parameter) at <autogenerated>:1
+internal/json/bytes.go:23:26:   flow: ~r0 ← {temp}:
+internal/json/bytes.go:23:26:     from ~r0 = append(dst, byte(34)) (assign-pair) at <autogenerated>:1
+internal/json/bytes.go:23:26:   flow: ~r0 ← ~r0:
+internal/json/bytes.go:23:26:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append(dst, byte(34)) escapes to heap in (*Encoder).AppendHex:
+<autogenerated>:1:   flow: dst ← &{storage for append(dst, byte(34))}:
+<autogenerated>:1:     from append(dst, byte(34)) (spill) at <autogenerated>:1
+<autogenerated>:1:     from dst = append(dst, byte(34)) (assign) at <autogenerated>:1
+<autogenerated>:1:   flow: {temp} ← dst:
+<autogenerated>:1:     from append(dst, byte(34)) (call parameter) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← {temp}:
+<autogenerated>:1:     from ~r0 = append(dst, byte(34)) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append(dst, "0123456789abcdef"[v >> uint(4)], "0123456789abcdef"[v & byte(15)]) escapes to heap in (*Encoder).AppendHex:
+<autogenerated>:1:   flow: dst ← &{storage for append(dst, "0123456789abcdef"[v >> uint(4)], "0123456789abcdef"[v & byte(15)])}:
+<autogenerated>:1:     from append(dst, "0123456789abcdef"[v >> uint(4)], "0123456789abcdef"[v & byte(15)]) (spill) at <autogenerated>:1
+<autogenerated>:1:     from dst = append(dst, "0123456789abcdef"[v >> uint(4)], "0123456789abcdef"[v & byte(15)]) (assign) at <autogenerated>:1
+<autogenerated>:1:   flow: {temp} ← dst:
+<autogenerated>:1:     from append(dst, byte(34)) (call parameter) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← {temp}:
+<autogenerated>:1:     from ~r0 = append(dst, byte(34)) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append escapes to heap
+<autogenerated>:1: append escapes to heap
+<autogenerated>:1: append escapes to heap
+internal/json/types.go:394:31: parameter dst leaks to ~r0 for (*Encoder).AppendIPAddr with derefs=0:
+internal/json/types.go:394:31:   flow: {temp} ← dst:
+internal/json/types.go:394:31:     from Encoder.AppendIPAddr(e, dst, ip) (call parameter) at <autogenerated>:1
+internal/json/types.go:394:31:   flow: ~r0 ← {temp}:
+internal/json/types.go:394:31:     from return Encoder.AppendIPAddr(e, dst, ip) (return) at <autogenerated>:1
+internal/json/types.go:399:33: parameter dst leaks to ~r0 for (*Encoder).AppendIPPrefix with derefs=0:
+internal/json/types.go:399:33:   flow: {temp} ← dst:
+internal/json/types.go:399:33:     from Encoder.AppendIPPrefix(e, dst, pfx) (call parameter) at <autogenerated>:1
+internal/json/types.go:399:33:   flow: ~r0 ← {temp}:
+internal/json/types.go:399:33:     from return Encoder.AppendIPPrefix(e, dst, pfx) (return) at <autogenerated>:1
+internal/json/types.go:74:26: parameter dst leaks to ~r0 for (*Encoder).AppendInt with derefs=0:
+internal/json/types.go:74:26:   flow: dst ← dst:
+internal/json/types.go:74:26:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:74:26:   flow: strconv.dst ← dst:
+internal/json/types.go:74:26:     from strconv.dst, strconv.i, strconv.base := dst, int64(val), 10 (assign-pair) at <autogenerated>:1
+internal/json/types.go:74:26:   flow: {temp} ← strconv.dst:
+internal/json/types.go:74:26:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at <autogenerated>:1
+internal/json/types.go:74:26:   flow: ~r0 ← {temp}:
+internal/json/types.go:74:26:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at <autogenerated>:1
+internal/json/types.go:74:26:   flow: ~r0 ← ~r0:
+internal/json/types.go:74:26:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:74:26:   flow: ~r0 ← ~r0:
+internal/json/types.go:74:26:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:120:28: parameter dst leaks to ~r0 for (*Encoder).AppendInt16 with derefs=0:
+internal/json/types.go:120:28:   flow: dst ← dst:
+internal/json/types.go:120:28:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:120:28:   flow: strconv.dst ← dst:
+internal/json/types.go:120:28:     from strconv.dst, strconv.i, strconv.base := dst, int64(val), 10 (assign-pair) at <autogenerated>:1
+internal/json/types.go:120:28:   flow: {temp} ← strconv.dst:
+internal/json/types.go:120:28:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at <autogenerated>:1
+internal/json/types.go:120:28:   flow: ~r0 ← {temp}:
+internal/json/types.go:120:28:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at <autogenerated>:1
+internal/json/types.go:120:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:120:28:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:120:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:120:28:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:143:28: parameter dst leaks to ~r0 for (*Encoder).AppendInt32 with derefs=0:
+internal/json/types.go:143:28:   flow: dst ← dst:
+internal/json/types.go:143:28:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:143:28:   flow: strconv.dst ← dst:
+internal/json/types.go:143:28:     from strconv.dst, strconv.i, strconv.base := dst, int64(val), 10 (assign-pair) at <autogenerated>:1
+internal/json/types.go:143:28:   flow: {temp} ← strconv.dst:
+internal/json/types.go:143:28:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at <autogenerated>:1
+internal/json/types.go:143:28:   flow: ~r0 ← {temp}:
+internal/json/types.go:143:28:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at <autogenerated>:1
+internal/json/types.go:143:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:143:28:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:143:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:143:28:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:166:28: parameter dst leaks to ~r0 for (*Encoder).AppendInt64 with derefs=0:
+internal/json/types.go:166:28:   flow: dst ← dst:
+internal/json/types.go:166:28:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:166:28:   flow: strconv.dst ← dst:
+internal/json/types.go:166:28:     from strconv.dst, strconv.i, strconv.base := dst, val, 10 (assign-pair) at <autogenerated>:1
+internal/json/types.go:166:28:   flow: {temp} ← strconv.dst:
+internal/json/types.go:166:28:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at <autogenerated>:1
+internal/json/types.go:166:28:   flow: ~r0 ← {temp}:
+internal/json/types.go:166:28:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at <autogenerated>:1
+internal/json/types.go:166:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:166:28:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:166:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:166:28:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:97:27: parameter dst leaks to ~r0 for (*Encoder).AppendInt8 with derefs=0:
+internal/json/types.go:97:27:   flow: dst ← dst:
+internal/json/types.go:97:27:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:97:27:   flow: strconv.dst ← dst:
+internal/json/types.go:97:27:     from strconv.dst, strconv.i, strconv.base := dst, int64(val), 10 (assign-pair) at <autogenerated>:1
+internal/json/types.go:97:27:   flow: {temp} ← strconv.dst:
+internal/json/types.go:97:27:     from strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (call parameter) at <autogenerated>:1
+internal/json/types.go:97:27:   flow: ~r0 ← {temp}:
+internal/json/types.go:97:27:     from ~r0 = strconv.AppendInt(strconv.dst, strconv.i, strconv.base) (assign-pair) at <autogenerated>:1
+internal/json/types.go:97:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:97:27:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:97:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:97:27:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:365:46: parameter i leaks to {heap} for (*Encoder).AppendInterface with derefs=0:
+internal/json/types.go:365:46:   flow: {heap} ← i:
+internal/json/types.go:365:46:     from Encoder.AppendInterface(e, dst, i) (call parameter) at <autogenerated>:1
+internal/json/types.go:365:34: parameter dst leaks to ~r0 for (*Encoder).AppendInterface with derefs=0:
+internal/json/types.go:365:34:   flow: {temp} ← dst:
+internal/json/types.go:365:34:     from Encoder.AppendInterface(e, dst, i) (call parameter) at <autogenerated>:1
+internal/json/types.go:365:34:   flow: ~r0 ← {temp}:
+internal/json/types.go:365:34:     from return Encoder.AppendInterface(e, dst, i) (return) at <autogenerated>:1
+internal/json/types.go:80:27: parameter dst leaks to ~r0 for (*Encoder).AppendInts with derefs=0:
+internal/json/types.go:80:27:   flow: {temp} ← dst:
+internal/json/types.go:80:27:     from Encoder.AppendInts(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:80:27:   flow: ~r0 ← {temp}:
+internal/json/types.go:80:27:     from return Encoder.AppendInts(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/types.go:126:29: parameter dst leaks to ~r0 for (*Encoder).AppendInts16 with derefs=0:
+internal/json/types.go:126:29:   flow: {temp} ← dst:
+internal/json/types.go:126:29:     from Encoder.AppendInts16(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:126:29:   flow: ~r0 ← {temp}:
+internal/json/types.go:126:29:     from return Encoder.AppendInts16(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/types.go:149:29: parameter dst leaks to ~r0 for (*Encoder).AppendInts32 with derefs=0:
+internal/json/types.go:149:29:   flow: {temp} ← dst:
+internal/json/types.go:149:29:     from Encoder.AppendInts32(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:149:29:   flow: ~r0 ← {temp}:
+internal/json/types.go:149:29:     from return Encoder.AppendInts32(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/types.go:172:29: parameter dst leaks to ~r0 for (*Encoder).AppendInts64 with derefs=0:
+internal/json/types.go:172:29:   flow: {temp} ← dst:
+internal/json/types.go:172:29:     from Encoder.AppendInts64(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:172:29:   flow: ~r0 ← {temp}:
+internal/json/types.go:172:29:     from return Encoder.AppendInts64(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/types.go:103:28: parameter dst leaks to ~r0 for (*Encoder).AppendInts8 with derefs=0:
+internal/json/types.go:103:28:   flow: {temp} ← dst:
+internal/json/types.go:103:28:     from Encoder.AppendInts8(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:103:28:   flow: ~r0 ← {temp}:
+internal/json/types.go:103:28:     from return Encoder.AppendInts8(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/base.go:6:28: parameter dst leaks to ~r0 for (*Encoder).AppendKey with derefs=0:
+internal/json/base.go:6:28:   flow: {temp} ← dst:
+internal/json/base.go:6:28:     from Encoder.AppendKey(e, dst, key) (call parameter) at <autogenerated>:1
+internal/json/base.go:6:28:   flow: ~r0 ← {temp}:
+internal/json/base.go:6:28:     from return Encoder.AppendKey(e, dst, key) (return) at <autogenerated>:1
+<autogenerated>:1: append(dst, byte(10)) escapes to heap in (*Encoder).AppendLineBreak:
+<autogenerated>:1:   flow: ~r0 ← &{storage for append(dst, byte(10))}:
+<autogenerated>:1:     from append(dst, byte(10)) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = append(dst, byte(10)) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:27:32: parameter dst leaks to ~r0 for (*Encoder).AppendLineBreak with derefs=0:
+internal/json/types.go:27:32:   flow: dst ← dst:
+internal/json/types.go:27:32:     from ~p0, dst := ~p0, dst (assign-pair) at <autogenerated>:1
+internal/json/types.go:27:32:   flow: {temp} ← dst:
+internal/json/types.go:27:32:     from append(dst, byte(10)) (call parameter) at <autogenerated>:1
+internal/json/types.go:27:32:   flow: ~r0 ← {temp}:
+internal/json/types.go:27:32:     from ~r0 = append(dst, byte(10)) (assign-pair) at <autogenerated>:1
+internal/json/types.go:27:32:   flow: ~r0 ← ~r0:
+internal/json/types.go:27:32:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append escapes to heap
+internal/json/types.go:405:32: parameter dst leaks to ~r0 for (*Encoder).AppendMACAddr with derefs=0:
+internal/json/types.go:405:32:   flow: {temp} ← dst:
+internal/json/types.go:405:32:     from Encoder.AppendMACAddr(e, dst, ha) (call parameter) at <autogenerated>:1
+internal/json/types.go:405:32:   flow: ~r0 ← {temp}:
+internal/json/types.go:405:32:     from return Encoder.AppendMACAddr(e, dst, ha) (return) at <autogenerated>:1
+<autogenerated>:1: append(dst, "null"...) escapes to heap in (*Encoder).AppendNil:
+<autogenerated>:1:   flow: ~r0 ← &{storage for append(dst, "null"...)}:
+<autogenerated>:1:     from append(dst, "null"...) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = append(dst, "null"...) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:12:26: parameter dst leaks to ~r0 for (*Encoder).AppendNil with derefs=0:
+internal/json/types.go:12:26:   flow: dst ← dst:
+internal/json/types.go:12:26:     from ~p0, dst := ~p0, dst (assign-pair) at <autogenerated>:1
+internal/json/types.go:12:26:   flow: {temp} ← dst:
+internal/json/types.go:12:26:     from append(dst, "null"...) (call parameter) at <autogenerated>:1
+internal/json/types.go:12:26:   flow: ~r0 ← {temp}:
+internal/json/types.go:12:26:     from ~r0 = append(dst, "null"...) (assign-pair) at <autogenerated>:1
+internal/json/types.go:12:26:   flow: ~r0 ← ~r0:
+internal/json/types.go:12:26:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append escapes to heap
+<autogenerated>:1: append(dst, o...) escapes to heap in (*Encoder).AppendObjectData:
+<autogenerated>:1:   flow: ~r0 ← &{storage for append(dst, o...)}:
+<autogenerated>:1:     from append(dst, o...) (spill) at <autogenerated>:1
+<autogenerated>:1:     from ~r0 = append(dst, o...) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:375:33: parameter dst leaks to ~r0 for (*Encoder).AppendObjectData with derefs=0:
+internal/json/types.go:375:33:   flow: dst ← dst:
+internal/json/types.go:375:33:     from ~p0, dst, o := ~p0, dst, o (assign-pair) at <autogenerated>:1
+internal/json/types.go:375:33:   flow: {temp} ← dst:
+internal/json/types.go:375:33:     from append(dst, o...) (call parameter) at <autogenerated>:1
+internal/json/types.go:375:33:   flow: ~r0 ← {temp}:
+internal/json/types.go:375:33:     from ~r0 = append(dst, o...) (assign-pair) at <autogenerated>:1
+internal/json/types.go:375:33:   flow: ~r0 ← ~r0:
+internal/json/types.go:375:33:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append(dst, byte(44)) escapes to heap in (*Encoder).AppendObjectData:
+<autogenerated>:1:   flow: dst ← &{storage for append(dst, byte(44))}:
+<autogenerated>:1:     from append(dst, byte(44)) (spill) at <autogenerated>:1
+<autogenerated>:1:     from dst = append(dst, byte(44)) (assign) at <autogenerated>:1
+<autogenerated>:1:   flow: {temp} ← dst:
+<autogenerated>:1:     from append(dst, o...) (call parameter) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← {temp}:
+<autogenerated>:1:     from ~r0 = append(dst, o...) (assign-pair) at <autogenerated>:1
+<autogenerated>:1:   flow: ~r0 ← ~r0:
+<autogenerated>:1:     from return ~r0 (return) at <autogenerated>:1
+<autogenerated>:1: append escapes to heap
+<autogenerated>:1: append escapes to heap
+internal/json/string.go:41:29: parameter dst leaks to ~r0 for (*Encoder).AppendString with derefs=0:
+internal/json/string.go:41:29:   flow: {temp} ← dst:
+internal/json/string.go:41:29:     from Encoder.AppendString(~p0, dst, s) (call parameter) at <autogenerated>:1
+internal/json/string.go:41:29:   flow: ~r0 ← {temp}:
+internal/json/string.go:41:29:     from return Encoder.AppendString(~p0, dst, s) (return) at <autogenerated>:1
+internal/json/string.go:17:32: parameter dst leaks to ~r0 for (*Encoder).AppendStrings with derefs=0:
+internal/json/string.go:17:32:   flow: {temp} ← dst:
+internal/json/string.go:17:32:     from Encoder.AppendStrings(e, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/string.go:17:32:   flow: ~r0 ← {temp}:
+internal/json/string.go:17:32:     from return Encoder.AppendStrings(e, dst, vals) (return) at <autogenerated>:1
+internal/json/time.go:17:29: parameter dst leaks to ~r0 for (*Encoder).AppendTime with derefs=0:
+internal/json/time.go:17:29:   flow: {temp} ← dst:
+internal/json/time.go:17:29:     from Encoder.AppendTime(e, dst, t, format) (call parameter) at <autogenerated>:1
+internal/json/time.go:17:29:   flow: ~r0 ← {temp}:
+internal/json/time.go:17:29:     from return Encoder.AppendTime(e, dst, t, format) (return) at <autogenerated>:1
+internal/json/time.go:31:28: parameter dst leaks to ~r0 for (*Encoder).AppendTimes with derefs=0:
+internal/json/time.go:31:28:   flow: {temp} ← dst:
+internal/json/time.go:31:28:     from Encoder.AppendTimes(~p0, dst, vals, format) (call parameter) at <autogenerated>:1
+internal/json/time.go:31:28:   flow: ~r0 ← {temp}:
+internal/json/time.go:31:28:     from return Encoder.AppendTimes(~p0, dst, vals, format) (return) at <autogenerated>:1
+internal/json/types.go:189:27: parameter dst leaks to ~r0 for (*Encoder).AppendUint with derefs=0:
+internal/json/types.go:189:27:   flow: dst ← dst:
+internal/json/types.go:189:27:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:189:27:   flow: strconv.dst ← dst:
+internal/json/types.go:189:27:     from strconv.dst, strconv.i, strconv.base := dst, uint64(val), 10 (assign-pair) at <autogenerated>:1
+internal/json/types.go:189:27:   flow: {temp} ← strconv.dst:
+internal/json/types.go:189:27:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at <autogenerated>:1
+internal/json/types.go:189:27:   flow: ~r0 ← {temp}:
+internal/json/types.go:189:27:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at <autogenerated>:1
+internal/json/types.go:189:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:189:27:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:189:27:   flow: ~r0 ← ~r0:
+internal/json/types.go:189:27:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:235:29: parameter dst leaks to ~r0 for (*Encoder).AppendUint16 with derefs=0:
+internal/json/types.go:235:29:   flow: dst ← dst:
+internal/json/types.go:235:29:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:235:29:   flow: strconv.dst ← dst:
+internal/json/types.go:235:29:     from strconv.dst, strconv.i, strconv.base := dst, uint64(val), 10 (assign-pair) at <autogenerated>:1
+internal/json/types.go:235:29:   flow: {temp} ← strconv.dst:
+internal/json/types.go:235:29:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at <autogenerated>:1
+internal/json/types.go:235:29:   flow: ~r0 ← {temp}:
+internal/json/types.go:235:29:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at <autogenerated>:1
+internal/json/types.go:235:29:   flow: ~r0 ← ~r0:
+internal/json/types.go:235:29:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:235:29:   flow: ~r0 ← ~r0:
+internal/json/types.go:235:29:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:258:29: parameter dst leaks to ~r0 for (*Encoder).AppendUint32 with derefs=0:
+internal/json/types.go:258:29:   flow: dst ← dst:
+internal/json/types.go:258:29:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:258:29:   flow: strconv.dst ← dst:
+internal/json/types.go:258:29:     from strconv.dst, strconv.i, strconv.base := dst, uint64(val), 10 (assign-pair) at <autogenerated>:1
+internal/json/types.go:258:29:   flow: {temp} ← strconv.dst:
+internal/json/types.go:258:29:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at <autogenerated>:1
+internal/json/types.go:258:29:   flow: ~r0 ← {temp}:
+internal/json/types.go:258:29:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at <autogenerated>:1
+internal/json/types.go:258:29:   flow: ~r0 ← ~r0:
+internal/json/types.go:258:29:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:258:29:   flow: ~r0 ← ~r0:
+internal/json/types.go:258:29:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:281:29: parameter dst leaks to ~r0 for (*Encoder).AppendUint64 with derefs=0:
+internal/json/types.go:281:29:   flow: dst ← dst:
+internal/json/types.go:281:29:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:281:29:   flow: strconv.dst ← dst:
+internal/json/types.go:281:29:     from strconv.dst, strconv.i, strconv.base := dst, uint64(val), 10 (assign-pair) at <autogenerated>:1
+internal/json/types.go:281:29:   flow: {temp} ← strconv.dst:
+internal/json/types.go:281:29:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at <autogenerated>:1
+internal/json/types.go:281:29:   flow: ~r0 ← {temp}:
+internal/json/types.go:281:29:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at <autogenerated>:1
+internal/json/types.go:281:29:   flow: ~r0 ← ~r0:
+internal/json/types.go:281:29:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:281:29:   flow: ~r0 ← ~r0:
+internal/json/types.go:281:29:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:212:28: parameter dst leaks to ~r0 for (*Encoder).AppendUint8 with derefs=0:
+internal/json/types.go:212:28:   flow: dst ← dst:
+internal/json/types.go:212:28:     from ~p0, dst, val := ~p0, dst, val (assign-pair) at <autogenerated>:1
+internal/json/types.go:212:28:   flow: strconv.dst ← dst:
+internal/json/types.go:212:28:     from strconv.dst, strconv.i, strconv.base := dst, uint64(val), 10 (assign-pair) at <autogenerated>:1
+internal/json/types.go:212:28:   flow: {temp} ← strconv.dst:
+internal/json/types.go:212:28:     from strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (call parameter) at <autogenerated>:1
+internal/json/types.go:212:28:   flow: ~r0 ← {temp}:
+internal/json/types.go:212:28:     from ~r0 = strconv.AppendUint(strconv.dst, strconv.i, strconv.base) (assign-pair) at <autogenerated>:1
+internal/json/types.go:212:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:212:28:     from ~r0 = ~r0 (assign-pair) at <autogenerated>:1
+internal/json/types.go:212:28:   flow: ~r0 ← ~r0:
+internal/json/types.go:212:28:     from return ~r0 (return) at <autogenerated>:1
+internal/json/types.go:195:28: parameter dst leaks to ~r0 for (*Encoder).AppendUints with derefs=0:
+internal/json/types.go:195:28:   flow: {temp} ← dst:
+internal/json/types.go:195:28:     from Encoder.AppendUints(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:195:28:   flow: ~r0 ← {temp}:
+internal/json/types.go:195:28:     from return Encoder.AppendUints(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/types.go:241:30: parameter dst leaks to ~r0 for (*Encoder).AppendUints16 with derefs=0:
+internal/json/types.go:241:30:   flow: {temp} ← dst:
+internal/json/types.go:241:30:     from Encoder.AppendUints16(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:241:30:   flow: ~r0 ← {temp}:
+internal/json/types.go:241:30:     from return Encoder.AppendUints16(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/types.go:264:30: parameter dst leaks to ~r0 for (*Encoder).AppendUints32 with derefs=0:
+internal/json/types.go:264:30:   flow: {temp} ← dst:
+internal/json/types.go:264:30:     from Encoder.AppendUints32(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:264:30:   flow: ~r0 ← {temp}:
+internal/json/types.go:264:30:     from return Encoder.AppendUints32(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/types.go:287:30: parameter dst leaks to ~r0 for (*Encoder).AppendUints64 with derefs=0:
+internal/json/types.go:287:30:   flow: {temp} ← dst:
+internal/json/types.go:287:30:     from Encoder.AppendUints64(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:287:30:   flow: ~r0 ← {temp}:
+internal/json/types.go:287:30:     from return Encoder.AppendUints64(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/types.go:218:29: parameter dst leaks to ~r0 for (*Encoder).AppendUints8 with derefs=0:
+internal/json/types.go:218:29:   flow: {temp} ← dst:
+internal/json/types.go:218:29:     from Encoder.AppendUints8(~p0, dst, vals) (call parameter) at <autogenerated>:1
+internal/json/types.go:218:29:   flow: ~r0 ← {temp}:
+internal/json/types.go:218:29:     from return Encoder.AppendUints8(~p0, dst, vals) (return) at <autogenerated>:1
+internal/json/bytes.go:9:20: index bounds check elided
+internal/json/bytes.go:51:19: index bounds check elided
+internal/json/string.go:49:20: index bounds check elided
+internal/json/string.go:87:19: index bounds check elided
