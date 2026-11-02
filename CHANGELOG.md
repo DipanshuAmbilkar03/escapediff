@@ -4,6 +4,11 @@ All notable changes are documented here, in [Keep a Changelog](https://keepachan
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-02
+
+### Fixed
+- Refuse a compare log with no compiler diagnostics (#7)
+
 ## [0.1.0] - 2026-11-02
 ### Added
 - `compare` command: compares two saved `go build -gcflags=-m=2` outputs
