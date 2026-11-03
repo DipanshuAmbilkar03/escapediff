@@ -1,7 +1,6 @@
 # Roadmap
 
 ## Next
-- A Markdown output for pull request comments
 - Read GitHub Actions logs with timestamps in `compare`, after testing on a real Actions run
 - Cover test files with `go test -gcflags=-m=2 -run '^$'` as an option
 
