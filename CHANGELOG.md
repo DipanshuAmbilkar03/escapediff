@@ -4,6 +4,11 @@ All notable changes are documented here, in [Keep a Changelog](https://keepachan
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-03
+
+### Added
+- Add markdown output for pull request comments (#8)
+
 ## [0.1.1] - 2026-11-02
 
 ### Fixed
