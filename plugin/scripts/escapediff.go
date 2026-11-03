@@ -600,11 +600,9 @@ func writeDiags(w io.Writer, ds []Diag) {
 	}
 }
 
-// WriteText prints the result for people.
-func WriteText(w io.Writer, r *Result) {
-	if r.ByFile {
-		fmt.Fprintln(w, "Note: a log has no -m=2 detail, so changes are matched by file and function names aren't shown.")
-	}
+// summaryParts counts the regressions and improvements shown at the top of a
+// report.
+func summaryParts(r *Result) ([]string, int) {
 	var parts []string
 	if n := len(r.NewHeap); n > 0 {
 		parts = append(parts, plural(n, "new heap escape", "new heap escapes"))
@@ -619,6 +617,15 @@ func WriteText(w io.Writer, r *Result) {
 		parts = append(parts, plural(n, "call no longer devirtualized", "calls no longer devirtualized"))
 	}
 	improved := len(r.GoneHeap) + len(r.GoneLeaks) + len(r.NewInline)
+	return parts, improved
+}
+
+// WriteText prints the result for people.
+func WriteText(w io.Writer, r *Result) {
+	if r.ByFile {
+		fmt.Fprintln(w, "Note: a log has no -m=2 detail, so changes are matched by file and function names aren't shown.")
+	}
+	parts, improved := summaryParts(r)
 	if len(parts) == 0 && improved == 0 && len(r.NearBudget) == 0 {
 		fmt.Fprintf(w, "No changes in heap escapes, parameter leaks, inlining or devirtualization (%s, %s).\n",
 			plural(r.HeadHeap, "heap escape", "heap escapes"), plural(r.HeadInlinable, "inlinable function", "inlinable functions"))
@@ -696,6 +703,147 @@ func WriteText(w io.Writer, r *Result) {
 	}
 }
 
+// mdCell escapes text for a Markdown table cell.
+func mdCell(s string) string {
+	return strings.NewReplacer(
+		"&", "&amp;",
+		"<", "&lt;",
+		">", "&gt;",
+		"|", `\|`,
+		"\n", "<br>",
+		"\r", "",
+	).Replace(s)
+}
+
+// mdCode formats s as an inline code span that survives a Markdown table,
+// choosing a delimiter longer than any backtick run in s.
+func mdCode(s string) string {
+	s = strings.ReplaceAll(s, "|", `\|`)
+	delim := "`"
+	for strings.Contains(s, delim) {
+		delim += "`"
+	}
+	if strings.HasPrefix(s, "`") || strings.HasSuffix(s, "`") {
+		return delim + " " + s + " " + delim
+	}
+	return delim + s + delim
+}
+
+func writeDiagTable(w io.Writer, ds []Diag) {
+	fmt.Fprintln(w, "| Position | Change | In |")
+	fmt.Fprintln(w, "| --- | --- | --- |")
+	for _, d := range ds {
+		fn := "—"
+		if d.Func != "" {
+			fn = mdCode(d.Func)
+		}
+		text := d.Text
+		if d.Detail != "" {
+			text = d.Detail
+		}
+		fmt.Fprintf(w, "| %s | %s | %s |\n", mdCode(pos(d.File, d.Line, d.Col)), mdCode(text), fn)
+	}
+}
+
+// WriteMarkdown prints the result as Markdown tables, one per section, so CI
+// can post it as a pull request comment.
+func WriteMarkdown(w io.Writer, r *Result) {
+	if r.ByFile {
+		fmt.Fprintln(w, "> A log has no -m=2 detail, so changes are matched by file and function names aren't shown.")
+		fmt.Fprintln(w)
+	}
+
+	parts, improved := summaryParts(r)
+	if len(parts) == 0 && improved == 0 && len(r.NearBudget) == 0 {
+		fmt.Fprintf(w, "No changes in heap escapes, parameter leaks, inlining or devirtualization (%s, %s).\n\n",
+			plural(r.HeadHeap, "heap escape", "heap escapes"), plural(r.HeadInlinable, "inlinable function", "inlinable functions"))
+		writeOutside(w, r)
+		return
+	}
+	if len(parts) == 0 {
+		parts = append(parts, "no regressions")
+	}
+	if improved > 0 {
+		parts = append(parts, plural(improved, "improvement", "improvements"))
+	}
+	fmt.Fprintf(w, "**%s**\n\n", mdCell(strings.Join(parts, ", ")))
+	fmt.Fprintf(w, "Heap escapes: %d -> %d. Inlinable functions: %d -> %d.\n", r.BaseHeap, r.HeadHeap, r.BaseInlinable, r.HeadInlinable)
+
+	if len(r.NewHeap) > 0 {
+		fmt.Fprint(w, "\n### New heap escapes\n\n")
+		writeDiagTable(w, r.NewHeap)
+	}
+	if len(r.LostInline) > 0 {
+		fmt.Fprint(w, "\n### No longer inlined\n\n")
+		fmt.Fprintln(w, "| Position | Function | Reason | Detail |")
+		fmt.Fprintln(w, "| --- | --- | --- | --- |")
+		for _, f := range r.LostInline {
+			why := f.Reason
+			if f.Removed {
+				why = "not in head's log (removed, renamed or not inlinable)"
+			}
+			var detail []string
+			if f.BaseCost > 0 {
+				detail = append(detail, fmt.Sprintf("base cost %d", f.BaseCost))
+			}
+			if f.CallSites > 0 {
+				was := "call sites were"
+				if f.CallSites == 1 {
+					was = "call site was"
+				}
+				detail = append(detail, fmt.Sprintf("%d %s inlined in base", f.CallSites, was))
+			}
+			for _, c := range f.Grown {
+				detail = append(detail, fmt.Sprintf("inlines %s, whose cost grew %d -> %d", mdCode(c.Name), c.BaseCost, c.Cost))
+			}
+			if len(detail) == 0 {
+				detail = append(detail, "—")
+			}
+			fmt.Fprintf(w, "| %s | %s | %s | %s |\n", mdCode(pos(f.File, f.Line, 0)), mdCode(f.Name), mdCode(why), strings.Join(detail, "<br>"))
+		}
+	}
+	if len(r.NewLeaks) > 0 {
+		fmt.Fprint(w, "\n### New parameter leaks (callers may now allocate)\n\n")
+		writeDiagTable(w, r.NewLeaks)
+	}
+	if len(r.LostDevirt) > 0 {
+		fmt.Fprint(w, "\n### No longer devirtualized (base positions)\n\n")
+		writeDiagTable(w, r.LostDevirt)
+	}
+	if len(r.NearBudget) > 0 {
+		fmt.Fprintf(w, "\n### Still inlined, but close to the budget of %d\n\n", r.NearBudget[0].Budget)
+		fmt.Fprintln(w, "| Position | Function | Cost |")
+		fmt.Fprintln(w, "| --- | --- | --- |")
+		for _, f := range r.NearBudget {
+			fmt.Fprintf(w, "| %s | %s | %s |\n", mdCode(pos(f.File, f.Line, 0)), mdCode(f.Name), mdCode(fmt.Sprintf("%d -> %d", f.BaseCost, f.Cost)))
+		}
+	}
+	if len(r.GoneHeap) > 0 {
+		fmt.Fprint(w, "\n### Heap escapes gone (base positions)\n\n")
+		writeDiagTable(w, r.GoneHeap)
+	}
+	if len(r.GoneLeaks) > 0 {
+		fmt.Fprint(w, "\n### Parameter leaks gone (base positions)\n\n")
+		writeDiagTable(w, r.GoneLeaks)
+	}
+	if r.Outside > 0 {
+		fmt.Fprintln(w)
+		writeOutside(w, r)
+	}
+	if len(r.NewInline) > 0 {
+		fmt.Fprint(w, "\n### Now inlined\n\n")
+		fmt.Fprintln(w, "| Position | Function | Cost |")
+		fmt.Fprintln(w, "| --- | --- | --- |")
+		for _, f := range r.NewInline {
+			cost := "—"
+			if f.Cost > 0 {
+				cost = mdCode(strconv.Itoa(f.Cost))
+			}
+			fmt.Fprintf(w, "| %s | %s | %s |\n", mdCode(pos(f.File, f.Line, 0)), mdCode(f.Name), cost)
+		}
+	}
+}
+
 func writeOutside(w io.Writer, r *Result) {
 	if r.Outside > 0 {
 		fmt.Fprintf(w, "Not listed: %s in files outside these packages, such as generic code from the standard library. Use --all to list them.\n",
@@ -719,8 +867,8 @@ func parseFile(name string) (*Build, error) {
 const usage = `escapediff compares Go escape analysis and inlining between two builds.
 
 Usage:
-  escapediff compare [--json] [--fail] [--all] BASE.log HEAD.log
-  escapediff git [--head REF] [--save DIR] [--json] [--fail] [--all] BASE [PACKAGES...]
+  escapediff compare [--json|--markdown] [--fail] [--all] BASE.log HEAD.log
+  escapediff git [--head REF] [--save DIR] [--json|--markdown] [--fail] [--all] BASE [PACKAGES...]
   escapediff version
 
 compare reads two saved outputs of: go build -gcflags=-m=2 ./... 2> FILE
@@ -731,6 +879,7 @@ with -gcflags=-m=2 and compares them. PACKAGES defaults to ./...
 functions no longer inlined or calls no longer devirtualized.
 --all also lists changes in files outside the built packages, such as
 generic functions from the standard library compiled into them.
+--markdown prints one Markdown table per section, for a pull request comment.
 Exit code 2 means bad usage, a failed build or an unreadable file.
 `
 
@@ -758,11 +907,16 @@ func run(args []string, stdout, stderr io.Writer) int {
 	fs := flag.NewFlagSet(args[0], flag.ContinueOnError)
 	fs.SetOutput(stderr)
 	asJSON := fs.Bool("json", false, "print JSON")
+	asMarkdown := fs.Bool("markdown", false, "print Markdown tables for a pull request comment")
 	fail := fs.Bool("fail", false, "exit 1 on regressions")
 	head := fs.String("head", "", "git: build this ref instead of the working tree")
 	save := fs.String("save", "", "git: write base.log and head.log to this directory")
 	all := fs.Bool("all", false, "also list changes in files outside the built packages")
 	if err := fs.Parse(args[1:]); err != nil {
+		return 2
+	}
+	if *asJSON && *asMarkdown {
+		fmt.Fprintln(stderr, "escapediff: choose one of --json and --markdown")
 		return 2
 	}
 	var base, headB *Build
@@ -799,11 +953,14 @@ func run(args []string, stdout, stderr io.Writer) int {
 		return 2
 	}
 	r := Compare(base, headB, *all)
-	if *asJSON {
+	switch {
+	case *asJSON:
 		enc := json.NewEncoder(stdout)
 		enc.SetIndent("", "  ")
 		enc.Encode(r)
-	} else {
+	case *asMarkdown:
+		WriteMarkdown(stdout, r)
+	default:
 		WriteText(stdout, r)
 	}
 	if *fail && r.Regressions() > 0 {

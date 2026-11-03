@@ -166,6 +166,76 @@ func TestCommentsOnlyChangeIsQuiet(t *testing.T) {
 	}
 }
 
+func TestMarkdownShopChange(t *testing.T) {
+	r := compareLogs(t, "shop-before.log", "shop-after.log", false)
+	var buf bytes.Buffer
+	WriteMarkdown(&buf, r)
+	out := buf.String()
+
+	for _, want := range []string{
+		"**3 new heap escapes, 2 functions no longer inlined, 4 new parameter leaks, 1 call no longer devirtualized, 1 improvement**",
+		"Heap escapes: 2 -> 4. Inlinable functions: 8 -> 6.",
+		"### New heap escapes",
+		"| Position | Change | In |",
+		"| `orders/orders.go:68:16` | `\"ord-\" + ~r0 escapes to heap` | `FormatID` |",
+		"### No longer inlined",
+		"| `orders/orders.go:55` | `(*Order).Total` | `function too complex: cost 116 exceeds budget 80` | base cost 53<br>2 call sites were inlined in base<br>inlines `(*Order).Subtotal`, whose cost grew 30 -> 60<br>inlines `roundCents`, whose cost grew 6 -> 36 |",
+		"### New parameter leaks (callers may now allocate)",
+		"### No longer devirtualized (base positions)",
+		"### Still inlined, but close to the budget of 80",
+		"| `orders/encode.go:28` | `Batch` | `69 -> 73` |",
+		"### Heap escapes gone (base positions)",
+	} {
+		if !strings.Contains(out, want) {
+			t.Errorf("missing %q in:\n%s", want, out)
+		}
+	}
+}
+
+func TestMarkdownQuietChange(t *testing.T) {
+	r := compareLogs(t, "shop-before.log", "shop-comments.log", false)
+	var buf bytes.Buffer
+	WriteMarkdown(&buf, r)
+	want := "No changes in heap escapes, parameter leaks, inlining or devirtualization (2 heap escapes, 8 inlinable functions).\n\n"
+	if buf.String() != want {
+		t.Fatalf("got %q", buf.String())
+	}
+}
+
+func TestMarkdownEscaping(t *testing.T) {
+	if got, want := mdCell("a & b <c> | d\ne"), "a &amp; b &lt;c&gt; \\| d<br>e"; got != want {
+		t.Errorf("mdCell = %q, want %q", got, want)
+	}
+	if got, want := mdCode("x | y"), "`x \\| y`"; got != want {
+		t.Errorf("mdCode pipe = %q, want %q", got, want)
+	}
+	if got, want := mdCode("a`b"), "``a`b``"; got != want {
+		t.Errorf("mdCode backtick = %q, want %q", got, want)
+	}
+	if got, want := mdCode("`x`"), "`` `x` ``"; got != want {
+		t.Errorf("mdCode edge backticks = %q, want %q", got, want)
+	}
+}
+
+func TestMarkdownFlag(t *testing.T) {
+	before, after, comments := logPath("shop-before.log"), logPath("shop-after.log"), logPath("shop-comments.log")
+	if code, out, errs := runCmd("compare", "--markdown", before, after); code != 0 || errs != "" || !strings.Contains(out, "### New heap escapes") {
+		t.Errorf("--markdown: %d %q %q", code, out, errs)
+	}
+	if code, _, _ := runCmd("compare", "--markdown", "--fail", before, after); code != 1 {
+		t.Errorf("--markdown --fail with regressions: %d", code)
+	}
+	if code, out, _ := runCmd("compare", "--markdown", before, comments); code != 0 || !strings.HasPrefix(out, "No changes") {
+		t.Errorf("--markdown without changes: %d %q", code, out)
+	}
+	if code, _, errs := runCmd("compare", "--json", "--markdown", before, after); code != 2 || !strings.Contains(errs, "--json and --markdown") {
+		t.Errorf("conflicting formats: %d %q", code, errs)
+	}
+	if !strings.Contains(usage, "--markdown") {
+		t.Error("usage does not mention --markdown")
+	}
+}
+
 func TestMixedLogsMatchByFile(t *testing.T) {
 	r := compareLogs(t, "shop-before-m1.log", "shop-after.log", false)
 	if !r.ByFile {
