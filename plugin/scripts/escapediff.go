@@ -72,8 +72,15 @@ type Build struct {
 	Detailed bool // true when the log came from -m=2, with costs and "cannot inline" lines
 	Budget   int
 	decls    map[string][]decl
-	headers  map[string][]string // -m=2 "X escapes to heap in F:" expressions by position
-	why      map[string][]string // -m=2 flow lines by position
+	headers  map[string][]string   // -m=2 "X escapes to heap in F:" expressions by position
+	why      map[string][]whyBlock // -m=2 flow lines by position and header
+}
+
+// whyBlock is the flow lines printed under one -m=2 header. Several escapes can
+// share a position, so the subject keeps their blocks apart.
+type whyBlock struct {
+	subject string
+	lines   []string
 }
 
 type decl struct {
@@ -110,7 +117,7 @@ func normName(name string) string {
 
 // Parse reads compiler output. Lines that aren't diagnostics are ignored.
 func Parse(r io.Reader) (*Build, error) {
-	b := &Build{Funcs: map[string]*FuncInfo{}, decls: map[string][]decl{}, headers: map[string][]string{}, why: map[string][]string{}, Budget: defaultBudget}
+	b := &Build{Funcs: map[string]*FuncInfo{}, decls: map[string][]decl{}, headers: map[string][]string{}, why: map[string][]whyBlock{}, Budget: defaultBudget}
 	sc := bufio.NewScanner(r)
 	sc.Buffer(make([]byte, 1024*1024), 16*1024*1024)
 	for sc.Scan() {
@@ -131,14 +138,24 @@ func Parse(r io.Reader) (*Build, error) {
 		if h := headerRe.FindStringSubmatch(msg); h != nil {
 			p := m[1] + ":" + m[2] + ":" + m[3]
 			b.headers[p] = append(b.headers[p], h[1])
+			b.why[p] = append(b.why[p], whyBlock{subject: h[1]})
 			continue
 		}
 		if strings.HasPrefix(msg, " ") {
 			p := m[1] + ":" + m[2] + ":" + m[3]
-			b.why[p] = append(b.why[p], msg)
+			blocks := b.why[p]
+			if len(blocks) == 0 {
+				blocks = append(blocks, whyBlock{})
+			}
+			blocks[len(blocks)-1].lines = append(blocks[len(blocks)-1].lines, msg)
+			b.why[p] = blocks
 			continue
 		}
 		if strings.HasSuffix(msg, ":") {
+			// A non-escape header ends the previous block, so its flow lines
+			// can't be picked up by an escape at the same position.
+			p := m[1] + ":" + m[2] + ":" + m[3]
+			b.why[p] = append(b.why[p], whyBlock{})
 			continue
 		}
 		file := strings.TrimPrefix(filepath.ToSlash(m[1]), "./")
@@ -187,29 +204,46 @@ func (b *Build) add(file string, ln, col int, msg string) {
 		dk(KindDevirt, msg)
 	case movedRe.MatchString(msg):
 		dk(KindMoved, msg)
+		d := &b.Diags[len(b.Diags)-1]
+		subject := strings.TrimPrefix(msg, "moved to heap: ")
+		d.Detail = b.takeHeader(file, ln, col, subject)
+		d.Why = b.takeWhy(file, ln, col, subject)
 	case strings.HasSuffix(msg, " escapes to heap"):
 		dk(KindEscape, msg)
 		d := &b.Diags[len(b.Diags)-1]
-		d.Detail = b.takeHeader(file, ln, col, strings.TrimSuffix(msg, " escapes to heap"))
-		d.Why = b.takeWhy(file, ln, col)
+		subject := strings.TrimSuffix(msg, " escapes to heap")
+		d.Detail = b.takeHeader(file, ln, col, subject)
+		d.Why = b.takeWhy(file, ln, col, subject)
 	case leakRe.MatchString(msg):
 		dk(KindLeak, msg)
 	}
 }
 
-// takeWhy returns and removes the -m=2 flow lines at a position.
-func (b *Build) takeWhy(file string, ln, col int) []string {
+// takeWhy returns and removes the -m=2 flow lines for one escape at a
+// position. Several escapes can share a position, so the block whose header
+// matches the subject is used.
+func (b *Build) takeWhy(file string, ln, col int, subject string) []string {
 	for _, p := range []string{file, "./" + file} {
 		key := fmt.Sprintf("%s:%d:%d", p, ln, col)
 		if col == 0 {
 			key = fmt.Sprintf("%s:%d:", p, ln)
 		}
-		if why := b.why[key]; len(why) > 0 {
-			delete(b.why, key)
-			return why
+		blocks := b.why[key]
+		for i, blk := range blocks {
+			if blk.subject == "" || !subjectMatches(blk.subject, subject) {
+				continue
+			}
+			b.why[key] = append(blocks[:i:i], blocks[i+1:]...)
+			return blk.lines
 		}
 	}
 	return nil
+}
+
+// subjectMatches reports whether a -m=2 header describes the plain subject:
+// the same text, or a call that starts with it.
+func subjectMatches(header, subject string) bool {
+	return header == subject || strings.HasPrefix(header, subject+"(") || strings.HasPrefix(header, subject+" ")
 }
 
 // takeHeader returns and removes the -m=2 header expression at a position
@@ -222,7 +256,7 @@ func (b *Build) takeHeader(file string, ln, col int, subject string) string {
 		}
 		hs := b.headers[key]
 		for i, h := range hs {
-			if h == subject || strings.HasPrefix(h, subject+"(") || strings.HasPrefix(h, subject+" ") {
+			if subjectMatches(h, subject) {
 				b.headers[key] = append(hs[:i:i], hs[i+1:]...)
 				if h == subject {
 					return ""
@@ -649,7 +683,7 @@ func summaryParts(r *Result) ([]string, int) {
 }
 
 // WriteText prints the result for people. When why is set, each new heap
-// escape is followed by the compiler's -m=2 flow lines for it.
+// escape or move is followed by the compiler's -m=2 flow lines for it.
 func WriteText(w io.Writer, r *Result, why bool) {
 	if r.ByFile {
 		fmt.Fprintln(w, "Note: a log has no -m=2 detail, so changes are matched by file and function names aren't shown.")
@@ -896,8 +930,8 @@ func parseFile(name string) (*Build, error) {
 const usage = `escapediff compares Go escape analysis and inlining between two builds.
 
 Usage:
-  escapediff compare [--json|--markdown] [--fail] [--all] BASE.log HEAD.log
-  escapediff git [--head REF] [--save DIR] [--json|--markdown] [--fail] [--all] BASE [PACKAGES...]
+  escapediff compare [--why] [--json|--markdown] [--fail] [--all] BASE.log HEAD.log
+  escapediff git [--head REF] [--save DIR] [--why] [--json|--markdown] [--fail] [--all] BASE [PACKAGES...]
   escapediff version
 
 compare reads two saved outputs of: go build -gcflags=-m=2 ./... 2> FILE
@@ -908,8 +942,8 @@ with -gcflags=-m=2 and compares them. PACKAGES defaults to ./...
 functions no longer inlined or calls no longer devirtualized.
 --all also lists changes in files outside the built packages, such as
 generic functions from the standard library compiled into them.
---why prints the compiler's flow lines under each new heap escape in the
-text report. It needs -m=2 logs.
+--why prints the compiler's flow lines under each new heap escape or move in
+the text report. It needs -m=2 logs.
 --markdown prints one Markdown table per section, for a pull request comment.
 Exit code 2 means bad usage, a failed build or an unreadable file.
 `
@@ -943,7 +977,7 @@ func run(args []string, stdout, stderr io.Writer) int {
 	head := fs.String("head", "", "git: build this ref instead of the working tree")
 	save := fs.String("save", "", "git: write base.log and head.log to this directory")
 	all := fs.Bool("all", false, "also list changes in files outside the built packages")
-	why := fs.Bool("why", false, "print the compiler's flow lines under each new heap escape")
+	why := fs.Bool("why", false, "print the compiler's flow lines under each new heap escape or move")
 	if err := fs.Parse(args[1:]); err != nil {
 		return 2
 	}

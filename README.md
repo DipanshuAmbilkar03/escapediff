@@ -125,7 +125,7 @@ When a change starts using a generic function from another package, such as `sli
 - `git` builds `BASE` and your working tree, uncommitted edits included, with `go build -gcflags=-m=2 -o /dev/null`, then compares them. `--head REF` builds a commit instead of the working tree. Revisions are unpacked with `git archive` into a temporary directory, so your checkout isn't touched. `PACKAGES` defaults to `./...`. Run it from inside the module.
 - `compare` reads two saved outputs of `go build -gcflags=-m=2 ./... 2> FILE`. Both should come from the same Go version. `-m=1` output works too, but then changes are matched by file only, function names aren't shown, and a function missing from head's log can't be told apart from one that was removed.
 - `--save DIR` writes `base.log` and `head.log`, which hold the compiler's full reasoning (`flow:` lines) for each escape.
-- `--why` prints those `flow:` lines under each new heap escape in the text report. It needs `-m=2` logs, and it can't be combined with `--json` or `--markdown`.
+- `--why` prints those `flow:` lines under each new heap escape or move in the text report. It needs `-m=2` logs, and it can't be combined with `--json` or `--markdown`.
 - `--fail` exits 1 when there are new heap escapes, new parameter leaks, functions no longer inlined, or calls no longer devirtualized. "Close to the budget" doesn't fail. Exit code 2 means bad usage, a failed build, or a file it couldn't read.
 - `--json` prints the full result.
 - `--markdown` prints one Markdown table per section, so CI can post the report as a pull request comment. It can't be combined with `--json`.
