@@ -94,6 +94,47 @@ p/p.go:21:3: devirtualizing i.M to T
 	}
 }
 
+func TestParseWhyLines(t *testing.T) {
+	b := mustParse(t, "shop-after.log")
+	var found bool
+	for _, d := range b.Diags {
+		if d.File != "orders/orders.go" || d.Line != 75 || d.Col != 23 ||
+			!strings.HasSuffix(d.Text, " escapes to heap") {
+			continue
+		}
+		found = true
+		if len(d.Why) == 0 {
+			t.Fatal("escape has no flow lines")
+		}
+		why := strings.Join(d.Why, "\n")
+		if !strings.Contains(why, "flow: ~r0 ← &{storage for &errors.errorString{...}}") {
+			t.Errorf("why = %q", d.Why)
+		}
+		if !strings.Contains(why, "from &errors.errorString{...} (spill)") {
+			t.Errorf("why = %q", d.Why)
+		}
+	}
+	if !found {
+		t.Fatal("no escape at orders/orders.go:75:23")
+	}
+}
+
+func TestWriteTextWhy(t *testing.T) {
+	r := compareLogs(t, "shop-before.log", "shop-after.log", false)
+
+	var buf bytes.Buffer
+	WriteText(&buf, r, true)
+	if out := buf.String(); !strings.Contains(out, "flow: ~r0 ← &{storage for &errors.errorString{...}}") {
+		t.Errorf("--why output misses the flow line:\n%s", out)
+	}
+
+	buf.Reset()
+	WriteText(&buf, r, false)
+	if out := buf.String(); strings.Contains(out, "flow:") {
+		t.Errorf("without --why, flow lines were printed:\n%s", out)
+	}
+}
+
 func TestParseSimpleHasNoFuncs(t *testing.T) {
 	b := mustParse(t, "shop-before-m1.log")
 	if b.Detailed {
@@ -159,7 +200,7 @@ func TestShopChange(t *testing.T) {
 func TestCommentsOnlyChangeIsQuiet(t *testing.T) {
 	r := compareLogs(t, "shop-before.log", "shop-comments.log", false)
 	var buf bytes.Buffer
-	WriteText(&buf, r)
+	WriteText(&buf, r, false)
 	want := "No changes in heap escapes, parameter leaks, inlining or devirtualization (2 heap escapes, 8 inlinable functions).\n"
 	if buf.String() != want {
 		t.Fatalf("got %q", buf.String())
@@ -333,6 +374,12 @@ func TestRunExitCodes(t *testing.T) {
 	}
 	if code, out, _ := runCmd("compare", "--json", before, after); code != 0 || !strings.Contains(out, `"noLongerInlined"`) {
 		t.Errorf("--json: %d %s", code, out)
+	}
+	if code, out, _ := runCmd("compare", "--why", before, after); code != 0 || !strings.Contains(out, "flow:") {
+		t.Errorf("--why: %d %s", code, out)
+	}
+	if code, _, errs := runCmd("compare", "--why", "--json", before, after); code != 2 || !strings.Contains(errs, "--why") {
+		t.Errorf("--why with --json: %d %q", code, errs)
 	}
 	if code, _, _ := runCmd("compare", before); code != 2 {
 		t.Errorf("missing arg: %d", code)

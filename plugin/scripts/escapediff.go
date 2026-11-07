@@ -43,13 +43,14 @@ const (
 
 // Diag is one compiler diagnostic that escapediff tracks.
 type Diag struct {
-	File     string `json:"file"`
-	Line     int    `json:"line"`
-	Col      int    `json:"col,omitempty"`
-	Func     string `json:"func,omitempty"`
-	Kind     string `json:"kind"`
-	Text     string `json:"text"`
-	Detail   string `json:"detail,omitempty"`
+	File     string   `json:"file"`
+	Line     int      `json:"line"`
+	Col      int      `json:"col,omitempty"`
+	Func     string   `json:"func,omitempty"`
+	Kind     string   `json:"kind"`
+	Text     string   `json:"text"`
+	Detail   string   `json:"detail,omitempty"`
+	Why      []string `json:"-"` // -m=2 flow lines, printed by --why
 	funcLine int
 }
 
@@ -72,6 +73,7 @@ type Build struct {
 	Budget   int
 	decls    map[string][]decl
 	headers  map[string][]string // -m=2 "X escapes to heap in F:" expressions by position
+	why      map[string][]string // -m=2 flow lines by position
 }
 
 type decl struct {
@@ -108,7 +110,7 @@ func normName(name string) string {
 
 // Parse reads compiler output. Lines that aren't diagnostics are ignored.
 func Parse(r io.Reader) (*Build, error) {
-	b := &Build{Funcs: map[string]*FuncInfo{}, decls: map[string][]decl{}, headers: map[string][]string{}, Budget: defaultBudget}
+	b := &Build{Funcs: map[string]*FuncInfo{}, decls: map[string][]decl{}, headers: map[string][]string{}, why: map[string][]string{}, Budget: defaultBudget}
 	sc := bufio.NewScanner(r)
 	sc.Buffer(make([]byte, 1024*1024), 16*1024*1024)
 	for sc.Scan() {
@@ -124,14 +126,19 @@ func Parse(r io.Reader) (*Build, error) {
 		msg := m[4]
 		// -m=2 explains each decision on indented lines and with headers
 		// ending in a colon. The plain one-line form follows, so skip these,
-		// but keep the full expression from escape headers: the plain line
-		// often says only "append escapes to heap".
+		// but keep the full expression from escape headers and the flow lines
+		// that --why prints.
 		if h := headerRe.FindStringSubmatch(msg); h != nil {
 			p := m[1] + ":" + m[2] + ":" + m[3]
 			b.headers[p] = append(b.headers[p], h[1])
 			continue
 		}
-		if strings.HasPrefix(msg, " ") || strings.HasSuffix(msg, ":") {
+		if strings.HasPrefix(msg, " ") {
+			p := m[1] + ":" + m[2] + ":" + m[3]
+			b.why[p] = append(b.why[p], msg)
+			continue
+		}
+		if strings.HasSuffix(msg, ":") {
 			continue
 		}
 		file := strings.TrimPrefix(filepath.ToSlash(m[1]), "./")
@@ -184,9 +191,25 @@ func (b *Build) add(file string, ln, col int, msg string) {
 		dk(KindEscape, msg)
 		d := &b.Diags[len(b.Diags)-1]
 		d.Detail = b.takeHeader(file, ln, col, strings.TrimSuffix(msg, " escapes to heap"))
+		d.Why = b.takeWhy(file, ln, col)
 	case leakRe.MatchString(msg):
 		dk(KindLeak, msg)
 	}
+}
+
+// takeWhy returns and removes the -m=2 flow lines at a position.
+func (b *Build) takeWhy(file string, ln, col int) []string {
+	for _, p := range []string{file, "./" + file} {
+		key := fmt.Sprintf("%s:%d:%d", p, ln, col)
+		if col == 0 {
+			key = fmt.Sprintf("%s:%d:", p, ln)
+		}
+		if why := b.why[key]; len(why) > 0 {
+			delete(b.why, key)
+			return why
+		}
+	}
+	return nil
 }
 
 // takeHeader returns and removes the -m=2 header expression at a position
@@ -580,7 +603,7 @@ func pos(file string, line, col int) string {
 	return fmt.Sprintf("%s:%d", file, line)
 }
 
-func writeDiags(w io.Writer, ds []Diag) {
+func writeDiags(w io.Writer, ds []Diag, why bool) {
 	width := 0
 	for _, d := range ds {
 		if n := len(pos(d.File, d.Line, d.Col)); n > width {
@@ -597,6 +620,11 @@ func writeDiags(w io.Writer, ds []Diag) {
 			text = d.Detail
 		}
 		fmt.Fprintf(w, "  %-*s  %s%s\n", width, pos(d.File, d.Line, d.Col), text, fn)
+		if why {
+			for _, line := range d.Why {
+				fmt.Fprintf(w, "    %s\n", line)
+			}
+		}
 	}
 }
 
@@ -620,8 +648,9 @@ func summaryParts(r *Result) ([]string, int) {
 	return parts, improved
 }
 
-// WriteText prints the result for people.
-func WriteText(w io.Writer, r *Result) {
+// WriteText prints the result for people. When why is set, each new heap
+// escape is followed by the compiler's -m=2 flow lines for it.
+func WriteText(w io.Writer, r *Result, why bool) {
 	if r.ByFile {
 		fmt.Fprintln(w, "Note: a log has no -m=2 detail, so changes are matched by file and function names aren't shown.")
 	}
@@ -643,7 +672,7 @@ func WriteText(w io.Writer, r *Result) {
 
 	if len(r.NewHeap) > 0 {
 		fmt.Fprintln(w, "\nNew heap escapes:")
-		writeDiags(w, r.NewHeap)
+		writeDiags(w, r.NewHeap, why)
 	}
 	if len(r.LostInline) > 0 {
 		fmt.Fprintln(w, "\nNo longer inlined:")
@@ -667,11 +696,11 @@ func WriteText(w io.Writer, r *Result) {
 	}
 	if len(r.NewLeaks) > 0 {
 		fmt.Fprintln(w, "\nNew parameter leaks (callers may now allocate):")
-		writeDiags(w, r.NewLeaks)
+		writeDiags(w, r.NewLeaks, false)
 	}
 	if len(r.LostDevirt) > 0 {
 		fmt.Fprintln(w, "\nNo longer devirtualized (base positions):")
-		writeDiags(w, r.LostDevirt)
+		writeDiags(w, r.LostDevirt, false)
 	}
 	if len(r.NearBudget) > 0 {
 		fmt.Fprintf(w, "\nStill inlined, but close to the budget of %d:\n", r.NearBudget[0].Budget)
@@ -681,11 +710,11 @@ func WriteText(w io.Writer, r *Result) {
 	}
 	if len(r.GoneHeap) > 0 {
 		fmt.Fprintln(w, "\nHeap escapes gone (base positions):")
-		writeDiags(w, r.GoneHeap)
+		writeDiags(w, r.GoneHeap, false)
 	}
 	if len(r.GoneLeaks) > 0 {
 		fmt.Fprintln(w, "\nParameter leaks gone (base positions):")
-		writeDiags(w, r.GoneLeaks)
+		writeDiags(w, r.GoneLeaks, false)
 	}
 	if r.Outside > 0 {
 		fmt.Fprintln(w)
@@ -879,6 +908,8 @@ with -gcflags=-m=2 and compares them. PACKAGES defaults to ./...
 functions no longer inlined or calls no longer devirtualized.
 --all also lists changes in files outside the built packages, such as
 generic functions from the standard library compiled into them.
+--why prints the compiler's flow lines under each new heap escape in the
+text report. It needs -m=2 logs.
 --markdown prints one Markdown table per section, for a pull request comment.
 Exit code 2 means bad usage, a failed build or an unreadable file.
 `
@@ -912,11 +943,16 @@ func run(args []string, stdout, stderr io.Writer) int {
 	head := fs.String("head", "", "git: build this ref instead of the working tree")
 	save := fs.String("save", "", "git: write base.log and head.log to this directory")
 	all := fs.Bool("all", false, "also list changes in files outside the built packages")
+	why := fs.Bool("why", false, "print the compiler's flow lines under each new heap escape")
 	if err := fs.Parse(args[1:]); err != nil {
 		return 2
 	}
 	if *asJSON && *asMarkdown {
 		fmt.Fprintln(stderr, "escapediff: choose one of --json and --markdown")
+		return 2
+	}
+	if *why && (*asJSON || *asMarkdown) {
+		fmt.Fprintln(stderr, "escapediff: --why needs the text report, so it can't be combined with --json or --markdown")
 		return 2
 	}
 	var base, headB *Build
@@ -961,7 +997,7 @@ func run(args []string, stdout, stderr io.Writer) int {
 	case *asMarkdown:
 		WriteMarkdown(stdout, r)
 	default:
-		WriteText(stdout, r)
+		WriteText(stdout, r, *why)
 	}
 	if *fail && r.Regressions() > 0 {
 		return 1
