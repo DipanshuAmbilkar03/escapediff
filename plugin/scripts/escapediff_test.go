@@ -385,11 +385,18 @@ func TestRealChiOutsideHidden(t *testing.T) {
 		if !strings.Contains(why, "flow:") {
 			t.Errorf("%q has no flow lines", d.Text)
 		}
+		text := d.Text
+		if d.Detail != "" {
+			text = d.Detail
+		}
 		// Escapes that share this position must keep their own flows.
-		if strings.Contains(d.Text, "slices.s[:cap") && !strings.Contains(why, "slices.s[:cap") {
+		if strings.Contains(text, "slices.s[:cap") && !strings.Contains(why, "slices.s[:cap") {
 			t.Errorf("append got another escape's flow:\n%s", why)
 		}
-		if strings.Contains(d.Text, `"len out of range"`) && !strings.Contains(why, `"len out of range"`) {
+		if strings.Contains(text, "slices.newslice") && strings.Contains(why, "slices.s[:cap") {
+			t.Errorf("append got the other append's flow:\n%s", why)
+		}
+		if strings.Contains(text, `"len out of range"`) && !strings.Contains(why, `"len out of range"`) {
 			t.Errorf("string escape got another escape's flow:\n%s", why)
 		}
 	}
