@@ -4,6 +4,11 @@ All notable changes are documented here, in [Keep a Changelog](https://keepachan
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-08
+
+### Added
+- Add --why for new heap escapes (#11)
+
 ## [0.2.0] - 2026-11-03
 
 ### Added
